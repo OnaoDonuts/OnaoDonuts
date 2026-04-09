@@ -493,7 +493,7 @@ function updateRecipeSchema(recipe) {
             "@type": "VideoObject",
             "name": `${recipe.name}の作り方動画`,
             "description": `${recipe.name}を動画で分かりやすく解説します。`,
-            "thumbnailUrl": `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.jpg`,
+            "thumbnailUrl": `https://img.youtube.com/vi/${recipe.youtube}/hqdefault.jpg`,
             "contentUrl": `https://www.youtube.com/watch?v=${recipe.youtube}`,
             "embedUrl": `https://www.youtube.com/embed/${recipe.youtube}`,
             "uploadDate": "2022-01-18T08:00:00+09:00" 
