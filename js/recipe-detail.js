@@ -474,7 +474,7 @@ function updateRecipeSchema(recipe) {
         "name": recipe.name,
         "image": [
             // 本来はフルURLが理想です。ドメインが決まったら追加してください
-            `https://あなたのドメイン/img/recipe-img/${recipe.id}.jpg`
+            `https://img.youtube.com/vi/${recipe.youtube}/hqdefault.jpg`
         ],
         "author": {
             "@type": "Person",
