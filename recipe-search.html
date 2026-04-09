@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>レシピ検索 | おなおドーナツ</title>
+    <meta name="description" content="おなおドーナツのパンレシピを、材料やパンの種類から簡単に検索できます。ホームベーカリー、こねないパンなど、あなたにぴったりのレシピが見つかります。">
+    
+    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="my-custom.css">
+    <link rel="stylesheet" href="css/all.min.css">
+</head>
+
+<body>
+    <!-- 読み込み中画面 -->
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+        <img src="img/core-img/donut_loading.png" alt="おなおドーナツを準備中...">
+    </div>
+    
+    <!-- ヘッダー -->
+    <header class="header-area" id="header-placeholder"></header>
+
+
+<div class="onao-brand-hero bg-img bg-overlay" style="background-image: url(img/bg-img/search-bg1.png);">
+    <div class="onao-hero-content">
+        <h1 class="onao-title-main">おなおドーナツのレシピ検索</h1>
+        <p class="onao-title-sub">楽しさ広がるパン探し！</p>
+    </div>
+</div>
+
+
+<h2 class="visually-hidden">パンの種類や材料から探すレシピ検索</h2>
+
+
+<div class="container mt-3"> 
+    <div class="search-box mb-3">
+        <form id="searchForm">
+            <input type="text" id="searchInput" placeholder="材料やパンの名前で検索...">
+            <button type="button" id="clearSearch" class="search-clear-btn">×</button> 
+            <button type="submit" class="btn btn-success">検索</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="text-center mb-3" id="favFilterContainer">
+    <button id="favFilterBtn" class="btn" onclick="filterFavorites()" style="background-color: #ff6b6b; color: white; border-radius: 25px; padding: 8px 25px; font-weight: bold; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.3s;">
+        <i class="fa-solid fa-heart mr-2"></i> お気に入りレシピを表示
+    </button>
+</div>
+
+<div class="popular-keywords text-center mb-5">
+    <span class="label">人気のキーワード<br></span>
+    <a href="recipe-search.html?search=おなお厳選" class="keyword-tag">#おなお厳選</a> 
+    <a href="recipe-search.html?search=食パン" class="keyword-tag">#食パン</a>
+    <a href="recipe-search.html?search=フランスパン" class="keyword-tag">#フランスパン</a>
+    <a href="recipe-search.html?search=デニッシュ" class="keyword-tag">#デニッシュ</a>
+    <a href="recipe-search.html?search=ホームベーカリー" class="keyword-tag">#ホームベーカリー</a>
+    <a href="recipe-search.html?search=朝食" class="keyword-tag">#朝食</a>
+</div>
+
+    <div id="searchCount" class="text-center mb-4" style="font-weight: bold; color: #4b3e2a;">
+        <span id="currentSearchTerm"></span> 0 件のレシピが見つかりました
+    </div>
+    
+    <div id="results" class="row"></div>
+
+
+        <!-- 見つからない時のメッセージ -->
+        <div id="noResults" style="display:none; text-align:center; padding: 50px 0;">
+            <p>ごめんなさい、お探しのレシピは見つかりませんでした。</p>
+        </div>
+    </div>
+
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <div id="footer-placeholder"></div>
+        <div id="footer-nav-placeholder" class="d-md-none"></div>
+    </footer>
+
+    <!-- ##### スクリプト読み込み（順番が超重要！） ##### -->
+    
+    <!-- 1. まずは基本のライブラリ（jQueryなど） -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="js/bootstrap/popper.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/plugins/plugins.js"></script>
+<script src="js/common.js"></script>
+<script src="js/active.js"></script>
+
+
+    <!-- 4. 最後にそのページ専用の動き（検索機能） -->
+    <script src="js/search.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SearchResultsPage",
+  "name": "レシピ検索 | おなおドーナツ",
+  "description": "おなおドーナツのパンレシピを、材料やパンの種類から簡単に検索できます。",
+  "url": "https://あなたのドメイン/recipe-search.html"
+}
+</script>
+
+</body>
+</html>

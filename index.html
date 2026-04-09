@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 検索フォームへのフォーカス時の拡大を防ぐ（iOS対策）-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>お家パン作りレシピと動画図鑑｜おなおドーナツ</title>
+<meta name="description" content="ホームベーカリーやこねないパンなど、初心者でも失敗しない手作りパンレシピを動画付きでご紹介。食パンから成形パンまで、お家をパン屋さんにするレシピが満載の図鑑です。">
+
+    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="style.css"> <!-- テンプレートの元祖 -->
+    <link rel="stylesheet" href="my-custom.css"> <!-- あなたの修正専用 -->
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+        <img src="img/core-img/donut_loading.png" alt="おなおドーナツを準備中...">
+    </div>
+    
+    
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area" id="header-placeholder">
+        <!-- ここに header.html が読み込まれます -->
+    </header>
+
+<h1 class="visually-hidden">おなおドーナツ｜お家パン作りがもっと楽しくなるレシピと動画の図鑑</h1>
+
+
+    <!-- ##### Search Area Start ##### -->
+    <div class="global-search-area" id="home-main-search">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10">
+                    <div class="search-box">
+
+
+<form action="recipe-search.html" method="get" id="searchForm">
+    <input type="text" name="search" id="searchInput" placeholder="材料やパンの名前で検索...">
+    <button type="reset" class="search-clear-btn">×</button> <!-- ←これを追加 -->
+    <button type="submit" class="btn btn-success">検索</button>
+</form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div class="onao-v-nav-container mb-4">
+    <div class="onao-v-nav">
+        
+        <div class="v-nav-item" onclick="location.href='recipe-search.html?cat=1'">
+            <div class="v-icon-circle"><i class="fa-solid fa-bread-slice"></i></div>
+            <span class="v-nav-label">HB</span>
+        </div>
+
+        <div class="v-nav-item" onclick="location.href='recipe-search.html?cat=2'">
+            <div class="v-icon-circle"><i class="fa-solid fa-mortar-pestle"></i></div>
+            <span class="v-nav-label">こねないパン</span>
+        </div>
+
+        <div class="v-nav-item" onclick="location.href='recipe-search.html?cat=3'">
+            <div class="v-icon-circle"><i class="fa-solid fa-cookie-bite"></i></div>
+            <span class="v-nav-label">お菓子<br>惣菜パン</span>
+        </div>
+
+        <div class="v-nav-item" onclick="location.href='recipe-search.html?cat=4'">
+            <div class="v-icon-circle"><i class="fa-solid fa-mitten"></i></div>
+            <span class="v-nav-label">成形パン</span>
+        </div>
+
+    </div>
+</div>
+
+
+    <!-- ##### Hero Area Start ##### -->
+    <section class="hero-area">
+        <div class="container"> <div class="hero-slides owl-carousel">
+                
+                <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/apple.jpeg);" role="img" aria-label="手作りカスタードクリームが美味しいリンゴカスタードパンのレシピ紹介">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="hero-content text-center">
+                                    <h2 data-animation="fadeInUp" data-delay="400ms">パン作りを、もっと楽しく！</h2>
+                                    <p data-animation="fadeInUp" data-delay="700ms">「今日は何を焼こう？」お家パン作りレシピ集</p>
+                                    <a href="recipe-search.html" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">レシピを見る <i class="fa fa-angle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/french.jpeg);" role="img" aria-label="パリッと焼き上がった本格的なフランスパン（バゲット）の作り方">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="hero-content text-center">
+                                    <h2 data-animation="fadeInUp" data-delay="400ms">今日、どのパン焼く？</h2>
+                                    <p data-animation="fadeInUp" data-delay="700ms">今の気分にぴったりのレシピがきっと見つかる</p>
+                                    <a href="recipe-search.html" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">レシピを探す <i class="fa fa-angle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/croissant.jpeg);" role="img" aria-label="サクサクのクロワッサンとチョコたっぷりのパンオショコラの作り方">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="hero-content text-center">
+                                    <h2 data-animation="fadeInUp" data-delay="400ms">美味しい動画をチェック</h2>
+                                    <p data-animation="fadeInUp" data-delay="700ms">成形のコツが動画でわかる「動画図鑑」公開中</p>
+                                    <a href="video-list.html" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">動画を見る <i class="fa fa-angle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div> </section>
+
+
+    <!-- ##### Top Catagory Area Start ##### -->
+    <section class="top-catagory-area">
+        <div class="container">
+
+<div class="onao-section-title category-title">
+    <h2>パンのカテゴリー</h2>
+            </div>
+            
+            <h2 class="visually-hidden">カテゴリー別パンレシピ一覧</h2>
+
+            <div class="row">
+                <!-- 1: ホームベーカリー -->
+                <div class="col-6 col-lg-3">
+<div class="onao-category-item mb-30">
+
+                        <img src="img/bg-img/syokupan.jpeg" alt="ホームベーカリーで作る食パンのカテゴリー
+">
+                        <div class="top-cta-content">
+                            <h3>ホームベーカリー</h3>
+                            <h4>HBで生地作り</h4>
+                        </div>
+                        <a href="recipe-search.html?cat=1" class="full-area-link"></a>
+                    </div>
+                </div>
+                <!-- 2: こねないパン -->
+                <div class="col-6 col-lg-3">
+<div class="onao-category-item mb-30">
+                        <img src="img/bg-img/chabata.jpeg" alt="こねないパン・高加水のカテゴリー">
+                        <div class="top-cta-content">
+                            <h3>こねないパン</h3>
+                            <h4>じっくり熟成</h4>
+                        </div>
+                        <a href="recipe-search.html?cat=2" class="full-area-link"></a>
+                    </div>
+                </div>
+                <!-- 3: お菓子・惣菜パン -->
+                <div class="col-6 col-lg-3">
+<div class="onao-category-item mb-30">
+                        <img src="img/bg-img/piebasket.jpeg" alt="お菓子パン・惣菜パンのカテゴリー">
+                        <div class="top-cta-content">
+                            <h3>お菓子・惣菜パン</h3>
+                            <h4>みんな大好き</h4>
+                        </div>
+                        <a href="recipe-search.html?cat=3" class="full-area-link"></a>
+                    </div>
+                </div>
+                <!-- 4: 成形を楽しむ -->
+                <div class="col-6 col-lg-3">
+<div class="onao-category-item mb-30">
+                        <img src="img/bg-img/rose.jpeg" alt="成形を楽しむアレンジパンのカテゴリー">
+                        <div class="top-cta-content">
+                            <h3>成形パン</h3>
+                            <h4>憧れの形に挑戦！</h4>
+                        </div>
+                        <a href="recipe-search.html?cat=4" class="full-area-link"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+    <!-- ##### Best Receipe Area Start ##### -->
+<section class="best-receipe-area">
+    <div class="container">
+        
+        <div class="onao-section-title best-recipe-title">
+            <h2>おすすめレシピ</h2>
+        </div>
+
+        <div class="row">
+            
+            <div class="col-6 col-sm-6 col-lg-3">
+                <div class="onao-recipe-card">
+                    <img src="img/bg-img/syokupan.jpeg" alt="ホームベーカリーで作る！毎日食べたいふわふわ生食パンのレシピ" loading="lazy">
+                    <div class="recipe-text-box">
+                        <h3>ふわふわ食パン</h3>
+                    </div>
+                    <a href="recipe-detail.html?id=v130" class="full-area-link"></a>
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-6 col-lg-3">
+                <div class="onao-recipe-card">
+                    <img src="img/bg-img/s_marble.jpeg" alt="切り口がきれい！チョコたっぷりのマーブル食パンの作り方" loading="lazy">
+                    <div class="recipe-text-box">
+                        <h3>マーブル食パン</h3>
+                    </div>
+                    <a href="recipe-detail.html?id=v136" class="full-area-link"></a>
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-6 col-lg-3">
+                <div class="onao-recipe-card">
+                    <img src="img/bg-img/danish_syokupan.jpeg" alt="バター香る贅沢な味わい！サクサク食感のデニッシュ食パンレシピ" loading="lazy">
+                    <div class="recipe-text-box">
+                        <h3>デニッシュ食パン</h3>
+                    </div>
+                    <a href="recipe-detail.html?id=v125" class="full-area-link"></a>
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-6 col-lg-3">
+                <div class="onao-recipe-card">
+                    <img src="img/bg-img/pizza.jpeg" alt="時短で石窯風！魚焼きグリルで焼く本格クリスピーピザのレシピ" loading="lazy">
+                    <div class="recipe-text-box">
+                        <h3>魚焼きグリルピザ</h3>
+                    </div>
+                    <a href="recipe-detail.html?id=v115" class="full-area-link"></a>
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-6 col-lg-3">
+                <div class="onao-recipe-card">
+                    <img src="img/bg-img/flower.jpeg" alt="ちぎりパンとしても楽しめる！可愛いお花の形の白パンマーガレット" loading="lazy">
+                    <div class="recipe-text-box">
+                        <h3>お花の白パン</h3>
+                    </div>
+                    <a href="recipe-detail.html?id=v123" class="full-area-link"></a>
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-6 col-lg-3">
+                <div class="onao-recipe-card">
+                    <img src="img/bg-img/pre_bagle.jpeg" alt="独特の引きとツヤ！重曹でお湯通しするプレッツェル風ベーグルの作り方" loading="lazy">
+                    <div class="recipe-text-box">
+                        <h3>プレッツェルベーグル</h3>
+                    </div>
+                    <a href="recipe-detail.html?id=v034" class="full-area-link"></a>
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-6 col-lg-3">
+                <div class="onao-recipe-card">
+                    <img src="img/bg-img/bakeddonut.jpeg" alt="揚げないからヘルシー！子供のおやつにぴったりの焼きドーナツのレシピ" loading="lazy">
+                    <div class="recipe-text-box">
+                        <h3>焼きドーナツ</h3>
+                    </div>
+                    <a href="recipe-detail.html?id=v133" class="full-area-link"></a>
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-6 col-lg-3">
+                <div class="onao-recipe-card">
+                    <img src="img/bg-img/garic.jpeg" alt="食欲をそそる香ばしさ！オリーブオイルとガーリックのフォカッチャ" loading="lazy">
+                    <div class="recipe-text-box">
+                        <h3>ガーリックフォカッチャ</h3>
+                    </div>
+                    <a href="recipe-detail.html?id=v045" class="full-area-link"></a>
+                </div>
+            </div>
+
+        </div>
+        <div class="text-center mt-2">
+            <a href="recipe-search.html" class="onao-view-more-btn">
+                すべてのレシピを見る
+                <i class="fa-solid fa-chevron-right ml-2"></i>
+            </a>
+        </div>
+</div> </section>
+
+    <!-- ##### CTA Area Start ##### -->
+<section class="cta-area bg-img bg-overlay" style="background-image: url(img/bg-img/youtube-bg.jpg);">
+    <div class="container">
+    <h2 class="visually-hidden">人気のパンレシピをチェック</h2>
+
+        <div class="row align-items-center">
+            <div class="col-12">
+                <div class="cta-content text-center">
+                    <h2>おなおの動画図鑑</h2>
+                    <p>パンの香りがしてきそうな、おなおの動画図鑑。まるでおうちがパン屋さんになる瞬間を、<br>動画でお届けします！</p>
+                    
+                    <a href="video-list.html" class="video-text-link">
+                        動画をまとめてチェック！ <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <div id="footer-placeholder"></div>
+        <div id="footer-nav-placeholder" class="d-md-none"></div>
+    </footer>
+
+    <!-- ##### All Javascript Files ##### -->
+<script src="js/jquery/jquery-2.2.4.min.js"></script>
+<script src="js/bootstrap/popper.min.js"></script>
+<script src="js/bootstrap/bootstrap.min.js"></script>
+<script src="js/plugins/plugins.js"></script>
+
+<script src="js/common.js"></script>
+<script src="js/active.js"></script>
+
+<script>
+    // 予備策：もし3秒経ってもプレローダーが消えなかったら強制的に消す
+    window.onload = function() {
+        setTimeout(function() {
+            var preloader = document.getElementById('preloader');
+            if (preloader && preloader.style.display !== 'none') {
+                preloader.style.display = 'none';
+            }
+        }, 3000); // 3秒でタイムアウト
+    };
+</script>
+    
+    <!-- サイトの証明書 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "おなおドーナツ",
+  "alternateName": "おなおドーナツレシピ図鑑",
+  "url": "https://あなたのドメイン/", // ←公開後の実際のURLに書き換えてくださいね！
+  "description": "ホームベーカリーやこねないパンのレシピを動画付きで紹介するサイト",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://あなたのドメイン/recipe-search.html?search={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+</body>
+</html>

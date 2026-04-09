@@ -1,0 +1,2962 @@
+/* ==========================================================================
+   おなお仕様・一括色変更
+   ========================================================================== */
+:root {
+    --onao-green: #52ad1a;
+    --onao-brown: #4b3e2a;
+    --onao-light-brown: #5d4037;
+}
+
+body {
+    background-color: #fafafa !important; /* より白に近い清潔感のあるグレー */
+}
+
+/* 全ての文字を共通フォントに強制 */
+body, h1, h2, h3, h4, p, span, li, div {
+    font-family: "Open Sans", "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif !important;
+    color: var(--onao-brown); /* 全体的に焦げ茶で統一 */
+}
+
+/* --------------------------------------------------------------------------
+   1. 共通設定 (H1呪縛解放 & ヒーロー角丸)
+   -------------------------------------------------------------------------- */
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: "Open Sans", "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif !important;
+}
+
+.visually-hidden {
+    position: absolute !important; width: 1px !important; height: 1px !important;
+    padding: 0 !important; margin: -1px !important; overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important;
+    background: none !important; background-image: none !important;
+}
+
+.hero-area, .hero-slides, .single-hero-slide, .single-hero-slide div {
+    border-radius: 25px !important; overflow: hidden !important;
+}
+
+/* --------------------------------------------------------------------------
+   【共通デザイン】サイト全体の標準H1スタイル
+   -------------------------------------------------------------------------- */
+.section-heading h1 {
+    /* 1. 見た目の調整（中央寄せ・オシャレ感） */
+    display: inline-block !important; 
+    text-align: center !important;
+    margin: 0 auto 15px !important;
+    padding: 0 10px 5px !important;
+    font-size: 28px !important;
+    color: #4b3e2a !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.05em !important;
+    
+    /* 2. 【重要】黒い背景や謎の画像を「完全に」殺す設定 */
+    background: none !important;           /* 背景色・画像を拒否 */
+    background-image: none !important;     /* 重ねて拒否 */
+    border: none !important;               /* 変な枠線も拒否 */
+    
+    /* 3. さりげないアクセント（抹茶ライン） */
+    border-bottom: 2px solid var(--onao-green) !important; 
+}
+
+/* 4. 念のため、h1の前後に出る「黒い四角」などの疑似要素も再度封印 */
+.section-heading h1::before, 
+.section-heading h1::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+}
+
+
+/* 親要素も確実に中央揃えにする */
+.section-heading {
+    text-align: center !important;
+    width: 100% !important;
+    margin-bottom: 30px !important;
+}
+
+
+
+
+/* 動画サムネイルの土台（読み込み中） */
+.thumb-placeholder {
+    background-color: #f0f0f0; /* 優しいグレー */
+    background-image: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading-shimmer 1.5s infinite; /* うっすら光が流れるアニメーション */
+}
+
+@keyframes loading-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+
+
+
+/* --------------------------------------------------------------------------
+   2. ヘッダーナビ (Web版)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+    .header-area .delicious-main-menu .classy-navbar .classynav > ul > li > a {
+        background-color: transparent !important;
+        color: #4b3e2a !important;
+        display: flex !important; flex-direction: column !important; align-items: center !important;
+        font-weight: 800 !important;
+    }
+    .header-area .delicious-main-menu .classy-navbar .classynav > ul > li > a i {
+        font-size: 26px !important; margin-bottom: 5px !important;
+    }
+    .header-area .delicious-main-menu .classy-navbar .classynav > ul > li.active > a,
+    .header-area .delicious-main-menu .classy-navbar .classynav > ul > li:hover > a {
+        color: var(--onao-green) !important;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   2. ヘッダーナビ (スマホ版ドロワーメニュー)
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+    /* ハンバーガーの3本線（チョコブラウン） */
+    .classy-navbar-toggler .navbarToggler span {
+        background-color: #4b3e2a !important;
+    }
+
+    /* メニュー全体の背景色（白） */
+    .classy-navbar .classynav {
+        background-color: #ffffff !important;
+    }
+
+    /* メニュー内の各リンク（文字・アイコン共通設定） */
+    .classy-navbar .classynav ul li a {
+        color: #4b3e2a !important;       /* 基本はチョコブラウン */
+        background-color: transparent !important; /* テンプレートの緑背景を拒否 */
+        font-weight: 800 !important;
+        display: flex !important;
+        align-items: center !important;
+        padding: 15px 20px !important;    /* 押しやすい高さに調整 */
+    }
+
+    /* メニュー内のアイコン（Font Awesome） */
+    .classy-navbar .classynav ul li a i {
+        color: #4b3e2a !important;       /* アイコンもチョコブラウン */
+        margin-right: 12px !important;   /* 文字との間隔をいい塩梅に */
+        font-size: 18px !important;
+        width: 25px !important;          /* アイコン幅を揃えて縦ラインを整える */
+        text-align: center !important;
+    }
+
+    /* 【アクティブ・ホバー時】おなおグリーンに変更 */
+    .classy-navbar .classynav ul li.active > a,
+    .classy-navbar .classynav ul li.active > a i,
+    .classy-navbar .classynav ul li a:hover,
+    .classy-navbar .classynav ul li a:focus {
+        color: var(--onao-green) !important;       /* 文字とアイコンを同時におなおグリーンに */
+        background-color: #fcfcfc !important; /* ほんの少しだけ背景を変えて「押した感」を */
+    }
+
+    /* テンプレートの「アクティブ時の横線や装飾」があれば消す */
+    .classy-navbar .classynav ul li.active a::before {
+        display: none !important;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   3. 検索窓 (細線・★×ボタン強制表示・バランス調整)
+   -------------------------------------------------------------------------- */
+   /* 検索ボックスの幅をPC版で最適化 */
+.search-box {
+    max-width: 600px;    /* PCでの最大幅を制限（お好みで 500〜700px くらいに調整） */
+    margin-left: auto;   /* 左右を auto にして中央寄せ */
+    margin-right: auto;
+    width: 100%;         /* スマホでは画面幅いっぱいに広がるように */
+}
+
+/* 検索フォーム内の見た目も少し微調整（ボタンとのバランス） */
+#searchForm {
+    display: flex;
+    gap: 10px;           /* 入力欄とボタンの間に少し隙間を作る */
+}
+
+#searchInput {
+    flex-grow: 1;        /* 入力欄が残りの幅を埋めるように */
+}
+
+#searchForm {
+    display: flex !important;
+    align-items: center !important;
+    border: 1px solid #4b3e2a !important;
+    border-radius: 50px !important;
+    padding: 2px 8px 2px 15px !important;
+    background: #fff !important;
+    height: 48px !important;
+    position: relative !important;
+}
+
+#searchInput {
+    flex: 1; border: none !important; outline: none !important;
+    background: transparent !important;
+    font-size: 15px !important;
+    font-weight: 400 !important;
+    color: #4b3e2a !important;
+}
+
+#searchInput::placeholder {
+    font-weight: 300 !important;
+    color: #a0a0a0 !important;
+}
+
+#searchForm button[type="reset"],
+#searchForm .search-clear-btn {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: none !important;
+    border: none !important;
+    color: #a0a0a0 !important;
+    font-size: 20px !important;
+    padding: 0 10px !important;
+    cursor: pointer !important;
+    order: 2 !important;
+}
+
+#searchForm button[type="submit"] {
+    border-radius: 50px !important;
+    padding: 6px 18px !important;
+    background-color: var(--onao-green) !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
+    order: 3 !important;
+}
+
+/* --- 検索結果の件数表示 --- */
+#searchCount {
+    display: block;
+    text-align: center;      /* 中央寄せ */
+    margin-top: -5px;
+    margin-bottom: 25px;     /* カードとの間に少しゆとりを */
+    font-size: 16px;         /* 標準より少し大きめ */
+    color: #8d6e63;          /* おなおブラウン（中間色） */
+    font-weight: 500;
+}
+
+/* 「数字」の部分だけを強調する設定 */
+#searchCount strong {
+    font-size: 24px;         /* 数字はドカンと大きく！ */
+    color: #5d4037;          /* 数字は濃いおなおブラウン */
+    font-weight: 900;
+    margin: 0 4px;
+    font-family: 'Open Sans', sans-serif; /* 数字を綺麗に見せるフォント */
+}
+
+/* --------------------------------------------------------------------------
+   4. 見出し & レシピカード
+   -------------------------------------------------------------------------- */
+.section-heading h2 {
+    font-size: 24px !important; 
+    color: #4b3e2a !important; 
+    font-weight: 800 !important;
+    display: flex !important; 
+    align-items: center !important; 
+    justify-content: center !important; 
+    gap: 10px !important;
+    margin-bottom: 0 !important; /* 文字自体の下の余白をゼロにする */
+}
+
+.section-heading h2::before, .section-heading h2::after {
+    content: "" !important; width: 20px !important; height: 3px !important; background: var(--onao-green) !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. スマホ版：ボトムナビ ＆ フッター（SNS・ロゴ・コピーライト配置）
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+    /* 1. ページ全体の末尾に、ナビに隠れないための特大余白を作る */
+    body { padding-bottom: 180px !important; }
+
+    .footer-area {
+        position: relative !important;
+        z-index: 99999 !important;
+        padding-top: 10px !important;
+        padding-bottom: 180px !important; 
+        /*background-color: #fff !important;*/
+        display: block !important;
+        
+        /* ★ここで上の線を「なし」に強制します */
+       border-top: none !important;
+    }
+
+
+    /* 1行目：SNS(左) と ロゴ(右) の横並び */
+    .footer-area .row {
+        display: flex !important;
+        flex-direction: row !important; /* 横並びを強制 */
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0 20px !important;
+        margin-bottom: 25px !important; /* 2行目との間隔 */
+    }
+
+    /* SNSエリア（左） */
+    .footer-social-info {
+        flex: 0 0 auto !important;
+        margin: 0 !important;
+    }
+
+    /* ロゴエリア（右） */
+    .footer-logo {
+        flex: 0 0 auto !important;
+        margin: 0 !important;
+    }
+    .footer-logo a img {
+        max-width: 90px !important; /* 少し小さくしてバランス調整 */
+    }
+
+    /* 2行目：コピーライト（中央・ナビの上に確実に表示） */
+    .copywrite_text {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        margin: 10px 0 !important;
+        padding: 0 10px !important;
+        font-size: 11px !important;
+        color: #888 !important;
+        line-height: 1.5 !important;
+    }
+
+    /* ボトムナビ本体（最前面固定） */
+    .bottom-nav {
+        position: fixed !important; 
+        bottom: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 60px;
+        background: #fff !important;
+        display: flex !important; 
+        z-index: 100000 !important;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .nav-item {
+        flex: 1; display: flex !important; flex-direction: column !important;
+        align-items: center !important; justify-content: center !important;
+        color: #4b3e2a !important; font-size: 10px;
+    }
+    .nav-item i { font-size: 20px !important; margin-bottom: 2px !important; }
+    .nav-item.active, .nav-item.active i { color: var(--onao-green) !important; }
+}
+
+/* --------------------------------------------------------------------------
+   indexヒーロー画像の番号を表示しない
+   -------------------------------------------------------------------------- */
+.owl-dots, .owl-nav, .owl-number { display: none !important; }
+
+/* --------------------------------------------------------------------------
+   スマホ版メニューが飛び出る現象の修正
+   -------------------------------------------------------------------------- */
+@media only screen and (max-width: 991px) {
+    /* メニューの本体を最初は隠しておく */
+    .classy-navbar-toggler ~ .classy-menu {
+        display: none;
+    }
+    
+    /* メニューが開いた時（breakpoint-onクラスがついた時）だけ表示する */
+    .breakpoint-off .classy-menu {
+        display: none;
+    }
+    
+    /* テンプレートのJSが動いた後の表示制御 */
+    .classynav {
+        display: block;
+    }
+    
+    /* 念のため、中身が縦に並びすぎないよう調整 */
+    .classynav ul li {
+        display: block;
+        width: 100%;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   7. YouTube動画サムネイル (スマホ3列×2行・6枚限定表示・鉄壁版)
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+    /* 親要素の flex 設定を強制上書き */
+    .insta-feeds {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        width: 100% !important;
+    }
+
+    /* 1枚あたりの幅を 33.33% にして3列にする */
+    .single-insta-feeds {
+        flex: 0 0 33.333% !important;
+        max-width: 33.333% !important;
+        display: block !important; /* 基本は表示 */
+    }
+
+    /* ★ここが昨日お話しした魔法！7枚目以降を「物理的に消去」 */
+    .insta-feeds .single-insta-feeds:nth-child(n+7) {
+        display: none !important;
+    }
+
+    /* 画像を正方形にして、綺麗に敷き詰める */
+    .single-insta-feeds img {
+        width: 100% !important;
+        aspect-ratio: 1 / 1 !important;
+        object-fit: cover !important;
+        display: block !important;
+    }
+}
+/* --------------------------------------------------------------------------
+   7. Footer ギャラリー化
+   -------------------------------------------------------------------------- */
+   
+.follow-us-instagram {
+    background-color: #fafafa !important; /* bodyと同じ色にする */
+    border-top: none !important;      /* 薄いラインを消去 */
+    padding-top: 0 !important;         /* PCでの上の余白を調整（お好みで増減） */
+    margin-top: -50px !important; /* 1ピクセルだけ上にずらして重箱の隅を隠す */
+
+}
+
+/* 2. 本物のフッター（一番下のロゴがある場所）だけを白にする */
+.footer-area {
+    background-color: #ffffff !important;
+    padding: 40px 0;                     /* フッター内の上下余白 */
+}
+
+
+/* 3. Galleryの文字の上の余白をPC版で最適化 */
+@media screen and (max-width: 767px) {
+    .follow-us-instagram {
+        padding-top: 10px !important;
+    }
+    .follow-us-instagram .onao-section-title {
+        margin-bottom: 0 !important;
+    }
+}
+
+/* 説明文（pタグ）の下の余白も調整 */
+.follow-us-instagram .onao-section-title p {
+	color: #5d4037;
+}
+
+/* --------------------------------------------------------------------------
+   9. テンプレート固有パーツの色統一 (おなおグリーン化)
+   -------------------------------------------------------------------------- */
+
+/* TOPへ戻るボタン (Scroll Up) */
+#scrollUp {
+    background-color: var(--onao-green) !important; /* ボタン全体をおなおグリーンに */
+    color: #fff !important;               /* 矢印は白 */
+    border: none !important;
+    bottom: 70px !important;              /* ★ボトムナビに被らないよう少し上に避難 */
+}
+
+#scrollUp:hover {
+    background-color: #4b3e2a !important; /* ホバーしたらチョコブラウンに */
+}
+
+
+
+
+/* --------------------------------------------------------------------------
+   ビデオモーダル調整
+   -------------------------------------------------------------------------- */
+#videoModal .close {
+    font-size: 16px;
+    font-weight: 800;
+    text-shadow: none;
+}
+
+#videoModal .modal-dialog {
+    max-width: 800px; /* PCで見るときに大きすぎず、いい塩梅のサイズ */
+    margin: 10px auto;
+}
+
+/* 「もっと見る」ボタンのカスタマイズ */
+#load-more-btn {
+    background-color: transparent !important; /* 背景を透明に */
+    color: var(--onao-green) !important;      /* 文字をおなおグリーンに */
+    border: 2px solid var(--onao-green) !important; /* 枠線をおなおグリーンに */
+    padding: 12px 40px !important;
+    font-size: 16px !important;
+    letter-spacing: 1px;                     /* 文字の間隔を少し広げて上品に */
+    transition: all 0.3s ease !important;    /* 変化を滑らかに */
+    box-shadow: none !important;             /* 重たい影を消す */
+    position: relative;
+    overflow: hidden;
+}
+
+/* ホバー（マウスを乗せた）時の動き */
+#load-more-btn:hover {
+    background-color: var(--onao-green) !important; /* 背景をおなおグリーンに */
+    color: #fff !important;                         /* 文字を白に */
+    transform: translateY(-3px);                    /* 少し上に浮かす */
+    box-shadow: 0 5px 15px rgba(82, 173, 26, 0.3) !important; /* 柔らかい影をつける */
+}
+
+/* ボタンの中のアイコンに動きをつける */
+#load-more-btn i {
+    transition: transform 0.3s;
+}
+#load-more-btn:hover i {
+    transform: translateY(3px); /* ホバー時に矢印がひょこっと動く */
+}
+
+
+
+/* --------------------------------------------------------------------------
+   カテゴリチップ（横スクロール ＆ アクティブ色）
+   -------------------------------------------------------------------------- */
+.onao-category-chips {
+    display: flex !important;
+    overflow-x: auto !important; /* 横スクロールを許可 */
+    white-space: nowrap !important; /* 改行させない */
+    gap: 10px !important;
+    padding: 10px 5px !important;
+    margin-bottom: 20px !important;
+    
+    /* スクロールバーを隠す（iPhone/Android/Chrome用） */
+    -webkit-overflow-scrolling: touch;
+}
+.onao-category-chips::-webkit-scrollbar {
+    display: none; /* スクロールバー自体は見せない（スッキリ！） */
+}
+
+.chip {
+    flex: 0 0 auto !important;   /* 幅を固定せず中身に合わせる */
+    padding: 8px 18px !important;
+    border-radius: 50px !important;
+    border: 2px solid var(--onao-green) !important; /* おなおグリーンの枠線 */
+    background-color: #fff !important;    /* 通常時は白背景 */
+    color: #4b3e2a !important;            /* 文字はチョコブラウン */
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* ★アクティブ（選択中）の状態 */
+.chip.active {
+    background-color: var(--onao-green) !important; /* おなおグリーンに塗りつぶし */
+    color: #ffffff !important;            /* 文字は白 */
+    box-shadow: 0 4px 10px rgba(136, 176, 75, 0.3);
+}
+
+.chip i {
+    margin-right: 5px;
+}
+
+
+
+/* --------------------------------------------------------------------------
+   検索結果カードの共通スタイル 
+   -------------------------------------------------------------------------- */
+
+.recipe-card-item {
+    border: none !important;
+}
+
+.recipe-card-link {
+    display: block !important;
+    background: #ffffff !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    text-decoration: none !important;
+    border: none !important;
+    transition: transform 0.2s ease;
+    height: 100% !important;
+}
+
+.recipe-card-link:hover {
+    transform: translateY(-5px);
+}
+
+/* 画像エリアとスケルトンアニメーション */
+.recipe-thumb-container {
+    position: relative;
+    width: 100%;
+    padding-top: 75%;
+    overflow: hidden;
+    background: #f8f8f8;
+}
+
+.recipe-thumb-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+}
+
+/* テキストコンテンツエリア */
+.recipe-text-content {
+    padding: 12px 10px 15px !important;
+    background: #ffffff !important;
+}
+
+.recipe-text-content h3 {
+    font-size: calc(12px + 0.6vw) !important;
+    font-weight: 800 !important;
+    color: #4b3e2a !important;
+    margin: 0 0 4px 0 !important;
+    line-height: 1.4 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    width: 100% !important;
+}
+
+.recipe-text-content p {
+    font-size: 10px !important;
+    color: #999 !important;
+    margin: 0 0 8px 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* メタ情報（バッジ） */
+.recipe-meta-row {
+    display: flex !important;
+    gap: 4px !important;
+    flex-wrap: wrap;
+}
+
+.badge-orange-time {
+    background-color: #FFF5E6 !important;
+    color: #FF9800 !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    padding: 2px 8px !important;
+    border-radius: 50px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+.badge-green-count {
+    background-color: #E8F5E9 !important;
+    color: #2E7D32 !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    padding: 2px 8px !important;
+    border-radius: 50px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+/* ==========================================================================
+   【完全新規】ブランド・ヒーローエリア（センター配置・浮遊感タイトル）
+   ========================================================================== */
+
+/* 1. 親コンテナ：背景、高さ、そして完全中央寄せの土台 */
+.onao-brand-hero {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 200px; /* PC版の高さ */
+    display: flex !important;
+    align-items: center !important;   /* 縦方向中央 */
+    justify-content: center !important; /* 横方向中央 */
+    text-align: center !important;
+    background-size: cover;
+    background-position: center center;
+    overflow: hidden;
+    padding: 0 15px; /* スマホで文字が端に寄った時の余白 */
+}
+
+/* ★既存継承：背景を暗くする膜 */
+.onao-brand-hero.bg-overlay::after {
+    content: "" !important;
+    position: absolute !important;
+    top: 0; left: 0; width: 100%; height: 100%;
+        background-color: rgba(75, 62, 42, 0.4) !important; 
+    z-index: -1; /* 文字の後ろへ */
+}
+
+/* 2. 文字コンテンツの箱 */
+.onao-hero-content {
+    position: relative !important;
+    z-index: 2 !important; /* 膜よりも前に */
+    width: 100% !important;
+    max-width: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* センター寄せを念押し */
+}
+
+/* --------------------------------------------------------------------------
+   3. メインタイトル（H1）：白・太め・影・浮遊感
+   -------------------------------------------------------------------------- */
+.onao-title-main  {
+    /* --- 1. テンプレートの呪縛を解く（黒帯・背景を完全に消す） --- */
+    background: transparent !important;
+    background-image: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-transform: none !important; /* ←勝手に大文字になるのを防ぐ重要設定 */
+    padding: 0 !important;
+    outline: none !important;
+
+    /* --- 2. 完璧なセンター配置の土台 --- */
+    display: inline-block !important;
+    width: auto !important;
+    text-align: center !important;
+    margin: 0 auto 10px auto !important; /* 下に少しだけ隙間を作る */
+
+    /* --- 3. おなおフォント ＆ 質感設定 --- */
+   font-family: "Open Sans", "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif !important;
+    font-size: 42px !important;     /* PCサイズ */
+    font-weight: 800 !important;     /* 太めで力強く */
+    color: #ffffff !important;       /* 真っ白 */
+    line-height: 1.2 !important;
+
+    /* --- 4. ズレ補正（おしゃれな文字間隔を保つ） --- */
+    letter-spacing: 0.1em !important;
+    text-indent: 0.15em !important;  /* 右の余白分を左にも入れて中央へ */
+
+    text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.8),   /* 輪郭をハッキリさせる影 */
+        2px 4px 15px rgba(0, 0, 0, 0.6) !important; /* 全体の浮遊感を出す影 */
+}
+
+
+/* --------------------------------------------------------------------------
+   4. サブタイトル：読みやすくスタイリッシュに
+   -------------------------------------------------------------------------- */
+.onao-title-sub {
+    display: block !important;
+    
+    font-size: 16px !important;
+    font-weight: 600 !important; /* メインよりは少し細く */
+    color: #ffffff !important;
+    opacity: 0.95 !important;
+    line-height: 1.5 !important;
+    
+    /* サブタイトルもセンター補正 */
+    letter-spacing: 0.05em !important;
+    text-indent: 0.05em !important;
+    
+    /* サブタイトル用の少し控えめな影 */
+    text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5) !important;
+    
+    margin: 0 auto !important;
+}
+
+/* --------------------------------------------------------------------------
+   スマホ用調整（画面幅 767px 以下）
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+    /* 1. ヒーローエリアの高さをスマホ用に最適化 */
+    .onao-brand-hero {
+        height: 120px !important; /* 少し高さを抑えてコンパクトに */
+        padding: 0 10px !important;
+    }
+
+    /* 2. メインタイトル：1行に収めるための魔法 */
+    .onao-title-main {
+        font-size: 25px !important;      /* 1行で綺麗に見えるサイズ */
+        letter-spacing: 0.05em !important; /* スマホでは間隔を少し詰める */
+        text-indent: 0.05em !important;    /* センター補正も合わせる */
+        white-space: nowrap !important;   /* 絶対に改行させない */
+        margin-bottom: 0 !important;
+
+    }
+    
+    /* 3. サブタイトル：上の余白をゼロにする */
+    .onao-title-sub {
+        font-size: 13px !important;
+        white-space: nowrap !important;
+        margin-top: -5px !important;      /* ★上の余白をリセット */
+        padding-top: 0 !important;
+        line-height: 1.2 !important;
+    }
+
+    /* 4. 親要素のBootstrapクラスが邪魔しないように上書き */
+    .onao-hero-content {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   スマホ用調整
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+    .video-hero-area{
+        height: 120px !important;
+    }
+    
+    /* Bootstrapの「左寄せ」クラスの強制リセット */
+    .video-hero-area .row,
+    .video-hero-area .col-12 {
+        justify-content: center !important;
+        text-align: center !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .onao-main-title, 
+    .video-hero-area h1 {
+        font-size: 20px !important;
+        white-space: nowrap !important;
+        letter-spacing: 0.05em !important;
+        text-indent: 0.05em !important;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   人気のキーワード（スタイリッシュ・エッジ強調版） 
+   -------------------------------------------------------------------------- */
+.popular-keywords {
+    padding: 15px 0;
+    text-align: center;
+}
+
+/* ラベル：さらにモダンな印象に */
+.popular-keywords .label {
+    display: block;      /* ★inline-block から block に変更 */
+    font-size: 13px;
+    font-weight: 800 !important;
+    color: #8d6e63;
+    letter-spacing: 0.15em;
+    margin-bottom: 10px; /* ★下のタグとの隙間を調整 */
+    text-align: center;  /* 中央寄せ */
+}
+
+/* タグ本体：縁取りの工夫とフォント調整 */
+.popular-keywords .keyword-tag {
+    display: inline-block;
+    padding: 5px 15px;
+    margin: 4px 4px;
+    font-size: 13px;       /* 少し大きく */
+    font-weight: 800;       /* ★フォントをしっかり太く */
+    color: #a67c52 !important; /* おなおブラウン */
+    
+    /* 縁取りの工夫：薄いベージュの塗りと、少し濃いベージュの線を合わせる */
+    background-color: #fdfaf5; 
+    border: 1.5px solid #eaddd0; /* ★少しだけ太くして色を明確に */
+    
+    border-radius: 5px;      /* スタイリッシュな角丸 */
+    transition: all 0.25s ease;
+    text-decoration: none !important;
+    letter-spacing: 0.02em;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05) !important;
+    
+    /* アイコンに比べてタグは小さいので、影のサイズ（4px->3px, 6px->5px）を少しだけ控えめにしました */
+    
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* 影の動きも滑らかに */
+}
+
+/* ホバー時の動き：縁取りと背景を同時変化 */
+.popular-keywords .keyword-tag:hover {
+    background-color: #5d4037;
+    border-color: #5d4037;   /* 縁も一緒に色を変える */
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(93, 64, 55, 0.1) !important;
+}
+
+/* 検索窓との隙間が気になる場合はここも調整 */
+.popular-keywords {
+    margin-bottom: 10px !important;
+}
+
+
+/* ==========================================================================
+   検索ページ：図鑑風カードデザイン（完全版：画像潰れ解消）
+   ========================================================================== */
+
+/* --- 1. 基本構造（スマホ基準：横長リスト） --- */
+.zukan-card-inner {
+    display: flex;
+    flex-direction: row; /* スマホでは横並び */
+    background-color: #fffef9;
+    border: 1px solid #e0d9c5;
+    /* 厚みと浮遊感のある影 */
+    box-shadow: 4px 4px 0px #d4ccb5, 0 10px 20px rgba(0, 0, 0, 0.07);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    /* ★ここを追加：左右に12pxずつの余白を作る */
+    margin-left: 12px !important;
+    margin-right: 12px !important;
+    margin-bottom: 20px; /* カード同士の上下の間隔 */
+}
+
+/* ホバー演出：リンク全体に効かせる */
+.rs-link:hover .zukan-card-inner {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 0px #b8a896, 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* --- 2. 画像エリア（16:9比率・Noタグ） --- */
+.zukan-image-wrapper {
+    position: relative;
+    width: 40%;          /* スマホでは横幅の4割 */
+    aspect-ratio: 16 / 9;
+    flex-shrink: 0;      /* 画像が横から押しつぶされるのを防ぐ */
+    background: #fff;
+    padding: 10px;
+}
+
+.zukan-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* 画像の比率を保ったまま枠に収める（潰れ防止） */
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+/* 図鑑Noの吊り下げタグ */
+.zukan-no {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    background: #a67c52; /* キャラメルブラウン */
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 0 0 4px 4px;
+    z-index: 2;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+/* --- 3. コンテンツエリア（タイトル・カプセル） --- */
+.zukan-content {
+    width: 60%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* カプセルの共通スタイル */
+.recipe-meta-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 50px; /* カプセル型 */
+    font-size: 13px;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-bottom: 8px;
+}
+
+
+/* メタ情報の並び（カプセル） */
+.zukan-meta-row {
+    display: flex;
+    flex-direction: column; /* 1行目を時間とハート、2行目を難易度にする */
+    gap: 5px; /* 行間の隙間 */
+    margin-bottom: 8px;
+}
+/* 1行目（時間とハート）のスタイル */
+.rs-meta-top-row {
+    display: flex;
+    justify-content: space-between; /* 時間を左、ハートを右に */
+    align-items: center;
+    width: 100%;
+}
+
+/* 2行目（難易度）のスタイル */
+.rs-meta-bottom-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* 左寄せ */
+    font-size: 13px; /* 少し小さめに */
+}
+
+/* カプセル自体の設定：inline-flexにすることで文字の長さに合わせる */
+.rs-time, .zukan-difficulty {
+    display: inline-flex;    /* ★中身の長さに合わせる */
+    align-items: center;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+/* 1. 調理時間カプセル（濃いめのビタミン緑） */
+.rs-time {
+    background-color: #f0f9eb; /* 背景はそのまま（薄い緑） */
+    border: 1px solid #ccebc1; /* 枠線を少しだけ濃く */
+    color: #2d6a0f;           /* ★文字色：深いビタミン緑 */
+}
+
+/* 時計アイコンの色も合わせる */
+.rs-time i {
+    color: #2d6a0f;
+    margin-right: 4px;
+}
+
+/* シンプルなハート（共通） */
+.zukan-heart {
+    font-size: 16px;
+    cursor: pointer; /* マウスを乗せると指マークに */
+    transition: transform 0.2s ease;
+    padding: 5px; /* クリックしやすく */
+    display: inline-block;
+}
+
+.zukan-heart:hover {
+    transform: scale(1.2);
+}
+
+/* お気に入り登録済み（赤） */
+.zukan-heart .fa-heart.active {
+    color: #ff6b6b;
+}
+
+/* お気に入り未登録（グレーの枠線） */
+.zukan-heart .fa-heart.inactive {
+    color: #ccc;
+}
+
+/* 2. 難易度カプセル（濃いめのオレンジブラウン） */
+.zukan-difficulty {
+    background-color: #fff4e6; /* 背景：ごく薄いオレンジ */
+    border: 1px solid #ffe3c2; /* 枠線 */
+    color: #d35400;           /* ★文字色：パキッとしたブラッドオレンジ */
+}
+
+/* 「難易度：」のラベル色も統一 */
+.rs-lvl-label {
+    font-size: 10px;
+    margin-right: 4px;
+    color: #d35400;           /* 文字色を合わせる */
+}
+
+/* 星（Star）の色：リクエスト通り「オレンジ」を維持 */
+.zukan-difficulty .fa-solid.fa-star {
+    color: #ff8a00;           /* 元気なオレンジ */
+    margin: 0 1px;
+    font-size: 10px;
+}
+
+/* 空の星 */
+.zukan-difficulty .fa-regular.fa-star {
+    color: #e0d9c5;           
+    opacity: 0.5;
+}
+
+
+/* タイトル（おなおブラウン） */
+.zukan-title {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #5d4037;
+    margin: 0 0 5px 0;
+    line-height: 1.4;
+}
+
+/* 説明文（材料など） */
+.zukan-description {
+    font-size: 12px;
+    color: rgba(121, 85, 72, 0.7);
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* --- 4. 【重要：PC版の設定】画像潰れとレイアウトをリセット --- */
+@media (min-width: 992px) {
+    /* 1. カードを包むグリッド自体の隙間を狭くする */
+    #results .row {
+        --bs-gutter-x: 15px; /* 横の隙間（標準30pxから半分に） */
+        --bs-gutter-y: 15px; /* 縦の隙間 */
+    }
+    /* 2. カード本体の余白調整 */
+    .zukan-card-inner {
+        flex-direction: column;
+        height: 100%;
+         margin-left: 0 !important;  /* PCではグリッド側で制御するのでマージンをリセット */
+        margin-right: 0 !important;
+        margin-bottom: 0 !important; /* グリッドの余白(--bs-gutter-y)に任せる */
+    }
+
+        /* もし上記で動かない場合は、resultsというIDに対して直接指定 */
+    #results {
+        margin-left: 15px !important;
+        margin-right: 15px !important;
+    }
+    
+    .zukan-image-wrapper {
+        width: 100% !important; /* スマホの40%をリセット */
+        padding: 12px;
+    }
+
+    .zukan-content {
+        width: 100% !important; /* スマホの60%をリセット */
+        padding: 0 15px 15px;
+        justify-content: flex-start;
+    }
+
+    /* 3. パンの名前（タイトル）の下の余白を詰める */
+    .zukan-title {
+        font-size: 1.2rem !important;
+        margin-top: 5px !important;
+        margin-bottom: 8px !important; /* ★名前のすぐ下に材料が来るように */
+        line-height: 1.3 !important;
+    }
+
+    
+    /* 4. 材料（説明文）の下の余白を詰める */
+    .zukan-description {
+        margin-bottom: 0 !important; /* ★材料の下の余白をなくす */
+        line-height: 1.4 !important;
+   -webkit-line-clamp: 3; /* PCでは少し長めに表示 */
+    }
+}
+
+/* --- 5. スマホ版の微調整（さらに小さい画面用） --- */
+@media (max-width: 767px) {
+    .zukan-image-wrapper {
+        min-width: 130px;
+        padding: 6px;
+    }
+    .zukan-content { padding: 10px; }
+    .zukan-title { font-size: 1rem; }
+}
+
+/* ==========================================
+   YouTube風ビデオグリッド：型抜き再生ボタン
+   ========================================== */
+
+.yt-card {
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: transform 0.2s ease;
+}
+
+/* サムネイルの親容器 */
+.yt-thumb-container {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+
+.yt-play-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: #fff; /* おなおグリーン（少し透ける） */
+    color: #bbb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+/* 2. ホバーした時の演出 */
+.yt-card:hover .yt-thumb-container::after {
+    opacity: 1; /* マウスを乗せたら表示 */
+    box-shadow: 0 0 0 500px rgba(255, 255, 255, 0.6); /* 少し白を濃く */
+}
+
+/* サムネイル画像 */
+.yt-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.3s;
+}
+
+/* 右下の時間ラベル */
+.yt-time-tag {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    z-index: 6; /* ボタンより上に */
+}
+
+/* 情報エリア */
+.yt-info-flex {
+    display: flex;
+    margin-top: 12px;
+    gap: 12px;
+}
+
+.yt-avatar img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+.yt-video-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #5d4037;
+    line-height: 1.4;
+    margin: 0 0 4px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.yt-video-meta {
+    font-size: 12px;
+    color: #606060;
+}
+
+/* 1. 「難易度：」の文字色（落ち着いた茶色） */
+.yt-diff-label {
+    color: #a67c52; /* キャラメルブラウン */
+    font-weight: 600;
+}
+
+/* 2. 星全体のエリア */
+.yt-stars {
+    margin-left: 4px;
+}
+
+/* 3. 塗りつぶしの星（ビタミンオレンジ） */
+.yt-stars .fas.fa-star {
+    color: #ff8a00; /* 鮮やかなオレンジ */
+}
+
+/* 4. 白抜きの星（薄い茶色またはグレーで馴染ませる） */
+.yt-stars .far.fa-star {
+    color: #dcd3bd; /* 影の色に近い薄茶色 */
+}
+
+/* 5. 区切り線(•)やチャンネル名も茶色系で統一する場合 */
+.yt-sep, .yt-video-meta span:last-child {
+    color: #a67c52;
+    opacity: 0.8;
+}
+
+
+/* 動画埋め込みの枠を整える */
+.video-embed-wrapper {
+    position: relative;
+    width: 100%;
+    /* 通常動画は16:9、ショートは少し縦長（4:5など）に自動調整 */
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.yt-card.is-short .video-embed-wrapper {
+    aspect-ratio: 9 / 16; /* ショート動画は縦長に */
+}
+
+/* 再生中にサムネイルがはみ出さないように */
+.video-embed-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ==========================================
+   【修正版】動画ページ専用：アプリ風ナビゲーション
+   ========================================== */
+
+/* 親コンテナ（横スクロールに対応・競合防止） */
+.onao-v-nav-container {
+    width: 100% !important;
+    overflow-x: auto !important; /* スマホで横スクロール */
+    -webkit-overflow-scrolling: touch !important;
+    padding: 20px 0 0px 0 !important;
+    margin-bottom: 20px !important;
+    background: transparent !important; /* 背景を白にしない */
+    border: none !important;
+}
+
+/* ナビゲーション本体（横並び） */
+.onao-v-nav {
+    display: flex !important;
+    justify-content: center !important; /* PCでは中央寄せ */
+    flex-direction: row !important;     /* ★横並びを強制 */
+    gap: 20px !important;              /* ボタン同士の間隔 */
+    min-width: max-content !important;   /* 横スクロールのために必要 */
+    padding: 0 15px !important;
+    border: none !important;
+}
+
+/* 各ボタン（アイコン＋テキスト・縦並び） */
+.v-nav-item {
+    display: flex !important;
+    flex-direction: column !important; /* ★アイコンと文字を縦に並べる */
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    width: 80px !important;            /* ボタン全体の幅を固定 */
+    height: auto !important;           /* 高さを自動に（崩れ防止） */
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* 1. 丸いアイコン部分 */
+.v-icon-circle {
+    margin: 0 auto; /* 中央寄せ */
+    width: 60px !important;            /* 丸のサイズ */
+    height: 60px !important;
+    border-radius: 50% !important;     /* まん丸に */
+    background-color: #fff !important; /* 通常時は白背景 */
+    border: 2px solid #e0d9c5 !important; /* 薄い茶色の枠線 */
+    color: #a67c52 !important;           /* アイコンの色（茶色） */
+    
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 24px !important;         /* アイコンの大きさ */
+    
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05) !important; /* うっすら影 */
+    transition: all 0.2s ease !important;
+}
+
+/* 2. 下のテキストラベル */
+.v-nav-label {
+    margin-top: 8px !important;         /* アイコンとの間隔 */
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: #8c7e6d !important;           /* 少し薄い茶色 */
+    text-align: center !important;
+    white-space: nowrap !important;     /* 改行させない */
+    display: block !important;
+    line-height: 1.2 !important;
+        /* ↓ここが重要！2行分の高さをあらかじめ確保する */
+    min-height: 2.4em; 
+    
+    /* 文字を常に中央に寄せる */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* --- ホバー（マウスを乗せた時） --- */
+.v-nav-item:hover .v-icon-circle {
+    background-color: #fdf5ed !important; /* 薄いキャラメル色 */
+    border-color: #dcd3bd !important;
+    transform: translateY(-3px) !important; /* 少し上に浮かす */
+}
+
+/* --- アクティブ（選択されている時）のスタイル --- */
+/* おなおグリーン（緑）で強調します */
+
+.v-nav-item.active .v-icon-circle {
+    background-color: #52ad1a !important; /* 背景を緑に */
+    border-color: #52ad1a !important;     /* 枠線も緑に */
+    color: #ffffff !important;           /* アイコンを白に */
+    box-shadow: 0 6px 12px rgba(82, 173, 26, 0.3) !important; /* 緑色の影 */
+}
+
+.v-nav-item.active .v-nav-label {
+    color: #52ad1a !important;           /* テキストも緑に */
+    font-weight: 800 !important;                     /* 少し太く */
+}
+
+/* スマホ版の調整（左寄せにしてスクロールを促す） */
+@media (max-width: 767px) {
+    .onao-v-nav {
+        gap: 15px !important;
+    }
+    .v-nav-item {
+        width: 70px !important; /* スマホでは少し小さく */
+    }
+    .v-icon-circle {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 20px !important;
+    }
+}
+
+
+
+/* ==========================================================================
+   ショート動画：YouTube本家風 ぎっちり図鑑スタイル
+   ========================================================================== */
+
+/* 1. グリッド・レイアウト設定 (PC6列 / スマホ2列) */
+@media (min-width: 1200px) {
+    .col-lg-2 {
+        flex: 0 0 16.666667% !important;
+        max-width: 16.666667% !important;
+    }
+}
+
+/* 左右の余白を極限まで詰めるクラス (px-1) */
+.px-1 {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+}
+
+@media (max-width: 767px) {
+    .col-4 {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+}
+
+/* 2. サムネイル容器 (9:16比率) */
+.yt-card.is-short .yt-thumb-container {
+    aspect-ratio: 9 / 16 !important;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 12px !important;
+    overflow: hidden;
+    background-color: #000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.yt-card.is-short .yt-thumb-img {
+    object-fit: cover !important;
+    height: 100% !important;
+    width: 100% !important;
+}
+
+/* 3. 情報エリア (タイトルのみ・スッキリ) */
+.yt-card.is-short .yt-info-flex {
+    display: block !important;    /* 横並び解除 */
+    padding-top: 8px !important;
+    text-align: center !important;  /* 中央よせ*/
+}
+
+/* アバターとメタ情報（星など）は非表示 */
+.yt-card.is-short .yt-avatar,
+.yt-card.is-short .yt-video-meta {
+    display: none !important;
+}
+
+.yt-card.is-short .yt-text-box {
+    margin: 0 !important;
+    padding: 0 5px !important;
+    width: 100%;
+}
+
+.yt-card.is-short .yt-video-title {
+    font-size: 13px !important;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #5d4037;
+    margin: 0 !important;
+    text-align: center !important;
+    /* 2行でカットして「...」にする */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 2.8em; 
+}
+
+/* 4. ショート用再生アイコン (中央バッジ) */
+.yt-card.is-short .yt-play-badge {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 18px !important;
+}
+
+
+
+
+/* ==========================================================================
+   index.html ヒーロースライド設定
+   ========================================================================== */
+   
+.hero-content {
+    width: 100% !important;
+    text-align: center !important; /* テキスト自体の中央寄せ */
+    margin-bottom: 90px !important; /* ここで下からの距離を微調整 */
+}
+
+/* ヒーローエリアの背景画像をスムーズに表示 */
+.single-hero-slide {
+    background-size: cover;
+    background-position: center center;
+    background-color: #f4f2ed; /* 画像が読み込まれるまでの背景色 */
+}
+
+   .hero-slides .single-hero-slide .container {
+    height: 100%;
+    max-width: 100% !important; /* 幅をいっぱい使う*/
+    display: flex !important;
+    justify-content: center !important; /* 横の中央 */
+    align-items: flex-end ; /* ★これで中身を一番下に強制移動！ */
+    padding-bottom: 0;  /* ★下からの距離（お好みで調整） */
+}
+
+.hero-slides .single-hero-slide .row {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important; /* これが効きます */
+}
+
+/* スマホ版では左右いっぱいに見せたい場合（お好みで） */
+@media screen and (max-width: 767px) {
+    .hero-area .container {
+        max-width: 100%;
+        padding: 0;
+    }
+    .hero-slides {
+        border-radius: 0; /* スマホは角丸なしでスッキリ */
+    }
+}
+
+
+
+
+/* ヒーローエリアとカテゴリーの間の余白を調整 */
+.hero-area {
+    margin-bottom: 70px !important; /* スライダーの下に余白を作る（標準は50px〜ぐらい） */
+}
+
+/* もしスマホ版では少し狭くしたい場合はこちら */
+@media screen and (max-width: 767px) {
+    .hero-area {
+        margin-bottom: 40px !important; /* スマホでは広すぎないように調整 */
+    }
+}
+
+
+/* スライダーの文字を読みやすく、高級感を出す */
+.hero-content h2 {
+    text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.5) !important;
+    font-weight: 800 !important;
+        padding-top: 3px !important;    /* 文字の上下左右に数ピクセルの隙間を作る */
+    overflow: visible !important;    /* 枠からはみ出しても隠さないようにする */
+    display: inline-block !important; /* paddingを正しく効かせるため */
+}
+
+.hero-content p {
+    text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.6) !important;
+    font-weight: 600 !important;
+}
+
+/* --- スライダー内のテキスト（h2）を白く浮かせる --- */
+.hero-content h2 {
+    color: #ffffff !important;
+    font-size: 40px !important;      /* PCでのサイズ */
+    font-weight: 800 !important;
+    text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.8) !important;
+    margin-bottom: 10px !important;
+}
+
+/* --- スライダー内の説明文（p）を白く読みやすく --- */
+.hero-content p {
+    color: #ffffff !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.8) !important;
+    margin-bottom: 30px !important;
+}
+
+
+/* --- スマホ版のサイズ調整 --- */
+@media (max-width: 767px) {
+.hero-content {
+    margin-bottom: 20px !important; /* ここで下からの距離を微調整 */
+}
+
+    .hero-content h2 {
+        font-size: 23px !important; /* スマホでは少し小さく */
+    }
+    .hero-content p {
+        font-size: 14px !important;
+        margin-bottom: 20px !important;
+    }
+}
+
+/* ==========================================================================
+   index.html タイトル設定(h2)
+   ========================================================================== */
+/* --- テンプレートに邪魔されない「おなお専用見出し」 --- */
+.onao-section-title {
+    text-align: center !important;
+    margin-top: 50px !important;    /* 上の要素との間隔 */
+    margin-bottom: 25px !important; /* 下の要素との間隔 */
+}
+
+
+.onao-section-title h2 {
+    font-size: 26px !important;
+    color: #5d4037 !important;
+    font-weight: 800 !important;
+    display: inline-block;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+/* 英語サブタイトルの共通設定 */
+.onao-section-title h2::before {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--onao-green); /* おなおグリーン */
+    margin-bottom: 4px;
+    text-transform: uppercase; /* 強制的に大文字にする */
+}
+
+/* カテゴリー用の英語 */
+.category-title h2::before {
+    content: "CATEGORY";
+}
+
+/* おすすめレシピ用の英語 */
+.best-recipe-title h2::before {
+    content: "THE BEST RECIPES";
+}
+
+/* スマホ版の調整 */
+@media (max-width: 767px) {
+    /* 1. 「文字」の設定 */
+    .onao-section-title h2 {
+        font-size: 22px !important;
+        margin-bottom: 0 !important; /* 文字自体の余白を消す */
+    }
+
+    /* 2. 「見出しの箱」の設定（こっちが本命！） */
+    .onao-section-title {
+        margin-top: 25px !important;    /* 上の要素との距離を詰める */
+        margin-bottom: 15px !important;  /* 下の画像との距離を限界まで詰める */
+    }
+}
+
+/* ==========================================================================
+   index.html カテゴリ設定
+   ========================================================================== */
+/* --- A案：おなおブラウンのグラデーション --- */
+.onao-category-item {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    border-radius: 15px; /* 角を少し丸めると今っぽいです */
+}
+
+/* 画像の設定 */
+.onao-category-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s;
+}
+
+/* 黒い膜の代わりに「おなおブラウン」のグラデーションを敷く */
+.onao-category-item::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 下から上に「濃い茶色」→「透明」へ */
+    background: linear-gradient(to top, rgba(93, 64, 55, 0.9) 0%, rgba(93, 64, 55, 0.4) 50%, rgba(0, 0, 0, 0) 100%) !important;
+    z-index: 2;
+}
+
+
+/* マウスを乗せた時に写真が少し大きくなる */
+.onao-category-item:hover img {
+    transform: scale(1.1);
+}
+
+/* 文字も少しだけ浮き上がらせる */
+.onao-category-item:hover .top-cta-content {
+    transform: translateY(-5px);
+    transition: transform 0.3s;
+}
+
+.top-cta-content {
+    position: absolute;
+    bottom: 30px; /* PC版：下からの位置を少し上げる */
+    left: 30px;   /* PC版：左からの位置 */
+    z-index: 3;
+    transition: transform 0.3s ease; /* ホバー時の動き用 */
+}
+
+/* メインタイトル（例：ホームベーカリー） */
+.top-cta-content h3 {
+    font-size: 24px !important;      /* PC版：少し大きく */
+    color: #ffffff !important;        /* 文字は白抜き */
+    font-weight: 900 !important;      /* バーガーキング風：限界まで太く！ */
+    margin: 0 !important;
+    letter-spacing: 1px;              /* 少し字間を広げて今っぽく */
+    text-shadow: 2px 2px 10px rgba(93, 64, 55, 0.5); /* おなおブラウンの影で浮かす */
+    line-height: 1.2 !important;
+}
+
+/* サブタイトル（例：HBで生地作り） */
+.top-cta-content h4 {
+    font-size: 14px !important;      /* PC版：小さく */
+    color: rgba(255, 255, 255, 0.9) !important; /* 少しだけ透明度を入れて馴染ませる */
+    font-weight: 700 !important;
+    margin-top: 5px !important;       /* 上の文字との間隔 */
+    margin-bottom: 0 !important;
+    letter-spacing: 2px;              /* 英語サブタイトルのように広く */
+    text-shadow: 1px 1px 5px rgba(93, 64, 55, 0.5);
+}
+
+/* --- スマホ版の調整 --- */
+@media (max-width: 767px) {
+    .top-cta-content {
+        bottom: 15px; /* スマホは少し下げる */
+        left: 15px;   /* スマホは左に寄せる */
+    }
+    
+    .top-cta-content h3 {
+        font-size: 18px !important;  /* スマホ版：読みやすいサイズ */
+    }
+    
+    .top-cta-content h4 {
+        font-size: 11px !important;  /* スマホ版：さらに小さく */
+        letter-spacing: 1px;         /* スマホは字間を少し詰める */
+    }
+}
+
+/* --- カテゴリーエリア全体の左右に余白を作る --- */
+.top-catagory-area .container {
+    padding-left: 20px !important;  /* 左側の余白 */
+    padding-right: 20px !important; /* 右側の余白 */
+    max-width: 100%;               /* 画面幅いっぱいに広がるのを防ぐ（念のため） */
+}
+
+ .best-receipe-area {
+    margin-top: -5px !important; /* おすすめレシピの上の余白をゼロにする */
+}
+/* スマホ版ではもう少し広めに余白を取るとスッキリします */
+@media (max-width: 767px) {
+    .top-catagory-area .container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    
+    /* 画像の横幅を微調整して、2列が綺麗に収まるようにする */
+    .top-catagory-area .row {
+        margin-left: -5px !important;
+        margin-right: -5px !important;
+    }
+    .top-catagory-area .col-6 {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+    .best-receipe-area {
+    margin-top: -10px !important; /* おすすめレシピの上の余白をゼロにする */
+}
+}
+
+
+
+/* ==========================================================================
+   index.html おすすめレシピ カード
+   ========================================================================== */
+
+/* --- オリジナル：おすすめレシピカード (onao-recipe-card) --- */
+.onao-recipe-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 18px !important; /* カテゴリーより少し控えめな角丸 */
+    border: 1px solid rgba(93, 64, 55, 0.1) !important; /* おなおブラウンの薄い枠線 */
+    overflow: hidden;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* カード全体のホバー効果 */
+.onao-recipe-card:hover {
+    transform: translateY(-5px); /* 少し上に浮く */
+    box-shadow: 0 12px 24px rgba(93, 64, 55, 0.12); /* 影を濃く */
+    border-color: var(--onao-green) !important; /* 枠線をおなおグリーンに */
+}
+
+/* 写真の調整（正方形を維持しつつスッキリ） */
+.onao-recipe-card img {
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important; /* 正方形をキープ */
+    object-fit: cover !important;
+    transition: transform 0.5s ease;
+}
+
+/* ホバー時に写真を少し拡大 */
+.onao-recipe-card:hover img {
+    transform: scale(1.05);
+}
+
+/* テキストを入れる箱 */
+.recipe-text-box {
+    padding: 12px 10px;
+    text-align: center;
+}
+
+/* レシピのタイトル文字 */
+.recipe-text-box h3 {
+    font-size: 15px !important;
+    color: #5d4037 !important; /* おなおブラウン */
+    font-weight: 800 !important;
+    margin: 0 !important;
+    line-height: 1.4;
+    /* 1行で収まらない場合に「...」にする設定（もし2行にしたい場合は調整可） */
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* 全体をリンクにするための透明な層 */
+.full-area-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+}
+
+
+/* ==========================================================================
+   index.html /* --- YouTubeエリア（CTA）をコンパクトに --- */
+   ========================================================================== */
+
+.cta-area {
+    padding-top: 60px !important;    /* 上下の余白をギュッと詰める */
+    padding-bottom: 60px !important;
+    border-radius: 25px;            /* サイト全体の「丸み」と合わせる */
+    margin: 0 20px 40px;            /* 左右に隙間を作って、浮いている感じにする */
+    overflow: hidden;
+}
+
+/* 背景の黒い膜を少し濃くして、文字を浮かび上がらせる */
+.cta-area.bg-overlay::after {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 「おなおの動画図鑑」の文字 */
+.cta-content h2 {
+    font-size: 30px !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    letter-spacing: 2px;
+    margin-bottom: 10px !important;
+}
+
+/* 説明文 */
+.cta-content p {
+    font-size: 16px !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    margin-bottom: 25px !important;
+}
+
+/* --------------------------------------------------------------------------
+   【ボタンデザイン統一計画】おなおボタン・プロトコル
+   -------------------------------------------------------------------------- */
+
+/* すべてのメインボタン（ヒーロー、もっと見る、動画図鑑）の共通基盤 */
+.delicious-btn, 
+.onao-view-more-btn, 
+.video-text-link {
+    display: inline-block !important;
+    min-width: 180px;
+    height: auto !important;
+    padding: 12px 30px !important;
+    line-height: 1.5 !important;
+    border-radius: 50px !important; /* すべてカプセル型に統一！ */
+    font-size: 16px !important;
+    font-weight: 800 !important;
+    text-align: center;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    border: none !important; /* 一旦枠線を消してスッキリさせる */
+    cursor: pointer;
+}
+
+/* ヒーローと動画図鑑は「しっかり塗り（少し透け感）」 */
+.hero-area .delicious-btn,
+.video-text-link {
+    background-color: rgba(82, 173, 26, 0.9) !important; /* おなおグリーン（90%透け） */
+    color: #ffffff !important;
+}
+
+/* 「もっと見る」だけは、あえて「白背景に緑文字」でヌケ感を出す */
+.onao-view-more-btn {
+    background-color: #ffffff !important;
+    color: var(--onao-green) !important;
+    border: 2px solid var(--onao-green) !important;
+    display: table;           /* inline-block から変更（中央寄せしやすくするため） */
+    margin: 5px auto 0;     /* 左右の auto で強制的に真ん中へ！ */
+
+}
+
+/* --- ホバーアクションを完全統一 --- */
+.delicious-btn:hover, 
+.onao-view-more-btn:hover, 
+.video-text-link:hover {
+    transform: scale(1.05) translateY(-3px) !important;
+    box-shadow: 0 8px 20px rgba(82, 173, 26, 0.3) !important;
+    opacity: 1 !important;
+    background-color: var(--onao-green) !important; /* ホバー時はしっかり緑 */
+    color: #ffffff !important;
+}
+
+@media (max-width: 767px) {
+    .onao-view-more-btn,
+    .video-text-link {
+        width: 85%; /* スマホでは画面幅に合わせて少し広げる */
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+}
+
+/* buttonタグとして video-text-link を使う場合の補正 */
+button.video-text-link {
+    outline: none;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+/* 「もっと見る」ボタン専用の余白（必要であれば） */
+#load-more-btn {
+    min-width: 200px;
+    margin-top: 20px;
+}
+
+
+/* --------------------------------------------------------------------------
+   レシピ詳細ページ
+   -------------------------------------------------------------------------- */
+/* 手順エリアのチェックボックスを少し大きく、押しやすくする */
+.step-item .custom-control-label::before, 
+.step-item .custom-control-label::after {
+    width: 1.5rem;
+    height: 1.5rem;
+    top: 0.1rem;
+}
+
+.step-item .custom-control-label {
+    min-height: 1.6rem;
+}
+
+/* 文字をタップしてもチェックが入るように余白を調整 */
+.step-content {
+    cursor: pointer;
+    flex: 1;
+}
+.ingredient-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #ccc;
+}
+
+.ingredient-item input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: var(--onao-green);
+}
+
+/* チェックが入った行全体をふわっと薄くする */
+.single-preparation-step:has(.step-check:checked),
+.custom-control:has(.ingredient-check:checked) {
+    opacity: 0.5; /* 0.5にすると、チェックボックスもろとも半分透けます */
+    transition: opacity 0.3s ease;
+}
+
+/* 既存の打ち消し線設定 */
+.checked-item {
+    text-decoration: line-through !important;
+    color: #bbb !important;
+}
+
+
+#flourAmount {
+    border: none;
+    border-bottom: 2px solid #ddd;
+    border-radius: 0;
+    background: transparent;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--onao-green);
+}
+
+.ingredient-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px dotted #ccc; /* 繊細な点線に変更 */
+}
+
+
+/* =========================================
+   工程タイマー機能
+   ========================================= */
+/* タイマーのオーバーレイ */
+.timer-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.timer-content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+#timerDisplay {
+    font-size: 4rem;
+    font-weight: 600;
+    color: var(--onao-green); /* ここをお好みの色に！ */
+    margin-bottom: 20px;
+    font-family: 'Courier New', Courier, monospace; /* 数字が動かない等幅フォントがおすすめ */
+}
+
+
+.timer-controls button {
+    margin: 5px;
+    padding: 10px 25px;
+    border-radius: 50px;
+}
+
+/* 手順内のリンク */
+.timer-link:hover {
+    background-color: rgba(82, 173, 26, 0.1);
+}
+
+
+/* =========================================
+   お気に入り機能
+   ========================================= */
+.is-favorite {
+    background-color: #ff6b6b !important;
+    border-color: #ff6b6b !important;
+    color: white !important;
+}
+.is-favorite i {
+    font-weight: 900; /* ハートを塗りつぶす */
+}
+
+
+/* 詳細ページヘッダー用メタ情報の並び */
+.onao-meta-line {
+    background: rgba(0, 0, 0, 0.2); /* 文字を読みやすくするための薄い背景 */
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: inline-flex !important;
+}
+
+
+/* 詳細ページ用のインラインお気に入りボタン */
+.detail-fav-btn-inline {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    transition: 0.2s;
+}
+
+.detail-fav-btn-inline.active {
+    color: #ff6b6b; /* 登録時は赤く */
+}
+
+.detail-fav-btn-inline.active i {
+    filter: drop-shadow(0 0 5px rgba(255,107,107,0.4));
+}
+
+/* 手順の各ステップ（1項目ごと）の余白調整 */
+.single-preparation-step {
+    margin-bottom: 15px !important; /* ここの数字を小さくすると間隔が詰まります（25px→15pxなど） */
+    padding-bottom: 10px !important; /* もし内側に余白があればここも調整 */
+    border-bottom: 1px dashed #eee; /* 項目ごとの区切り線（不要なら削除してください） */
+}
+
+/* 最後のステップだけは下の余白をなくす（動画エリアとの間隔をスッキリさせるため） */
+.single-preparation-step:last-child {
+    margin-bottom: 0 !important;
+    border-bottom: none !important;
+}
+
+/* 手順のチェックボックス位置調整 */
+.single-preparation-step .custom-control {
+    padding-left: 1.5rem;
+    margin-top: 5px;
+}
+
+.single-preparation-step .custom-control-label::before,
+.single-preparation-step .custom-control-label::after {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* =========================================
+   レシピ詳細：共通・スマホレイアウト
+   ========================================= */
+
+@media (min-width: 992px) {
+    /* PC版のみ：コメント部分が広がりすぎないように制限 */
+    #recipeDescription {
+        max-width: 600px; /* お好みの幅で調整してください */
+        margin: auto auto;   /* 中央に寄せる */
+        line-height: 1.8; /* 行間を少し広げると高級感が出ます */
+    }
+}
+
+/* スマホ版の基本（991px以下すべてに適用） */
+@media (max-width: 991px) {
+    .recipe-meta-item {
+        margin: 5px !important;
+        font-size: 0.9rem !important;
+        justify-content: center;
+    }
+
+    /* 4. 材料と手順の並び順（スマホは材料が上） */
+    .row.onao-recipe-main-row {
+        display: flex;
+        flex-direction: column;
+    }
+    .onao-ingredients-side { order: 1; margin-bottom: 30px; } /* 材料 */
+    .onao-steps-side { order: 2; } /* 手順 */
+}
+
+/* =========================================
+   PC版レイアウト（992px以上で上書き）
+   ========================================= */
+@media (min-width: 992px) {
+    .row.onao-recipe-main-row {
+        display: flex;
+        flex-direction: row; /* 横並びに戻す */
+        align-items: flex-start;
+    }
+
+    /* 手順を左、材料を右に配置 */
+    .onao-steps-side {
+        flex: 1; 
+        order: 1;
+        padding-right: 30px;
+    }
+
+
+.onao-ingredients-side {
+        flex: 0 0 350px; /* 幅を固定 */
+        order: 2;
+        position: sticky; /* スクロール追従 */
+        top: 20px;
+    }
+}
+
+
+
+
+/* =========================================
+   レシピ詳細ページ：フォント・タイポグラフィ整理
+   ========================================= */
+/* --- 詳細ページのH2共通設定 --- */
+.onao-recipe-main-row .onao-section-title {
+    text-align: center !important;
+    margin-top: 10px !important;
+    margin-bottom:  20px !important;
+}
+
+.onao-recipe-main-row .onao-section-title h2 {
+    font-size: 24px !important; /* Indexより少しだけ小さくするとバランスが良いです */
+    color: #5d4037 !important;
+    font-weight: 800 !important;
+    display: inline-block;
+    position: relative;
+    letter-spacing: 1px;
+    border: none !important; /* 枠線やカプセルを完全に消す */
+    background: none !important;
+}
+
+/* 英語サブタイトルの共通設定 */
+.onao-recipe-main-row .onao-section-title h2::before {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--onao-green);
+    margin-bottom: 2px;
+    text-transform: uppercase;
+}
+
+/* --- 各セクション固有の英語タイトル --- */
+
+/* 材料 (Ingredients) */
+.onao-ingredients-card .onao-section-title h2::before {
+    content: "INGREDIENTS";
+}
+
+/* 作り方 (How to make) */
+.onao-steps-side .onao-section-title:first-of-type h2::before {
+    content: "RECIPE STEPS";
+}
+
+
+/* --- 動画 (VIDEO CLIP) --- */
+#videoContainer.prev-sibling + .onao-section-title h2::before,
+div:has(+ #videoContainer) h2::before,
+.onao-steps-side .onao-section-title:nth-last-of-type(1) h2::before {
+    content: "VIDEO CLIP";
+}
+
+
+/* 関連レシピ (Recommended) */
+#relatedRecipesSection .onao-section-title h2::before {
+    content: "YOU MAY ALSO LIKE";
+}
+
+
+.onao-ingredient-group h3,
+.onao-section-title h3 {
+    font-size: 1.1rem !important;
+    color: #5d4037 !important;
+    font-weight: 700 !important;
+    border-bottom: 1.5px solid var(--onao-green) !important; /* 控えめな線 */
+    padding-bottom: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: left !important; /* H3は左寄せが読みやすいです */
+}
+
+
+.onao-steps-side h4 {
+    font-size: 0.8rem !important; /* 少し小さめに */
+    color: var(--onao-green) !important;
+    font-weight: 800 !important;
+    margin-bottom: 4px !important; /* 文章との隙間を詰める */
+    line-height: 1 !important;
+}
+.flour-calculator {
+    background: #fcfdfa !important;
+    border-radius: 20px !important;
+    border: 1px dashed #d7ccc8;
+    padding: 20px !important;
+    margin-bottom: 25px !important;
+}
+
+/* --- ポケポケ風：アプリUIデザイン --- */
+/* 共通のカードスタイル */
+.onao-steps-side, 
+.onao-ingredients-card, 
+#relatedRecipesSection {
+    background: #ffffff !important;
+    border-radius: 28px !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.04) !important;
+    padding: 30px !important;
+    margin-bottom: 30px;
+}
+
+/* チェックボックスのデザインも少し可愛く */
+.custom-control-label span {
+    font-size: 1.05rem;
+    color: #5d4037 !important;
+    font-weight: 600;
+}
+
+/* 番号のスタイル（STEP 1） */
+.step-number h4 {
+    font-size: 0.75rem !important; /* 少し小さくして記号っぽく */
+    color: var(--onao-green) !important;
+    font-weight: 800 !important;
+    text-align: left !important;
+    margin-left: 0 !important;
+    white-space: nowrap;
+}
+
+/* 左側のカラム（番号とチェックのセット） */
+.step-left-column {
+    min-width: 55px; /* 数字が増えても幅が変わらないように固定 */
+    text-align: left; /* 文字を左寄せ */
+}
+
+/* チェックボックスの位置微調整 */
+.step-left-column .custom-control-label::before, 
+.step-left-column .custom-control-label::after {
+    left: 0.1rem !important; 
+}
+
+/* 右側のテキスト（上揃え） */
+.step-right-column {
+    padding-top: 2px; /* STEPの文字の高さと視覚的に合わせる */
+}
+
+.custom-control-input:checked ~ .custom-control-label {
+    color: #bbb !important;
+}
+
+
+
+/* 材料と手順、両方のチェックボックスのサイズを固定 */
+.ingredient-check, 
+.step-check,
+.custom-control-input {
+    width: 20px !important;
+    height: 20px !important;
+    cursor: pointer;
+}
+
+/* チェックボックスのラベル（文字）の位置がズレないように調整 */
+.custom-control-label::before, 
+.custom-control-label::after {
+    width: 20px !important;
+    height: 20px !important;
+    top: 2px !important; /* 文字との高さ合わせ */
+}
+
+/* 材料欄の文字サイズ */
+.onao-ingredients-card label span {
+    font-size: 15px !important;
+    color: #5d4037 !important; /* おなおブラウン */
+}
+
+/* 手順欄の文字サイズ */
+.step-text,
+.onao-comment-text p {
+text-align: left !important;
+    font-size: 15px !important;
+    font-weight: 600;
+    color: #5d4037 !important;
+    line-height: 1.7 !important; /* 行間も揃えるときれいです */
+}
+
+
+/* =========================================
+   レシピ詳細ヒーローエリア
+   ========================================= */
+.recipe-meta-item {
+    padding: 8px 15px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+
+.recipe-main-img-wrapper {
+    background: #ffffff;
+    padding: 0;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+    overflow: hidden;
+    border: 1px solid #f0f0f0;
+    transition: 0.3s ease;
+}
+
+.recipe-main-img-wrapper:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1) !important;
+}
+
+.recipe-main-img-wrapper img {
+    width: 100%;
+    display: block;
+}
+
+
+/* 2. メタバー（白い帯部分）の調整 */
+.recipe-meta-bar {
+    position: sticky; /* スクロールしても上についてくる（お好みで） */
+    top: 0;
+    z-index: 100;
+}
+
+
+/* リード文カード全体の調整 */
+.onao-lead-card {
+    position: relative;
+    overflow: hidden; /* 斜め背景がはみ出さないように */
+    background-color: #ffffff; /* ベースは白 */
+    border-radius: 30px;
+    border: none !important;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/* ポケポケ風：斜め背景のレイヤー */
+.onao-lead-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 65%, #f9f6f2 65%);
+    z-index: 0;
+}
+
+/* 中身のコンテンツを背景より手前に持ってくる */
+.onao-lead-card .row {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* カード内の画像にポケポケらしい丸みをつける */
+.onao-poke-img {
+    border-radius: 15px 0 0 15px; /* 左側だけ丸く */
+    object-fit: cover;
+    height: 100%;
+    min-height: 250px;
+}
+
+/* 説明文のテキスト装飾 */
+#recipeDescription p {
+    font-size: 1.05rem !important;
+    line-height: 1.5 !important;
+    color: #5d4037 !important;
+    position: relative;
+    padding-left: 10px;
+}
+
+/* スマホ版の調整 */
+@media (max-width: 767px) {
+        .onao-poke-img {
+        border-radius: 20px 20px 0 0; /* スマホでは上だけ丸く */
+    }
+        #recipeHero {
+        height: 120px !important; /* 少し高さを抑えてコンパクトに */
+        padding: 0 10px !important;
+    }
+
+    #recipeTitle {
+        font-size: 1.5rem !important; /* 文字もスマホサイズに小さく */
+        padding: 0 10px;
+    }
+
+    /* ポケポケカードの重なり具合もスマホ用に調整 */
+    .onao-lead-card {
+        border-radius: 20px !important;
+         position: relative; /* 重なり順を指定できるようにする */
+    z-index: 10;        /* 背景の斜め線よりも大きい数字を指定 */
+    }
+
+}
+
+
+
+/*材料欄を右側に固定する */
+@media (min-width: 992px) {
+    /* PC・タブレットサイズ以上の時だけ固定する */
+    .onao-recipe-main-row > .col-lg-4 {
+        position: sticky;
+        top: 20px; /* 画面の一番上からどれくらい離して止めるか */
+        height: fit-content; /* 中身の高さに合わせて固定 */
+        z-index: 10;
+    }
+}
+
+
+
+
+
+/* ヒーローエリア再構築 */
+
+/* ヒーローエリア全体の高さを強制調整 */
+#recipeHero.onao-brand-hero {
+    /* min-height ではなく height で固定してみる */
+    height: 120px !important; 
+    
+    /* 上下の余白が原因の場合があるので、一旦 0 にして中央寄せに任せる */
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+#recipeHero #recipeTitle.onao-title-main {
+    /* inline-block ではなく inline-flex を使うのが最大のコツです */
+    display: inline-flex !important;
+    align-items: center;    /* 上下中央 */
+    justify-content: center; /* 左右中央 */
+    
+    /* 1.5pxの上下ライン */
+    border-top: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+    
+    /* 高さを明示的に指定することで、PC版の勝手な行間を無視させます */
+    height: 60px !important; /* 文字サイズに合わせて適宜調整（後述） */
+    padding: 0 30px !important; /* 横の余白だけ指定。上下は 0 */
+    
+    /* line-heightを1に固定して、余分な隙間をゼロにする */
+    line-height: 1 !important;
+    margin: 0 auto !important;
+
+    letter-spacing: 0.15em !important;
+    color: #ffffff !important;
+    font-size: 28px !important; /* PC版での見栄え */
+}
+
+
+
+/* 機能エリア再構築 */
+/* 説明文の中のメタ情報（時間・難易度） */
+.onao-meta-inline {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* ← これを追加：水平方向の中央寄せ */
+}
+
+.onao-meta-inline span {
+    font-size: 13px;
+    font-weight: bold;
+	color: #5d4037;
+}
+
+.meta-badge + .meta-badge {
+    margin-left: 25px !important; 
+}
+
+
+/* メタ情報の行のスタイル */
+.onao-meta-inline {
+    display: flex;
+    align-items: center;
+    color: #8b7e74; /* 少し薄い茶色 */
+    font-size: 13px;
+}
+
+
+/* アイコンの色をビターチョコに合わせる */
+.onao-meta-inline i {
+    color: #5d4037;
+    margin-right: 4px;
+}
+
+
+/* 星のサイズ */
+.stars-area .fa-star {
+    margin: 0 1px;
+    font-size: 12px; 
+}
+
+/* 塗りつぶしの星：オレンジ */
+.stars-area .fa-solid.fa-star {
+    color: #ff8a00 !important;
+    opacity: 1;
+}
+
+/* 空の星：薄いベージュ */
+.stars-area .fa-regular.fa-star {
+    color: #e0d9c5 !important;
+    opacity: 0.5;
+}
+
+
+
+/* --- 1. 写真の上に浮かせるボタンのスタイル --- */
+.onao-floating-actions {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    flex-direction: column; /* 縦に並べる */
+    gap: 10px;
+    z-index: 10;
+}
+
+.onao-icon-only-btn {
+    background: rgba(255, 255, 255, 0.9); /* 白を少し透けさせて写真に馴染ませる */
+    border: none;
+    color: #5d4037; /* ビターチョコ色 */
+    width: 38px;
+    height: 38px;
+    border-radius: 50%; /* まん丸 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.onao-icon-only-btn:hover {
+    transform: scale(1.1);
+    background: #fff;
+}
+
+/* ボタンの中のアイコン（iタグ）のサイズ */
+.onao-icon-only-btn i {
+    font-size: 16px !important; /* ここをお好みの大きさに調整 */
+}
+
+/* ホバーした時に少しアイコンを強調 */
+.onao-icon-only-btn:hover i {
+    transform: scale(1.1);
+}
+
+/* --- 3. スマホ版（キツキツ対策） --- */
+@media (max-width: 767px) {
+    .onao-floating-actions {
+        top: 10px;
+        right: 10px;
+        gap: 8px;
+    }
+    
+    .onao-icon-only-btn {
+        width: 34px; /* スマホでは少しコンパクトに */
+        height: 34px;
+    }
+
+    #recipeDescription {
+        font-size: 14px; /* 文字を少し小さくして余裕を作る */
+        padding: 20px 15px 10px !important;
+    }
+}
+
+
+/* すべてのカード共通：線を消して、影を統一する */
+.onao-lead-card, 
+.onao-ingredients-card, 
+.onao-steps-side, 
+.onao-lead-card,
+#relatedRecipesSection {
+    border: none !important;      /* 縁の線を消す */
+    background-color: #fff;       /* 背景は白 */
+    border-radius: 15px !important; /* 角の丸みを統一 */
+    
+    /* 共通の影設定（Bootstrapのshadow-smより少し丁寧な影） */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+    
+    margin-bottom: 25px;          /* カード同士の間隔 */
+}
+
+/* 個別の微調整：もし背景色が勝手についていたら白に戻す */
+.onao-ingredients-card {
+    padding: 20px;
+}
+
+/* 「こちらもおすすめ」セクションもカード化 */
+#relatedRecipesSection {
+    background: #fff;
+    border-radius: 15px;
+    padding: 30px !important;
+}
+
+
+/* おすすめレシピのカード本体 */
+.onao-related-card {
+    cursor: pointer;
+    background-color: #ffffff;
+    border-radius: 15px; /* 角丸を他のカードと統一 */
+    overflow: hidden;
+    text-align: center;
+    transition: all 0.3s ease;
+    /* 共通の影：浮かせるデザイン */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: none !important; /* 線を消す */
+    height: 100%; /* 高さを揃える */
+}
+
+/* ホバーした時に少し浮き上がる演出 */
+.onao-related-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* サムネイル画像エリア */
+.onao-related-thumb img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+}
+
+/* カードのテキストエリア */
+.onao-related-body {
+    padding: 15px;
+}
+
+.onao-related-body h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: bold;
+    color: #5d4037; 
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   印刷用レイアウト
+   ========================================= */
+@media print {
+    /* 1. 印刷に不要な要素をすべて隠す */
+    header, footer, 
+    .header-area, .footer-area, 
+    .onao-floating-actions,     /* 写真の上のハートと印刷ボタン */
+    #videoContainer,
+    #videoContainer + .onao-section-title, 
+    .onao-section-title:has(+ #videoContainer),            /* 動画 */
+    .timer-overlay,             /* タイマー */
+    #relatedRecipesSection,     /* おすすめレシピ */
+    .preloader, #preloader {
+        display: none !important;
+    }
+
+    /* 2. 全体レイアウトの調整 */
+    body {
+        background: white !important;
+        color: #000 !important;
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+
+  /* 3. コンテナの下余白がページを突き破るのを防ぐ */
+    .container-fluid, .container {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    
+       
+    .onao-brand-hero, #recipeHero {
+        background: transparent !important; /* 背景のチョコ色を透明に */
+        background-image: none !important;
+        height: auto !important;            /* 高さを自動（文字の高さ）に */
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 0 10px 0 !important;     /* 下に少しだけ余白 */
+        border-bottom: 2px solid #4b3e2a !important; /* タイトルの下に線を引く */
+        display: block !important;          /* 確実に表示させる */
+    }
+
+    /* 2. 中の文字（料理名）を黒くする */
+    .onao-title-main, #recipeTitle {
+        color: #000 !important;             /* 文字を黒に */
+        font-size: 24pt !important;
+        text-align: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* 3. リードカード（写真と説明文）の調整 */
+    .onao-lead-card {
+        box-shadow: none !important;  /* 影を消す */
+        border: none !important;
+        background: transparent !important;
+        margin-bottom: 30px !important;
+    }
+
+    /* 斜めラインの背景を消す（インク節約） */
+    .onao-lead-card::before {
+        display: none !important;
+    }
+
+    /* 写真と説明を横並びに維持（または縦に） */
+    .onao-poke-img {
+        max-width: 250px !important; /* 印刷時は少し小さめに */
+        border-radius: 10px;
+    }
+
+    /* 4. 材料と手順のレイアウト（縦に並べて読みやすく） */
+    .row.onao-recipe-main-row {
+        display: block !important;
+    }
+
+    .col-lg-4, .col-lg-8 {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: none !important;
+    }
+
+    /* 材料カードの背景や影を消す */
+    .onao-ingredients-card, .onao-steps-side {
+        box-shadow: none !important;
+        border: 1px solid #eee !important; /* 読みやすいように薄い枠線だけ残す */
+        padding: 0 !important;
+        margin-bottom: 40px !important;
+    }
+
+    /* 6. 改ページの設定（手順の途中で切れないように） */
+    .onao-ingredients-card, .onao-steps-side {
+        page-break-inside: avoid;
+    }
+    
+       /* 1. タイマー、フッター、動画、おすすめレシピを完全に物理消去 */
+    #recipeTimer, 
+    .timer-overlay, 
+    footer, 
+    .footer-area, 
+    #relatedRecipesSection, 
+    #videoContainer, 
+    .preloader, 
+    #preloader,
+    .onao-floating-actions {
+        display: none !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        visibility: hidden !important;
+        position: absolute !important; /* 場所を占有させない */
+        top: -9999px !important;
+    }
+
+    /* 2. ページ全体の余白リセット */
+    html, body {
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
+    }
+
+    /* 3. コンテナの下余白がページを突き破るのを防ぐ */
+    .container-fluid, .container {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    /* 4. 材料・作り方カードの下余白もゼロにする */
+    .onao-ingredients-card, 
+    .onao-steps-side, 
+    .onao-lead-card {
+        margin-bottom: 5mm !important; /* 少しだけ隙間を空け、かつ突き破らない程度に */
+        box-shadow: none !important;
+        page-break-inside: avoid; /* カードの途中でページが切れるのを防ぐ */
+    }
+
+    /* 5. 最後に現れる可能性のある「作り方の外枠」を締める */
+    .onao-recipe-main-row {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+}
+
+/* =========================================
+   コンタクトページ設定
+   ========================================= */
+.onao-lead-card p {
+    position: relative;
+    z-index: 11;
+    color: #4b3e2a;
+    font-weight: 600;
+}
+
+/* リンクボタンを確実にクリックできるようにする */
+.onao-lead-card a.btn {
+    position: relative;
+    z-index: 20; /* カード(10)よりもさらに上に */
+    display: inline-block; /* クリック範囲を正しく確保 */
+}
+
+
+.onao-lead-card iframe {
+    position: relative; /* z-indexを有効にするために必要 */
+    z-index: 10;        /* 装飾（斜め線など）より確実に大きい数値を指定 */
+    background: #ffffff; /* 背景を白にすることで、後ろの線を透けさせない */
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 767px) {
+    /* お問い合わせページのカード専用：余白を最小限にする */
+    .contact-form-card {
+        padding-left: 5px !important;  /* カード内側の左余白 */
+        padding-right: 5px !important; /* カード内側の右余白 */
+        margin-left: 0 !important;  /* 外側の余白も少し削って広げる */
+        margin-right: 0 !important;
+    }
+
+    /* Googleフォーム自体の横幅を100%に */
+    .contact-form-card iframe {
+        width: 100% !important;
+    }
+}
+
+/* =========================================
+   Indexページ PC版幅設定
+   ========================================= */
+/* PC版のコンテンツ幅を統一する */
+@media screen and (min-width: 992px) {
+    /* 1. 全エリア共通の最大幅を固定（お好みで 1140px などに） */
+    .container {
+        max-width: 1100px !important;
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+    }
+
+    /* 2. 検索ボックスの余白も微調整して、他とズレないようにする */
+    .global-search-area .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    /* 3. 各セクション（カテゴリー、おすすめレシピなど）の左右の隙間をリセット */
+    .top-catagory-area, .best-receipe-area {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+}
+
+/* プリローダーの中央画像を大きくする */
+#preloader img {
+    width: 60px !important;  /* お好みのサイズに調整（元はおそらく60〜80pxくらい） */
+    height: auto !important;
+    /* 上下の位置を微調整（くるくるの輪っかの中央に来るように） */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+/* スマホ版：レシピ詳細ページ（article）の余白を最小限にする */
+@media only screen and (max-width: 767px) {
+    article .onao-lead-card {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+    }
+    article .onao-ingredients-card, 
+    article .onao-steps-side,
+    article #relatedRecipesSection {
+        margin-left: -30px !important;
+        margin-right: -30px !important;
+    }
+
+    /* 3. BootstrapのRowが持っているマイナスの余白をリセットして、はみ出しを防ぐ */
+    article .row.onao-recipe-main-row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}

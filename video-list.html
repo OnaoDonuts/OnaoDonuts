@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>パン作り動画図鑑 | おなおドーナツ</title>
+<meta name="description" content="ホームベーカリーの生地作りやパンの成形、ショート動画まで、おなおドーナツのパン作り動画をまとめてチェック。プロのコツが動画で学べる図鑑です。">
+
+
+    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="my-custom.css">
+    <link rel="stylesheet" href="css/all.min.css">
+</head>
+
+<body>
+
+
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+        <img src="img/core-img/donut_loading.png" alt="おなおドーナツを準備中...">
+    </div>
+
+
+    <header class="header-area" id="header-placeholder"></header>
+
+<div class="onao-brand-hero bg-img bg-overlay" style="background-image: url(img/bg-img/youtube-bg.jpg);">
+    <div class="onao-hero-content">
+        <h1 class="onao-title-main">おなおドーナツ動画図鑑</h1>        
+        <p class="onao-title-sub">おいしい動画でパン作り！</p>
+    </div>
+</div>
+
+
+        </div>
+    </div>
+</div>
+
+<h2 class="visually-hidden">おなおドーナツの最新パン作り動画リスト</h2>
+
+<div class="onao-v-nav-container mb-5">
+    <div class="onao-v-nav">
+        <div class="v-nav-item active" onclick="filterVideoCards('すべて', this)">
+            <div class="v-icon-circle">
+                <i class="fas fa-th-large"></i>
+            </div>
+            <span class="v-nav-label">すべて</span>
+        </div>
+        
+        <div class="v-nav-item" onclick="filterVideoCards('おすすめ', this)">
+            <div class="v-icon-circle">
+                <i class="fas fa-star"></i>
+            </div>
+            <span class="v-nav-label">おすすめ</span>
+        </div>
+        
+        <div class="v-nav-item" onclick="filterVideoCards('成形', this)">
+            <div class="v-icon-circle">
+                <i class="fa-solid fa-mitten"></i>
+            </div>
+            <span class="v-nav-label">成形</span>
+        </div>
+        
+        <div class="v-nav-item" onclick="filterVideoCards('ショート', this)">
+            <div class="v-icon-circle">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <span class="v-nav-label">ショート</span>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div id="video-results" class="row g-3 g-md-4">
+        </div>
+
+<div class="text-center mb-5">
+    <button id="load-more-btn" class="video-text-link" style="display: none; border: none; cursor: pointer;">
+        もっと見る <i class="fa-solid fa-angles-down ml-2"></i>
+    </button>
+</div>
+
+</div>
+
+
+
+    <footer class="footer-area">
+        <div id="footer-placeholder"></div>
+        <div id="footer-nav-placeholder" class="d-md-none"></div>
+    </footer>
+
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="js/bootstrap/popper.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/plugins/plugins.js"></script>
+<script src="js/common.js"></script>
+    <script src="js/active.js"></script>
+    
+
+
+<script src="js/video-list.js"></script>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "パン作り動画図鑑 | おなおドーナツ",
+  "description": "ホームベーカリーの生地作りや成形、ショート動画まで、パン作りのコツが動画で学べる図鑑です。",
+  "url": "https://あなたのドメイン/video-list.html"
+}
+</script>
+
+</body>
+
+</html>

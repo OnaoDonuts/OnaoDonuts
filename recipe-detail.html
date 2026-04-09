@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>レシピ詳細 | おなおドーナツ</title>
+    <meta name="description" content="おなおドーナツの美味しいパンレシピ紹介">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="レシピ詳細 | おなおドーナツ">
+    <meta property="og:description" content="おなおドーナツの美味しいパンレシピ紹介">
+    <meta property="og:image" content="img/core-img/logo.png">
+    
+    
+    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/all.min.css">
+        <link rel="stylesheet" href="my-custom.css">
+        
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+        <img src="img/core-img/donut_loading.png" alt="おなおドーナツを準備中...">
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area" id="header-placeholder">
+        <!-- ここに header.html が読み込まれます -->
+    </header>
+
+
+    <!-- ##### Hero Area Start ##### -->
+<div class="onao-brand-hero"  id="recipeHero">
+    
+    <div class="onao-hero-content">
+        <h1 id="recipeTitle" class="onao-title-main">
+            RECIPE NAME
+        </h1>
+    </div>
+</div>
+
+
+
+    <!-- ##### Description Area Start ##### -->
+<article class="container-fluid mt-4">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-lg-12">
+            <div class="onao-lead-card shadow-sm">
+                <div class="row no-gutters">
+                    
+                    <div class="col-md-5 position-relative">
+                        <img id="descriptionMainImg" src="" alt="完成写真" class="img-fluid onao-poke-img" loading="lazy">
+                        
+                        <div class="onao-floating-actions">
+                            <button id="faveBtn" class="onao-icon-only-btn" title="お気に入り" aria-label="このレシピをお気に入りに追加する">
+                                <i id="faveIcon" class="fa-regular fa-heart"></i>
+                            </button>
+                            <button class="onao-icon-only-btn" onclick="window.print();" title="印刷" aria-label="このレシピを印刷する">
+                                <i class="fa-solid fa-print"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-7 d-flex flex-column justify-content-center">
+                        <div id="recipeDescription" class="px-4 pt-4 pb-2 w-100 text-left">
+                        </div>
+
+                        <div class="onao-meta-inline px-4 pb-4 w-100 d-flex justify-content-center align-items-center">
+                            <span class="meta-badge">
+                                <i class="fa-regular fa-clock"></i>
+                                <span class="time-val">0</span></span>
+                            <span class="meta-badge ml-4">
+                                難易度: <span class="stars-area"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- ###### Ingredients Area Start ##### -->
+<div class="container-fluid  mt-3"> 
+    <div class="row onao-recipe-main-row">
+        <div class="col-12 col-lg-4 order-1 order-lg-2 mb-4">
+            <div class="onao-ingredients-card shadow-sm">
+                <div class="onao-section-title">
+                    <h2>材料 (計算機)</h2>
+                </div>
+                
+                <div class="form-group mb-4 flour-calculator p-4">
+                    <label for="flourAmount" class="small text-uppercase font-weight-bold">粉の量 (g)</label>
+                    <input type="number" id="flourAmount" class="form-control mb-2" value="200" step="10">
+                    <p class="small text-muted mb-0">※粉量を変えると自動計算されます</p>
+                </div>
+
+                <div id="ingredientsList" class="px-2"></div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-8 order-2 order-lg-1">
+            <div class="onao-steps-side mb-4 shadow-sm"> 
+                <div class="onao-section-title">
+                    <h2>作り方</h2>
+                </div>
+                <div id="stepsList" class="mb-5"></div>
+
+                <div class="onao-section-title">
+                    <h2>動画でチェック</h2>
+                </div>
+                <div id="videoContainer" style="max-width: 100%; margin: 0 auto;"></div>
+            </div>
+
+            <div id="relatedRecipesSection" class="p-4 shadow-sm
+">
+                <div class="onao-section-title mb-4">
+                    <h2>こちらもおすすめ</h2>
+                </div>
+                <div id="relatedRecipes" class="row">
+                    </div>
+            </div>
+        </div>
+
+    </div> </article>
+ 
+               
+ <div id="recipeTimer" class="timer-overlay" style="display: none;">
+    <div class="timer-content">
+        <div id="timerDisplay">00:00</div>
+
+        <div id="timerFinishedMessage" style="display: none; font-size: 1.5rem; font-weight: 600; color: #4b3e2a; margin: 15px 0; text-align: center;">
+            お時間になりました
+        </div>
+
+        <div class="timer-controls">
+            <button id="timerStop" class="btn btn-sm btn-danger">ストップ</button>
+            <button id="timerClose" class="btn btn-sm btn-secondary">閉じる</button>
+        </div>
+    </div>
+</div>
+
+
+    <footer class="footer-area">
+        <div id="footer-placeholder"></div>
+        <div id="footer-nav-placeholder" class="d-md-none"></div>
+    </footer>
+
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    
+    <script src="js/bootstrap/popper.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    
+    <script src="js/plugins/plugins.js"></script>
+    <script src="js/common.js"></script>    
+    <script src="js/active.js"></script>
+    
+    <script src="js/recipe-detail.js"></script>
+    
+    <script type="application/ld+json" id="recipe-schema"></script>
+
+</body>
+</html>
