@@ -137,10 +137,21 @@ if (hero) {
 
 
 
-    // 完成写真（メイン画像）
+// 完成写真（メイン画像）
 const descImg = document.getElementById('descriptionMainImg');
 if (descImg && recipe.youtube) {
-    descImg.src = `https://img.youtube.com/vi/${recipe.youtube}/maxresdefault.jpg`;
+    // 1. まずは「最高画質」をセットしてみる
+    const maxResUrl = `https://img.youtube.com/vi/${recipe.youtube}/maxresdefault.jpg`;
+    descImg.src = maxResUrl;
+
+    // 2. もし画像が存在しなくてエラー（404）になった時の処理
+    descImg.onerror = function() {
+        // すでに一度エラー処理をしていたら何もしない（無限ループ防止）
+        if (this.src.includes('mqdefault.jpg')) return;
+
+        // 3. 「中画質」に切り替える（パイ生地などはここで救済される）
+        this.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.jpg`;
+    };
 }
 
     // 4. 材料リストの描画（計算機機能）
