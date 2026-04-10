@@ -776,7 +776,6 @@ body, h1, h2, h3, h4, h5, h6 {
     .onao-title-sub {
         font-size: 13px !important;
         white-space: nowrap !important;
-        margin-top: -5px !important;      /* ★上の余白をリセット */
         padding-top: 0 !important;
         line-height: 1.2 !important;
     }
