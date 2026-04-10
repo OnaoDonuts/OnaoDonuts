@@ -137,10 +137,19 @@ if (hero) {
 
 
 
-    // 完成写真（メイン画像）
+// 完成写真（メイン画像）
 const descImg = document.getElementById('descriptionMainImg');
 if (descImg && recipe.youtube) {
-    descImg.src = `https://img.youtube.com/vi/${recipe.youtube}/maxresdefault.jpg`;
+    // まずは最大サイズ（maxresdefault）を試みる
+    const imgUrl = `https://img.youtube.com/vi/${recipe.youtube}/maxresdefault.jpg`;
+    descImg.src = imgUrl;
+
+    // もし画像が読み込めなかった（存在しない）時のための予備設定
+    descImg.onerror = function() {
+        // 標準の高画質版（hqdefault）に切り替える
+        this.src = `https://img.youtube.com/vi/${recipe.youtube}/hqdefault.jpg`;
+        this.onerror = null; // 無限ループ防止
+    };
 }
 
     // 4. 材料リストの描画（計算機機能）
