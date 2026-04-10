@@ -142,8 +142,6 @@ body, h1, h2, h3, h4, h5, h6 {
         margin-right: 12px !important;   /* 文字との間隔をいい塩梅に */
         font-size: 18px !important;
         width: 25px !important;          /* アイコン幅を揃えて縦ラインを整える */
-		min-width: 25px !important;      /* これを追加！ */
-    	display: inline-block !important; /* これを追加！ */
         text-align: center !important;
     }
 
