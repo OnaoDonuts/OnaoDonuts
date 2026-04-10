@@ -772,10 +772,11 @@ body, h1, h2, h3, h4, h5, h6 {
 
     }
     
-    /* 3. サブタイトル：上の余白をゼロにする */
+    /* 3. サブタイトル */
     .onao-title-sub {
         font-size: 13px !important;
         white-space: nowrap !important;
+		margin-top: 5px !important;
         padding-top: 0 !important;
         line-height: 1.2 !important;
     }
