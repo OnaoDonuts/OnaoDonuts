@@ -140,18 +140,9 @@ if (hero) {
 // 完成写真（メイン画像）
 const descImg = document.getElementById('descriptionMainImg');
 if (descImg && recipe.youtube) {
-    // どんな動画でも100%確実に存在する「hqdefault」に変更します
-    // これまでの maxresdefault ではなく hqdefault にするのがポイントです
-    descImg.src = `https://img.youtube.com/vi/${recipe.youtube}/hqdefault.jpg`;
-
-    // 【念のため】それでも読み込めない場合の最終手段（URLにゴミがついていないか確認用）
-    descImg.onerror = function() {
-        console.error("YouTubeサムネイルの読み込みに失敗しました:", this.src);
-        // IDの後にスペースが入っている場合などを考慮して、トリミングして再試行
-        const cleanID = recipe.youtube.trim();
-        this.src = `https://img.youtube.com/vi/${cleanID}/hqdefault.jpg`;
-        this.onerror = null; 
-    };
+    // 検索結果と同じ、確実に存在するサイズ（mqまたはhq）を指定します
+    // ひとまず検索結果と同じ「mqdefault」にすれば、100%表示されます
+    descImg.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.jpg`;
 }
 
     // 4. 材料リストの描画（計算機機能）
