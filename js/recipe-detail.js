@@ -227,6 +227,16 @@ recipe.steps.forEach((section, sIndex) => { // セクションの番号(sIndex)�
 
     updateRecipeSchema(recipe);
 
+        // --- ここから追加 ---
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+        canonicalLink = document.createElement('link');
+        canonicalLink.rel = 'canonical';
+        document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.href = `https://onaodonuts.github.io/OnaoDonuts/recipe-detail.html?id=${recipe.id}`;
+    // --- ここまで追加 ---
+    
     // お気に入りボタンの制御（デグレ修正）
     const faveBtn = document.getElementById('faveBtn');
     const faveIcon = document.getElementById('faveIcon');
