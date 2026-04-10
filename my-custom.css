@@ -143,6 +143,10 @@ body, h1, h2, h3, h4, h5, h6 {
         font-size: 18px !important;
         width: 25px !important;          /* アイコン幅を揃えて縦ラインを整える */
         text-align: center !important;
+	/* --- ここから追加 --- */
+    	min-width: 25px !important;  /* 【重要】これ以上絶対に狭くさせない！ */
+    	flex-shrink: 0 !important;   /* 【重要】横幅が足りなくても潰さない！ */
+    /* --- ここまで --- */
     }
 
     /* 【アクティブ・ホバー時】おなおグリーンに変更 */
