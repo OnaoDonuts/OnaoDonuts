@@ -149,6 +149,11 @@ body, h1, h2, h3, h4, h5, h6 {
     /* --- ここまで --- */
     }
 
+	.classy-navbar .classynav ul li a span {
+    display: inline-block !important;
+    padding-left: 5px !important; /* アイコンとの間に安全地帯を作る */
+}
+
     /* 【アクティブ・ホバー時】おなおグリーンに変更 */
     .classy-navbar .classynav ul li.active > a,
     .classy-navbar .classynav ul li.active > a i,
