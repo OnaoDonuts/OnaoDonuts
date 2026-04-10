@@ -142,7 +142,7 @@ const descImg = document.getElementById('descriptionMainImg');
 if (descImg && recipe.youtube) {
     // 検索結果と同じ、確実に存在するサイズ（mqまたはhq）を指定します
     // ひとまず検索結果と同じ「mqdefault」にすれば、100%表示されます
-    descImg.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.jpg`;
+    descImg.src = `https://img.youtube.com/vi/${recipe.youtube}/hqdefault.jpg`;
 }
 
     // 4. 材料リストの描画（計算機機能）
