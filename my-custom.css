@@ -115,7 +115,7 @@ body, h1, h2, h3, h4, h5, h6 {
 /* --------------------------------------------------------------------------
    2. ヘッダーナビ (スマホ版ドロワーメニュー)
    -------------------------------------------------------------------------- */
-@media (max-width: 1199px) {
+@media (max-width: 991px) {
     /* ハンバーガーの3本線（チョコブラウン） */
     .classy-navbar-toggler .navbarToggler span {
         background-color: #4b3e2a !important;
@@ -161,7 +161,7 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 
-@media only screen and (max-width: 1199px) {
+@media only screen and (max-width: 991px) {
     
     /* 1. ハンバーガーボタンを出す */
     .classy-navbar-toggler {
