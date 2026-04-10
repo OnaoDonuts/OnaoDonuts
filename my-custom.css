@@ -354,50 +354,47 @@ body, h1, h2, h3, h4, h5, h6 {
 .owl-dots, .owl-nav, .owl-number { display: none !important; }
 
 
-/* --------------------------------------------------------------------------
-   【決定版】iPad・スマホ 共通メニュー崩れ解消コード
-   -------------------------------------------------------------------------- */
 @media only screen and (max-width: 991px) {
     
-    /* 1. ハンバーガーボタンを強制的に表示 */
+    /* 1. ハンバーガーボタンを出す */
     .classy-navbar-toggler {
         display: block !important;
     }
 
-    /* 2. PC用メニューは一旦隠す */
+    /* 2. メニュー本体の設定：PC版の横並び設定を完全に解除して、スマホ版の「縦並びリスト」に固定する */
     .classy-menu {
-        display: none;
+        display: none; /* 閉じてる時は隠す */
     }
 
-    /* 3. ボタンを押して開いた時（menu-onなど）は表示する */
+    /* 3. メニューが開いた時 */
     .classy-nav-container.breakpoint-on .classy-menu,
     .classy-nav-container.menu-on .classy-menu {
         display: block !important;
     }
 
-    /* 4. メニュー内の「アイコンと文字」が重ならない・2段にならない設定 */
+    /* 4. 【重要】ここが「重なり」の犯人！各メニューを「1行」のセットにする */
+    .classynav ul li {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 5px !important; /* 下に少し余裕を持たせる */
+    }
+
+    /* 5. 【重要】アイコンとテキストを「横」に並び直させる */
     .classy-navbar .classynav ul li a {
         display: flex !important;
-        flex-direction: row !important; /* 横並び固定 */
+        flex-direction: row !important; /* 上下(column)ではなく横(row)に！ */
         align-items: center !important;
-        flex-wrap: nowrap !important;   /* 絶対に折り返さない */
-        padding: 12px 15px !important;  /* 余白をスリムに */
-        white-space: nowrap !important; /* 文字も改行させない */
+        justify-content: flex-start !important;
+        padding: 15px 20px !important; /* 上下の高さを確保して重なりを防ぐ */
+        height: auto !important;       /* 高さを自動にして潰れを防止 */
     }
 
-    /* 5. アイコンの幅を完全に固定（25px死守） */
+    /* 6. アイコンの設定 */
     .classy-navbar .classynav ul li a i {
-        flex: 0 0 25px !important;      /* 縮まない・伸びない・25px */
+        margin-bottom: 0 !important;   /* 上にいた時の名残を消す */
+        margin-right: 15px !important; /* 右側に隙間を作る */
         width: 25px !important;
-        min-width: 25px !important;
-        margin-right: 12px !important;  /* 文字との隙間 */
         text-align: center !important;
-    }
-
-    /* 6. 文字（span）が押しつぶされないように */
-    .classy-navbar .classynav ul li a span {
-        flex: 1 !important;
-        text-align: left !important;
     }
 }
 
