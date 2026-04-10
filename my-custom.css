@@ -160,6 +160,51 @@ body, h1, h2, h3, h4, h5, h6 {
     }
 }
 
+
+@media only screen and (max-width: 991px) {
+    
+    /* 1. ハンバーガーボタンを出す */
+    .classy-navbar-toggler {
+        display: block !important;
+    }
+
+    /* 2. メニュー本体の設定：PC版の横並び設定を完全に解除して、スマホ版の「縦並びリスト」に固定する */
+    .classy-menu {
+        display: none; /* 閉じてる時は隠す */
+    }
+
+    /* 3. メニューが開いた時 */
+    .classy-nav-container.breakpoint-on .classy-menu,
+    .classy-nav-container.menu-on .classy-menu {
+        display: block !important;
+    }
+
+    /* 4. 【重要】ここが「重なり」の犯人！各メニューを「1行」のセットにする */
+    .classynav ul li {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 5px !important; /* 下に少し余裕を持たせる */
+    }
+
+    /* 5. 【重要】アイコンとテキストを「横」に並び直させる */
+    .classy-navbar .classynav ul li a {
+        display: flex !important;
+        flex-direction: row !important; /* 上下(column)ではなく横(row)に！ */
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 15px 20px !important; /* 上下の高さを確保して重なりを防ぐ */
+        height: auto !important;       /* 高さを自動にして潰れを防止 */
+    }
+
+    /* 6. アイコンの設定 */
+    .classy-navbar .classynav ul li a i {
+        margin-bottom: 0 !important;   /* 上にいた時の名残を消す */
+        margin-right: 15px !important; /* 右側に隙間を作る */
+        width: 25px !important;
+        text-align: center !important;
+    }
+}
+
 /* --------------------------------------------------------------------------
    3. 検索窓 (細線・★×ボタン強制表示・バランス調整)
    -------------------------------------------------------------------------- */
@@ -354,49 +399,6 @@ body, h1, h2, h3, h4, h5, h6 {
 .owl-dots, .owl-nav, .owl-number { display: none !important; }
 
 
-@media only screen and (max-width: 991px) {
-    
-    /* 1. ハンバーガーボタンを出す */
-    .classy-navbar-toggler {
-        display: block !important;
-    }
-
-    /* 2. メニュー本体の設定：PC版の横並び設定を完全に解除して、スマホ版の「縦並びリスト」に固定する */
-    .classy-menu {
-        display: none; /* 閉じてる時は隠す */
-    }
-
-    /* 3. メニューが開いた時 */
-    .classy-nav-container.breakpoint-on .classy-menu,
-    .classy-nav-container.menu-on .classy-menu {
-        display: block !important;
-    }
-
-    /* 4. 【重要】ここが「重なり」の犯人！各メニューを「1行」のセットにする */
-    .classynav ul li {
-        display: block !important;
-        width: 100% !important;
-        margin-bottom: 5px !important; /* 下に少し余裕を持たせる */
-    }
-
-    /* 5. 【重要】アイコンとテキストを「横」に並び直させる */
-    .classy-navbar .classynav ul li a {
-        display: flex !important;
-        flex-direction: row !important; /* 上下(column)ではなく横(row)に！ */
-        align-items: center !important;
-        justify-content: flex-start !important;
-        padding: 15px 20px !important; /* 上下の高さを確保して重なりを防ぐ */
-        height: auto !important;       /* 高さを自動にして潰れを防止 */
-    }
-
-    /* 6. アイコンの設定 */
-    .classy-navbar .classynav ul li a i {
-        margin-bottom: 0 !important;   /* 上にいた時の名残を消す */
-        margin-right: 15px !important; /* 右側に隙間を作る */
-        width: 25px !important;
-        text-align: center !important;
-    }
-}
 
 /* --------------------------------------------------------------------------
    7. YouTube動画サムネイル (スマホ3列×2行・6枚限定表示・鉄壁版)
