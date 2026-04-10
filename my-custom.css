@@ -162,31 +162,6 @@ body, h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* 768pxから991pxの間（iPadの分割画面など）でもハンバーガーメニューにする設定 */
-@media (min-width: 768px) and (max-width: 991px) {
-    /* クラス名「breakpoint-off」を強制的に「breakpoint-on」のような挙動に上書きします */
-    .classy-nav-container {
-        /* ここはテンプレートの仕様に合わせるため、
-           もしJSで制御されている場合は以下のCSSで見た目だけ調整します */
-    }
-
-    /* 強制的にハンバーガーボタンを表示 */
-    .classy-navbar-toggler {
-        display: block !important;
-    }
-
-    /* 横並びメニューを隠す */
-    .classy-menu {
-        display: none;
-    }
-
-    /* メニューが開いた時のスタイルをスマホ版と同じにするための調整 */
-    .classynav ul li {
-        display: block !important;
-        width: 100% !important;
-    }
-}
-
 /* --------------------------------------------------------------------------
    3. 検索窓 (細線・★×ボタン強制表示・バランス調整)
    -------------------------------------------------------------------------- */
@@ -380,29 +355,30 @@ body, h1, h2, h3, h4, h5, h6 {
    -------------------------------------------------------------------------- */
 .owl-dots, .owl-nav, .owl-number { display: none !important; }
 
+
 /* --------------------------------------------------------------------------
-   スマホ版メニューが飛び出る現象の修正
+   iPadの分割画面（〜991px）でもハンバーガーメニューを正しく出す修正
    -------------------------------------------------------------------------- */
 @media only screen and (max-width: 991px) {
-    /* メニューの本体を最初は隠しておく */
-    .classy-navbar-toggler ~ .classy-menu {
+    
+    /* 1. ハンバーガーボタンを強制的に表示させる（ここが重要！） */
+    .classy-navbar-toggler {
+        display: block !important;
+    }
+
+    /* 2. PC用の横並びメニューは隠しておく（ボタンを押した時だけJSで出るように） */
+    .classy-menu {
         display: none;
     }
     
-    /* メニューが開いた時（breakpoint-onクラスがついた時）だけ表示する */
-    .breakpoint-off .classy-menu {
-        display: none;
-    }
-    
-    /* テンプレートのJSが動いた後の表示制御 */
-    .classynav {
+    /* 3. メニューが開いた時（menu-onクラスなど）の制御をテンプレートに合わせる */
+    .classy-nav-container.breakpoint-on .classy-menu {
         display: block;
     }
-    
-    /* 念のため、中身が縦に並びすぎないよう調整 */
-    .classynav ul li {
-        display: block;
-        width: 100%;
+
+    /* 4. ロゴが中央に寄ったり潰れたりしないよう調整 */
+    .nav-brand {
+        max-width: 150px; /* ロゴのサイズを少し控えめにしてスペースを確保 */
     }
 }
 
