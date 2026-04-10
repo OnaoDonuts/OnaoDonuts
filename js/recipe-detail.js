@@ -140,15 +140,17 @@ if (hero) {
 // 完成写真（メイン画像）
 const descImg = document.getElementById('descriptionMainImg');
 if (descImg && recipe.youtube) {
-    // まずは最大サイズ（maxresdefault）を試みる
-    const imgUrl = `https://img.youtube.com/vi/${recipe.youtube}/maxresdefault.jpg`;
-    descImg.src = imgUrl;
+    // どんな動画でも100%確実に存在する「hqdefault」に変更します
+    // これまでの maxresdefault ではなく hqdefault にするのがポイントです
+    descImg.src = `https://img.youtube.com/vi/${recipe.youtube}/hqdefault.jpg`;
 
-    // もし画像が読み込めなかった（存在しない）時のための予備設定
+    // 【念のため】それでも読み込めない場合の最終手段（URLにゴミがついていないか確認用）
     descImg.onerror = function() {
-        // 標準の高画質版（hqdefault）に切り替える
-        this.src = `https://img.youtube.com/vi/${recipe.youtube}/hqdefault.jpg`;
-        this.onerror = null; // 無限ループ防止
+        console.error("YouTubeサムネイルの読み込みに失敗しました:", this.src);
+        // IDの後にスペースが入っている場合などを考慮して、トリミングして再試行
+        const cleanID = recipe.youtube.trim();
+        this.src = `https://img.youtube.com/vi/${cleanID}/hqdefault.jpg`;
+        this.onerror = null; 
     };
 }
 
