@@ -98,6 +98,7 @@ async function loadFooter() {
 
 // 2. ギャラリーの画像をYouTubeに変える関数（中身はさっきと同じ）
 async function initGalleryThumbs() {
+    // 変数名を galleryItems に統一しました
     const galleryItems = document.querySelectorAll('.single-insta-feeds a');
     if (galleryItems.length === 0) return;
 
@@ -105,34 +106,37 @@ async function initGalleryThumbs() {
         const response = await fetch('js/recipes.json');
         const recipes = await response.json();
 
-galleryLinks.forEach(link => {
-    // 1. href属性をそのまま文字列として取得 (例: "recipe-detail.html?id=v138")
-    const hrefStr = link.getAttribute('href');
-    
-    // 2. 文字列の中から "id=" の後ろの部分だけを強引に切り出す
-    const match = hrefStr.match(/id=([^&]+)/);
-    const recipeId = match ? match[1] : null;
+        // ここも galleryItems に合わせます
+        galleryItems.forEach(link => {
+            const hrefStr = link.getAttribute('href');
+            
+            // IDを強引に切り出す作戦
+            const match = hrefStr.match(/id=([^&]+)/);
+            const recipeId = match ? match[1] : null;
 
-    if (recipeId) {
-        const recipe = recipes.find(r => r.id === recipeId);
-        
-        if (recipe && recipe.youtube) {
-            const img = link.querySelector('img');
-            if (img) {
-                // 絶対に存在するIDをセット
-                img.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.webp`;
+            if (recipeId) {
+                const recipe = recipes.find(r => r.id === recipeId);
                 
-                // YouTubeの「・・・」が出る場合、ここが呼ばれないことが多いので
-                // srcをセットする直前にログの代わりに「タイトル」へIDを仕込む
-                img.title = "DEBUG: " + recipe.youtube; 
+                if (recipe && recipe.youtube) {
+                    const img = link.querySelector('img');
+                    if (img) {
+                        // YouTubeの画像URLをセット
+                        img.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.webp`;
+                        
+                        // うまくいかない時のためのデバッグ用（PCならマウスを乗せるとIDが見えます）
+                        img.title = "RecipeID: " + recipeId + " | YT: " + recipe.youtube;
+                        
+                        // エラーハンドリング（WebPがない場合はJPGに）
+                        img.onerror = function() {
+                            this.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.jpg`;
+                        };
+                    }
+                }
             }
-        }
-    }
-});
+        });
     } catch (e) {
         console.error("Gallery置換エラー:", e);
     }
 }
-
 // 最後に実行
 loadFooter();
