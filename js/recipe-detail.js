@@ -136,40 +136,32 @@ if (hero) {
 }
 
 
-// 完成写真（メイン画像）
+// 完成写真（メイン画像）の読み込みロジック
 const descImg = document.getElementById('descriptionMainImg');
 if (descImg && recipe.youtube) {
-    // 【ここがポイント！】最初からWebPを「本命」として定義する
     const webpUrl = `https://img.youtube.com/vi/${recipe.youtube}/maxresdefault.webp`;
     const jpgUrl = `https://img.youtube.com/vi/${recipe.youtube}/maxresdefault.jpg`;
     const mqUrl = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.jpg`;
 
-    // 1. 迷わずWebPをセット！
+    // 1. まずはWebPをセット
     descImg.src = webpUrl;
 
     descImg.onload = function() {
-        // もしWebPが「120px（＝画像なし）」だったら切り替える
+        // YouTubeの「画像なし」判定
         if (this.naturalWidth <= 120) {
             if (this.src.includes('.webp')) {
-                this.src = jpgUrl; // JPGの最高画質へ
+                this.src = jpgUrl; // WebPがダメならJPG
             } else if (this.src.includes('maxresdefault.jpg')) {
-                this.src = mqUrl; // それもダメなら中画質(mq)へ
+                this.src = mqUrl; // JPGもダメなら中画質
             }
         }
     };
     
-    // エラー時も安心
+    // エラーが起きたら中画質へ
     descImg.onerror = function() {
         this.src = mqUrl;
     };
-}
-
-    descImg.onerror = function() {
-        // 通信エラーなどが起きたら中画質(mq)で救済
-        this.src = mqUrl;
-    };
-}
-
+} 
     
     // 4. 材料リストの描画（計算機機能）
     if (flourInput) {
