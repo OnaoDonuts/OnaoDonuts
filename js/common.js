@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             const footerPlaceholder = document.getElementById('footer-placeholder');
             if (footerPlaceholder) footerPlaceholder.innerHTML = data;
+                           initGalleryThumbs();
+
         });
 
     // 3. ボトムナビの読み込みとActive設定
@@ -107,6 +109,3 @@ async function initGalleryThumbs() {
         console.error("Gallery thumbs error:", e);
     }
 }
-
-// ページ読み込み完了時に実行
-document.addEventListener('DOMContentLoaded', initGalleryThumbs);
