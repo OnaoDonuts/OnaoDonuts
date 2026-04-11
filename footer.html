@@ -14,43 +14,57 @@
         
            <div class="single-insta-feeds">
             <a href="recipe-detail.html?id=v138">
-                <img src="img/bg-img/s_chaba.webp" alt="こねないパン！スクエアチャバタのレシピ" loading="lazy" decoding="async">
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
+     alt="レシピ名" 
+     style="background-color: #eee; width: 100%; aspect-ratio: 1/1; object-fit: cover;">
             </a>
         </div>
 
         <div class="single-insta-feeds">
             <a href="recipe-detail.html?id=v123">
-                <img src="img/bg-img/s_flower.webp" alt="可愛いお花の白パン！マーガレットのレシピ" loading="lazy" decoding="async">
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
+     alt="レシピ名" 
+     style="background-color: #eee; width: 100%; aspect-ratio: 1/1; object-fit: cover;">
             </a>
         </div>
 
         <div class="single-insta-feeds">
             <a href="recipe-detail.html?id=v128">
-                <img src="img/bg-img/s_honney.webp" alt="じゅわっと甘い！はちみつバターパンのレシピ" loading="lazy" decoding="async">
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
+     alt="レシピ名" 
+     style="background-color: #eee; width: 100%; aspect-ratio: 1/1; object-fit: cover;">
             </a>
         </div>
 
         <div class="single-insta-feeds">
             <a href="recipe-detail.html?id=v025">
-                <img src="img/bg-img/s_piebasket.webp" alt="サクサク！パイバスケットのレシピ" loading="lazy" decoding="async">
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
+     alt="レシピ名" 
+     style="background-color: #eee; width: 100%; aspect-ratio: 1/1; object-fit: cover;">
             </a>
         </div>
 
         <div class="single-insta-feeds">
             <a href="recipe-detail.html?id=v118">
-                <img src="img/bg-img/s_rose.webp" alt="憧れの成形！ばらパンのレシピ" loading="lazy" decoding="async">
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
+     alt="レシピ名" 
+     style="background-color: #eee; width: 100%; aspect-ratio: 1/1; object-fit: cover;">
             </a>
         </div>
 
         <div class="single-insta-feeds">
             <a href="recipe-detail.html?id=v057">
-                <img src="img/bg-img/s_pre.webp" alt="本格プレッツェルのレシピ" loading="lazy" decoding="async">
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
+     alt="レシピ名" 
+     style="background-color: #eee; width: 100%; aspect-ratio: 1/1; object-fit: cover;">
             </a>
         </div>
 
         <div class="single-insta-feeds">
             <a href="recipe-detail.html?id=v135">
-                <img src="img/bg-img/s_danishchoco.webp" alt="贅沢デニッシュチョコパンのレシピ" loading="lazy" decoding="async">
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
+     alt="レシピ名" 
+     style="background-color: #eee; width: 100%; aspect-ratio: 1/1; object-fit: cover;">
             </a>
         </div>
 
@@ -80,3 +94,43 @@
         </div>
     </div>
 </footer>
+
+<script>
+    /**
+ * Galleryの画像をYouTubeサムネイルに自動置換するスクリプト
+ */
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // 1. レシピデータを取得（YouTube IDを知るため）
+        const response = await fetch('js/recipes.json');
+        const recipes = await response.json();
+
+        // 2. ギャラリー内の各リンクをチェック
+        const galleryLinks = document.querySelectorAll('.single-insta-feeds a');
+        
+        galleryLinks.forEach(link => {
+            const url = new URL(link.href, window.location.origin);
+            const recipeId = url.searchParams.get('id'); // 'v138'などを取得
+            
+            // 3. JSONデータからYouTube IDを探す
+            const recipe = recipes.find(r => r.id === recipeId);
+            
+            if (recipe && recipe.youtube) {
+                const img = link.querySelector('img');
+                if (img) {
+                    // 4. 画像をYouTubeのWebP（中画質 mqdefault）に差し替え！
+                    // mqdefaultは320x180なので、ギャラリーのような小さい枠に最適です
+                    img.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.webp`;
+                    
+                    // WebPが万が一ない場合のエラーハンドリング
+                    img.onerror = function() {
+                        this.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.jpg`;
+                    };
+                }
+            }
+        });
+    } catch (error) {
+        console.error("Gallery置換エラー:", error);
+    }
+});
+</script>
