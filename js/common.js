@@ -81,33 +81,49 @@ window.addEventListener('pageshow', (event) => {
  * ギャラリーの画像をYouTubeサムネイルに自動置換
  * (common.jsの最後の方に追記)
  */
+// --- common.js のイメージ ---
+
+// 1. フッターを読み込む関数
+async function loadFooter() {
+    const response = await fetch('footer.html');
+    const data = await response.text();
+    
+    // HTMLの枠に流し込む
+    document.getElementById('footer-placeholder').innerHTML = data;
+
+    // ★ここで「ギャラリー置換」を呼び出す！
+    // フッターの中身が入った「直後」に実行するのがポイントです。
+    initGalleryThumbs();
+}
+
+// 2. ギャラリーの画像をYouTubeに変える関数（中身はさっきと同じ）
 async function initGalleryThumbs() {
     const galleryItems = document.querySelectorAll('.single-insta-feeds a');
-    console.log("ギャラリーの数:", galleryItems.length); // 確認用
+    if (galleryItems.length === 0) return;
 
     try {
         const response = await fetch('js/recipes.json');
         const recipes = await response.json();
-        console.log("読み込んだレシピ数:", recipes.length); // 確認用
 
         galleryItems.forEach(link => {
             const url = new URL(link.href, window.location.origin);
             const recipeId = url.searchParams.get('id');
-            console.log("探しているID:", recipeId); // 確認用
-
             const recipe = recipes.find(r => r.id === recipeId);
-            
-            if (recipe) {
-                console.log("見つかったYouTubeID:", recipe.youtube); // 確認用
+
+            if (recipe && recipe.youtube) {
                 const img = link.querySelector('img');
-                if (img && recipe.youtube) {
+                if (img) {
                     img.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.webp`;
+                    img.onerror = function() {
+                        this.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.jpg`;
+                    };
                 }
-            } else {
-                console.warn(recipeId + " がJSONで見つかりませんでした！"); // 警告
             }
         });
     } catch (e) {
-        console.error("エラー発生:", e);
+        console.error("Gallery置換エラー:", e);
     }
 }
+
+// 最後に実行
+loadFooter();
