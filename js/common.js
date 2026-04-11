@@ -86,7 +86,7 @@ async function initGalleryThumbs() {
     if (galleryItems.length === 0) return; // ギャラリーがないページでは何もしない
 
     try {
-        const response = await fetch('js/recipes.json');
+        const response = await fetch('recipes.json');
         const recipes = await response.json();
 
         galleryItems.forEach(link => {
