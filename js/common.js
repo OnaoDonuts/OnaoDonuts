@@ -75,3 +75,38 @@ window.addEventListener('pageshow', (event) => {
     }
 });
 
+/**
+ * ギャラリーの画像をYouTubeサムネイルに自動置換
+ * (common.jsの最後の方に追記)
+ */
+async function initGalleryThumbs() {
+    const galleryItems = document.querySelectorAll('.single-insta-feeds a');
+    if (galleryItems.length === 0) return; // ギャラリーがないページでは何もしない
+
+    try {
+        const response = await fetch('js/recipes.json');
+        const recipes = await response.json();
+
+        galleryItems.forEach(link => {
+            const url = new URL(link.href, window.location.origin);
+            const recipeId = url.searchParams.get('id');
+            const recipe = recipes.find(r => r.id === recipeId);
+
+            if (recipe && recipe.youtube) {
+                const img = link.querySelector('img');
+                if (img) {
+                    // サイズが小さい場所なので mqdefault(320x180) で十分軽量
+                    img.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.webp`;
+                    img.onerror = function() {
+                        this.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.jpg`;
+                    };
+                }
+            }
+        });
+    } catch (e) {
+        console.error("Gallery thumbs error:", e);
+    }
+}
+
+// ページ読み込み完了時に実行
+document.addEventListener('DOMContentLoaded', initGalleryThumbs);
