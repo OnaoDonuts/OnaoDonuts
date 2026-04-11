@@ -83,29 +83,31 @@ window.addEventListener('pageshow', (event) => {
  */
 async function initGalleryThumbs() {
     const galleryItems = document.querySelectorAll('.single-insta-feeds a');
-    if (galleryItems.length === 0) return; // ギャラリーがないページでは何もしない
+    console.log("ギャラリーの数:", galleryItems.length); // 確認用
 
     try {
-        const response = await fetch('recipes.json');
+        const response = await fetch('js/recipes.json');
         const recipes = await response.json();
+        console.log("読み込んだレシピ数:", recipes.length); // 確認用
 
         galleryItems.forEach(link => {
             const url = new URL(link.href, window.location.origin);
             const recipeId = url.searchParams.get('id');
-            const recipe = recipes.find(r => r.id === recipeId);
+            console.log("探しているID:", recipeId); // 確認用
 
-            if (recipe && recipe.youtube) {
+            const recipe = recipes.find(r => r.id === recipeId);
+            
+            if (recipe) {
+                console.log("見つかったYouTubeID:", recipe.youtube); // 確認用
                 const img = link.querySelector('img');
-                if (img) {
-                    // サイズが小さい場所なので mqdefault(320x180) で十分軽量
+                if (img && recipe.youtube) {
                     img.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.webp`;
-                    img.onerror = function() {
-                        this.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.jpg`;
-                    };
                 }
+            } else {
+                console.warn(recipeId + " がJSONで見つかりませんでした！"); // 警告
             }
         });
     } catch (e) {
-        console.error("Gallery thumbs error:", e);
+        console.error("エラー発生:", e);
     }
 }
