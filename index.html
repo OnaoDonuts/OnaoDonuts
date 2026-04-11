@@ -350,17 +350,5 @@
     <script src="js/common.js" defer></script>
     <script src="js/active.js" defer></script>
 
-    <script>
-        // defer を使った場合、スクリプトの実行順序が整理されるので
-        // このインラインスクリプトも DOMContentLoaded で囲むとより安全です
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                var preloader = document.getElementById('preloader');
-                if (preloader && preloader.style.display !== 'none') {
-                    preloader.style.display = 'none';
-                }
-            }, 3000);
-        });
-    </script>
 </body>
 </html>
