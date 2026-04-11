@@ -139,25 +139,30 @@ if (hero) {
 // 完成写真（メイン画像）
 const descImg = document.getElementById('descriptionMainImg');
 if (descImg && recipe.youtube) {
+    // 【ここがポイント！】最初からWebPを「本命」として定義する
     const webpUrl = `https://img.youtube.com/vi/${recipe.youtube}/maxresdefault.webp`;
     const jpgUrl = `https://img.youtube.com/vi/${recipe.youtube}/maxresdefault.jpg`;
     const mqUrl = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.jpg`;
 
-    // 1. まずは「WebPの最高画質」をセット（軽量！）
+    // 1. 迷わずWebPをセット！
     descImg.src = webpUrl;
 
     descImg.onload = function() {
-        // YouTubeの「画像なしグレー画像（120px）」を検知
+        // もしWebPが「120px（＝画像なし）」だったら切り替える
         if (this.naturalWidth <= 120) {
-            // もしWebPがダメ（120px以下）なら、JPG最高画質を試す
             if (this.src.includes('.webp')) {
-                this.src = jpgUrl;
+                this.src = jpgUrl; // JPGの最高画質へ
             } else if (this.src.includes('maxresdefault.jpg')) {
-                // JPG最高画質もダメなら、確実な中画質(mq)へ
-                this.src = mqUrl;
+                this.src = mqUrl; // それもダメなら中画質(mq)へ
             }
         }
     };
+    
+    // エラー時も安心
+    descImg.onerror = function() {
+        this.src = mqUrl;
+    };
+}
 
     descImg.onerror = function() {
         // 通信エラーなどが起きたら中画質(mq)で救済
