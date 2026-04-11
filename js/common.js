@@ -105,21 +105,30 @@ async function initGalleryThumbs() {
         const response = await fetch('js/recipes.json');
         const recipes = await response.json();
 
-        galleryItems.forEach(link => {
-            const url = new URL(link.href, window.location.origin);
-            const recipeId = url.searchParams.get('id');
-            const recipe = recipes.find(r => r.id === recipeId);
+galleryLinks.forEach(link => {
+    // 1. href属性をそのまま文字列として取得 (例: "recipe-detail.html?id=v138")
+    const hrefStr = link.getAttribute('href');
+    
+    // 2. 文字列の中から "id=" の後ろの部分だけを強引に切り出す
+    const match = hrefStr.match(/id=([^&]+)/);
+    const recipeId = match ? match[1] : null;
 
-            if (recipe && recipe.youtube) {
-                const img = link.querySelector('img');
-                if (img) {
-                    img.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.webp`;
-                    img.onerror = function() {
-                        this.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.jpg`;
-                    };
-                }
+    if (recipeId) {
+        const recipe = recipes.find(r => r.id === recipeId);
+        
+        if (recipe && recipe.youtube) {
+            const img = link.querySelector('img');
+            if (img) {
+                // 絶対に存在するIDをセット
+                img.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.webp`;
+                
+                // YouTubeの「・・・」が出る場合、ここが呼ばれないことが多いので
+                // srcをセットする直前にログの代わりに「タイトル」へIDを仕込む
+                img.title = "DEBUG: " + recipe.youtube; 
             }
-        });
+        }
+    }
+});
     } catch (e) {
         console.error("Gallery置換エラー:", e);
     }
