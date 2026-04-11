@@ -103,7 +103,7 @@ async function initGalleryThumbs() {
     if (galleryItems.length === 0) return;
 
     try {
-        const response = await fetch('js/recipes.json');
+        const response = await fetch('/OnaoDonuts/js/recipes.json');
         const recipes = await response.json();
 
         // ここも galleryItems に合わせます
