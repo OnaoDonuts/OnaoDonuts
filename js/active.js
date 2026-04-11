@@ -17,7 +17,7 @@
                 $(this).remove();
             });
         }
-    }, 3000); // 3000ms = 3秒。お好みで 2000 (2秒) とかにしてもOK！
+    }, 2000); // 3000ms = 3秒。お好みで 2000 (2秒) とかにしてもOK！
     
     // :: 2.0 Newsticker Active Code
     $.simpleTicker($("#breakingNewsTicker"), {
