@@ -140,20 +140,28 @@ if (hero) {
 // 完成写真（メイン画像）
 const descImg = document.getElementById('descriptionMainImg');
 if (descImg && recipe.youtube) {
-    // 1. まずは「最高画質」をセットしてみる
     const maxResUrl = `https://img.youtube.com/vi/${recipe.youtube}/maxresdefault.jpg`;
+    const mqResUrl = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.jpg`;
+
+    // 1. まずは最高画質をセット
     descImg.src = maxResUrl;
 
-    // 2. もし画像が存在しなくてエラー（404）になった時の処理
-    descImg.onerror = function() {
-        // すでに一度エラー処理をしていたら何もしない（無限ループ防止）
-        if (this.src.includes('mqdefault.jpg')) return;
+    // 2. 画像が読み込まれた「後」にサイズをチェックする
+    descImg.onload = function() {
+        // YouTubeの「画像なしグレー画像」は横幅が120pxになる仕様を利用
+        if (this.naturalWidth <= 120) {
+            // もしグレー画像（120px以下）だったら、mqdefaultに差し替える
+            this.src = mqResUrl;
+        }
+    };
 
-        // 3. 「中画質」に切り替える（パイ生地などはここで救済される）
-        this.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.jpg`;
+    // 3. 通信エラーなどの本当のエラー対策も一応残しておく
+    descImg.onerror = function() {
+        this.src = mqResUrl;
     };
 }
 
+    
     // 4. 材料リストの描画（計算機機能）
     if (flourInput) {
         // 入力されるたびに updateIngredients を実行
