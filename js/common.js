@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             const footerPlaceholder = document.getElementById('footer-placeholder');
             if (footerPlaceholder) footerPlaceholder.innerHTML = data;
-                           initGalleryThumbs();
 
         });
 
@@ -77,66 +76,3 @@ window.addEventListener('pageshow', (event) => {
     }
 });
 
-/**
- * ギャラリーの画像をYouTubeサムネイルに自動置換
- * (common.jsの最後の方に追記)
- */
-// --- common.js のイメージ ---
-
-// 1. フッターを読み込む関数
-async function loadFooter() {
-    const response = await fetch('footer.html');
-    const data = await response.text();
-    
-    // HTMLの枠に流し込む
-    document.getElementById('footer-placeholder').innerHTML = data;
-
-    // ★ここで「ギャラリー置換」を呼び出す！
-    // フッターの中身が入った「直後」に実行するのがポイントです。
-    initGalleryThumbs();
-}
-
-// 2. ギャラリーの画像をYouTubeに変える関数（中身はさっきと同じ）
-async function initGalleryThumbs() {
-    // 変数名を galleryItems に統一しました
-    const galleryItems = document.querySelectorAll('.single-insta-feeds a');
-    if (galleryItems.length === 0) return;
-
-    try {
-        const response = await fetch('/OnaoDonuts/js/recipes.json');
-        const recipes = await response.json();
-
-        // ここも galleryItems に合わせます
-        galleryItems.forEach(link => {
-            const hrefStr = link.getAttribute('href');
-            
-            // IDを強引に切り出す作戦
-            const match = hrefStr.match(/id=([^&]+)/);
-            const recipeId = match ? match[1] : null;
-
-            if (recipeId) {
-                const recipe = recipes.find(r => r.id === recipeId);
-                
-                if (recipe && recipe.youtube) {
-                    const img = link.querySelector('img');
-                    if (img) {
-                        // YouTubeの画像URLをセット
-                        img.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.webp`;
-                        
-                        // うまくいかない時のためのデバッグ用（PCならマウスを乗せるとIDが見えます）
-                        img.title = "RecipeID: " + recipeId + " | YT: " + recipe.youtube;
-                        
-                        // エラーハンドリング（WebPがない場合はJPGに）
-                        img.onerror = function() {
-                            this.src = `https://img.youtube.com/vi/${recipe.youtube}/mqdefault.jpg`;
-                        };
-                    }
-                }
-            }
-        });
-    } catch (e) {
-        console.error("Gallery置換エラー:", e);
-    }
-}
-// 最後に実行
-loadFooter();
