@@ -2897,6 +2897,9 @@ text-align: left !important;
         margin-left: 0 !important;  /* 外側の余白も少し削って広げる */
         margin-right: 0 !important;
     }
+    .contact-form-card .onao-section-title {
+        margin-top: 0px !important;    /* 上の余白をゼロに */
+    }
 
     /* Googleフォーム自体の横幅を100%に */
     .contact-form-card iframe {
