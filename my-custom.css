@@ -2889,10 +2889,6 @@ text-align: left !important;
 }
 
 @media only screen and (max-width: 767px) {
-	.onao-contact-section {
-        margin-top: -5px !important;
-        margin-bottom: 1.0rem !important;
-    }
     /* お問い合わせページのカード専用：余白を最小限にする */
     .contact-form-card {
 		margin-top: -5px !important;
