@@ -2891,6 +2891,7 @@ text-align: left !important;
 @media only screen and (max-width: 767px) {
     /* お問い合わせページのカード専用：余白を最小限にする */
     .contact-form-card {
+		margin-top: -15px !important;
         padding-left: 5px !important;  /* カード内側の左余白 */
         padding-right: 5px !important; /* カード内側の右余白 */
         margin-left: 0 !important;  /* 外側の余白も少し削って広げる */
