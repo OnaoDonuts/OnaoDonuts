@@ -112,6 +112,7 @@ function filterVideos(type) {
         videoResults.innerHTML = '';
         renderMoreCards();
     }
+        updateVideoListSchema(filteredRecipes);
 }
 
 
@@ -163,7 +164,7 @@ function renderMoreCards() {
 
     currentDisplayCount += nextRecipes.length;
     if(loadMoreBtn) loadMoreBtn.style.display = currentDisplayCount < filteredRecipes.length ? 'inline-block' : 'none';
-    updateVideoListSchema(filteredRecipes);
+    
 }
 
 /**
