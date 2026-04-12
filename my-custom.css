@@ -2966,3 +2966,38 @@ text-align: left !important;
         margin-right: 0 !important;
     }
 }
+
+
+
+/* --- プロフィール・ポリシー共通：装飾より前に出す設定 --- */
+
+/* 1. カード内の「大きなタイトルエリア」を前に出す（プロフィール等） */
+.onao-lead-card .onao-section-title {
+    position: relative;
+    z-index: 10 !important;
+}
+
+/* 2. カード内の「各セクション（見出しと本文）」を前に出す（ポリシー等） */
+.onao-lead-card section {
+    position: relative;
+    z-index: 10 !important;
+}
+
+/* 3. 中にある見出し（h2）や文字も、確実に最前面へ */
+.onao-lead-card h2, 
+.onao-lead-card p, 
+.onao-lead-card ul {
+    position: relative;
+    z-index: 11 !important;
+}
+
+
+.onao-lead-card .profile-logo {
+    position: relative;
+    z-index: 50 !important; /* 他の要素(10)よりも圧倒的に大きく */
+}
+
+/* ついでにロゴの影の設定（shadow ではなく box-shadow が正解です！） */
+.onao-lead-card .profile-logo img {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
+}
