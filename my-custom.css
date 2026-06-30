@@ -2244,6 +2244,10 @@ div:has(+ #videoContainer) h2::before,
     content: "YOU MAY ALSO LIKE";
 }
 
+/* ワンポイントコラム (Column) */
+#recipeColumnSection .onao-section-title h2::before {
+    content: "BAKING TIPS";
+}
 
 .onao-ingredient-group h3,
 .onao-section-title h3 {
@@ -2277,6 +2281,7 @@ div:has(+ #videoContainer) h2::before,
 /* 共通のカードスタイル */
 .onao-steps-side, 
 .onao-ingredients-card, 
+#recipeColumnSection,
 #relatedRecipesSection {
     background: #ffffff !important;
     border-radius: 28px !important;
@@ -2652,6 +2657,7 @@ text-align: left !important;
 .onao-ingredients-card, 
 .onao-steps-side, 
 .onao-lead-card,
+#recipeColumnSection,
 #relatedRecipesSection {
     border: none !important;      /* 縁の線を消す */
     background-color: #fff;       /* 背景は白 */
@@ -2955,6 +2961,7 @@ text-align: left !important;
     }
     article .onao-ingredients-card, 
     article .onao-steps-side,
+    article #recipeColumnSection,
     article #relatedRecipesSection {
         margin-left: -30px !important;
         margin-right: -30px !important;
@@ -3000,4 +3007,21 @@ text-align: left !important;
 /* ついでにロゴの影の設定（shadow ではなく box-shadow が正解です！） */
 .onao-lead-card .profile-logo img {
     box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
+}
+
+
+/* レシピ説明文のエリアをスクロール可能にする */
+#recipeDescription {
+    max-height: 250px; /* ボックスの最大高さ（好みに合わせて調整してください） */
+    overflow-y: auto;  /* 縦方向にスクロールバーを出す */
+    padding-right: 10px;
+}
+
+/* スクロールバーのデザインを薄くお洒落にする（Google Chrome / Safari用） */
+#recipeDescription::-webkit-scrollbar {
+    width: 6px;
+}
+#recipeDescription::-webkit-scrollbar-thumb {
+    background-color: #e0dcd5;
+    border-radius: 3px;
 }
