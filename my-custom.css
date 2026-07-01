@@ -3010,18 +3010,52 @@ text-align: left !important;
 }
 
 
-/* レシピ説明文のエリアをスクロール可能にする */
+/* 1. 親要素（紹介文の箱）の設定を補強 */
 #recipeDescription {
-    max-height: 250px; /* ボックスの最大高さ（好みに合わせて調整してください） */
-    overflow-y: auto;  /* 縦方向にスクロールバーを出す */
-    padding-right: 10px;
+    position: relative;     /* ★これが必要！グラデーションをこの箱の底に固定します */
+    max-height: 95px;
+    overflow: hidden;       /* はみ出た文字を隠す */
+    transition: max-height 0.3s ease;
 }
 
-/* スクロールバーのデザインを薄くお洒落にする（Google Chrome / Safari用） */
-#recipeDescription::-webkit-scrollbar {
-    width: 6px;
+/* 開いた時は制限をなくす */
+#recipeDescription.open {
+    max-height: 1000px;     /* 十分な高さに変える */
 }
-#recipeDescription::-webkit-scrollbar-thumb {
-    background-color: #e0dcd5;
-    border-radius: 3px;
+
+/* 2. グラデーションの設定 */
+#recipeDescription::after {
+    content: "";
+    position: absolute;
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 30px;
+    /* ★背景色に合わせて透明から白（またはカードの背景色）へグラデーション */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+    pointer-events: none;
+    transition: opacity 0.3s ease; /* 開閉時にふわっと消すためのアニメーション */
+}
+
+/* 3. 【追加】開いた時はグラデーションを消す */
+#recipeDescription.open::after {
+    opacity: 0;
+}
+
+/* 続きを読むボタンのカスタマイズ */
+#readMoreBtn {
+    display: none; /* ← 最初は非表示（JSが読み込まれたら自動で block になります） */
+    margin: 0 auto 15px; /* 中央寄せにして、下の時間表示との間に少し隙間をあける */
+    padding: 6px 20px;
+    background-color: #4b3e2a; /* おなおドーナツのブラウンに合わせる場合 */
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#readMoreBtn:hover {
+    background-color: #6d5c43; /* ホバー時に少し明るく */
 }
