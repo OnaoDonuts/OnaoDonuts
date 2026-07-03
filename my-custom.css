@@ -3010,6 +3010,9 @@ text-align: left !important;
 }
 
 
+/* =========================================
+   レシピ詳細ページ導入文とコラムの挿入
+   ========================================= */
 /* 1. 親要素（紹介文の箱）の設定を補強 */
 #recipeDescription {
     position: relative;     /* ★これが必要！グラデーションをこの箱の底に固定します */
@@ -3059,3 +3062,17 @@ text-align: left !important;
 #readMoreBtn:hover {
     background-color: #6d5c43; /* ホバー時に少し明るく */
 }
+
+
+/* =========================================
+   レシピ詳細ページ スマホタイトルの見切れ修正
+   ========================================= */
+/* スマホ表示（画面の横幅が767px以下のとき）のスタイル設定 */
+@media screen and (max-width: 767px) {
+    /* 専用クラス「onao-title-detail」の設定 */
+    .onao-title-detail {
+        white-space: normal !important;   /* ★最重要：絶対に改行させない設定を解除し、自動改行を許可する */
+        word-break: break-all !important; /* 長い単語があっても途中で折り返す */
+    }
+}
+
