@@ -288,7 +288,7 @@ recipe.steps.forEach((section, sIndex) => { // セクションの番号(sIndex)�
         canonicalLink.rel = 'canonical';
         document.head.appendChild(canonicalLink);
     }
-    canonicalLink.href = `https://onaodonuts.github.io/OnaoDonuts/recipe-detail.html?id=${recipe.id}`;
+    canonicalLink.href = `https://onaodonuts.github.io/OnaoDonuts/recipe-${recipe.id}.html`;
     // --- ここまで追加 ---
     
         // --- 追加：SNSシェア用（OGP）の動的書き換え ---
@@ -306,7 +306,7 @@ recipe.steps.forEach((section, sIndex) => { // セクションの番号(sIndex)�
     
     const ogUrl = document.querySelector('meta[property="og:url"]');
     if (ogUrl) {
-        ogUrl.content = `https://onaodonuts.github.io/OnaoDonuts/recipe-detail.html?id=${recipe.id}`;
+        ogUrl.content = `https://onaodonuts.github.io/OnaoDonuts/recipe-${recipe.id}.html`;
     }
 
     // お気に入りボタンの制御（デグレ修正）
@@ -380,7 +380,7 @@ let html = "";
 pickup.forEach(r => {
     html += `
         <div class="col-12 col-sm-4 mb-4">
-            <div class="onao-related-card" onclick="location.href='recipe-detail.html?id=${r.id}'">
+            <div class="onao-related-card" onclick="location.href='recipe-${r.id}.html'">
                 <div class="onao-related-thumb">
                     <img src="https://img.youtube.com/vi/${r.youtube}/mqdefault.jpg" alt="${r.name}の完成写真"  loading="lazy">
                 </div>
