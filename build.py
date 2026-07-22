@@ -34,7 +34,10 @@ def generate_sitemap(recipes):
         "",
         "index.html",
         "recipe-search.html",
+        "video-list.html",
         "profile.html",
+        "policy.html",
+        "contact.html",
         # 他にある固定ページを追加
     ]
     
