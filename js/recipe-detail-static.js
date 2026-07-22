@@ -158,32 +158,55 @@ function enableTimerLinksInSteps() {
 }
 
 /**
- * ③ タイマー機能（クリック監視・タイマーモーダル制御）
+ * ③ タイマー機能（iPad・iOSタッチイベント完全対応版）
  */
 function setupTimer() {
+    // iPad/iPhoneのタッチ操作とクリック両方に対応するハンドラー
+    const handleTimerClick = (e) => {
+        // タッチされた要素、またはその親要素が .timer-link かチェック
+        const target = e.target.closest('.timer-link');
+        if (!target) return;
+
+        // タッチ操作時のデフォルト動作（ズームや選択）を一時防止
+        if (e.type === 'touchend') {
+            e.preventDefault();
+        }
+
+        const fullText = target.innerText;
+        let totalSeconds = 0;
+
+        const numMatch = fullText.match(/\d+/);
+        if (!numMatch) return;
+        const num = parseInt(numMatch[0]);
+
+        if (fullText.includes('時間')) {
+            totalSeconds = num * 3600;
+            if (fullText.includes('半')) totalSeconds += 1800;
+        } else if (fullText.includes('分')) {
+            totalSeconds = num * 60;
+            if (fullText.includes('半')) totalSeconds += 30;
+        }
+
+        if (totalSeconds > 0) {
+            startTimer(totalSeconds);
+        }
+    };
+
+    // clickイベントとtouchendイベントの両方を監視（二重発火防止つき）
+    let isTouched = false;
+    document.addEventListener('touchend', (e) => {
+        isTouched = true;
+        handleTimerClick(e);
+        setTimeout(() => { isTouched = false; }, 500);
+    }, { passive: false });
+
     document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('timer-link')) {
-            const fullText = e.target.innerText;
-            let totalSeconds = 0;
-
-            const numMatch = fullText.match(/\d+/);
-            if (!numMatch) return;
-            const num = parseInt(numMatch[0]);
-
-            if (fullText.includes('時間')) {
-                totalSeconds = num * 3600;
-                if (fullText.includes('半')) totalSeconds += 1800;
-            } else if (fullText.includes('分')) {
-                totalSeconds = num * 60;
-                if (fullText.includes('半')) totalSeconds += 30;
-            }
-
-            if (totalSeconds > 0) {
-                startTimer(totalSeconds);
-            }
+        if (!isTouched) {
+            handleTimerClick(e);
         }
     });
 
+    // ストップ／閉じるボタンのイベント割り当て
     const stopBtn = document.getElementById('timerStop');
     const closeBtn = document.getElementById('timerClose');
 
@@ -215,11 +238,17 @@ function setupTimer() {
 }
 
 function startTimer(seconds) {
-    const context = new (window.AudioContext || window.webkitAudioContext)();
-    if (context.state === 'suspended') {
-        context.resume();
+    // iPad対策：ユーザーアクションの直後にAudioContextを即時無音解放する
+    try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (AudioCtx) {
+            const tempCtx = new AudioCtx();
+            tempCtx.resume();
+        }
+    } catch (e) {
+        console.log("AudioContext init skipped");
     }
-    
+
     const timerOverlay = document.getElementById('recipeTimer');
     const display = document.getElementById('timerDisplay');
     const msgEl = document.getElementById('timerFinishedMessage');
@@ -250,7 +279,7 @@ function startTimer(seconds) {
 
         if (timerSeconds <= 0) {
             clearInterval(countdown);
-            playTimerSound(context); 
+            playTimerSound(); 
 
             if (display) display.style.display = 'none';
             if (msgEl) msgEl.style.display = 'block';
@@ -263,9 +292,10 @@ function startTimer(seconds) {
     }, 1000);
 }
 
-function playTimerSound(existingContext) {
+function playTimerSound() {
     try {
-        const context = existingContext || new (window.AudioContext || window.webkitAudioContext)();
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        const context = new AudioCtx();
         const oscillator = context.createOscillator();
         const gain = context.createGain();
         
@@ -282,6 +312,7 @@ function playTimerSound(existingContext) {
         console.error("Audio Error:", e);
     }
 }
+
 
 async function loadRelatedRecipes(currentId) {
     const relatedDiv = document.getElementById('relatedRecipes');
