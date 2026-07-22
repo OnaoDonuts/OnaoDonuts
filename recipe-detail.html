@@ -37,6 +37,18 @@
     <link rel="stylesheet" href="css/nice-select.min.css" media="print" onload="this.media='all'">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1459092348918801"
      crossorigin="anonymous"></script>
+     
+     <!-- recipe-detail.html の head 内に入れておく転送用処理 -->
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    if (id) {
+        window.location.replace(`recipe-${id}.html`);
+    } else {
+        window.location.replace('index.html');
+    }
+</script>
+
 </head>
 
 <body>
