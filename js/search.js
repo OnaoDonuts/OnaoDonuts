@@ -145,8 +145,8 @@ const heartHtml = `
 
                 const card = `
                     <div class="col-12 col-md-6 col-lg-3 mb-4 rs-card-col">
-                        <a href="recipe-${recipe.id}.html" class="rs-link">⁠
-                           <div class="zukan-card-inner">
+                       <a href="recipe-${recipe.id}.html" class="rs-link">
+                       <div class="zukan-card-inner">
                                 <div class="zukan-image-wrapper">
                                     <span class="zukan-no">No.${zukanNo}</span>
 <img src="https://img.youtube.com/vi/${recipe.youtube}/mqdefault.jpg" alt="${recipe.name}のレシピ" loading="lazy">
@@ -282,8 +282,8 @@ function renderFavoriteResults(favorites) {
 
         const card = `
             <div class="col-12 col-md-6 col-lg-3 mb-4 rs-card-col">
-               <a href="recipe-${recipe.id}.html" class="rs-link">⁠
-                    <div class="zukan-card-inner">
+            <a href="recipe-${recipe.id}.html" class="rs-link">
+<div class="zukan-card-inner">
                         <div class="zukan-image-wrapper">
                             <span class="zukan-no">No.${zukanNo}</span>
 <img src="https://img.youtube.com/vi/${recipe.youtube}/mqdefault.jpg" alt="${recipe.name}のレシピ" loading="lazy">
