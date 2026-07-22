@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>{{ name }} | おなおドーナツ</title>
+    <meta name="description" content="{{ description }}">
+    
+    <!-- 完璧な Recipe 構造化データ（JSON-LD） -->
+    <script type="application/ld+json">
+    {{ json_ld }}
+    </script>
+    
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ name }} | おなおドーナツ">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:image" content="https://img.youtube.com/vi/{{ youtube }}/maxresdefault.jpg">
+    <meta property="og:url" content="https://onaodonuts.com/{{ file_name }}">
+
+    <link rel="canonical" href="https://onaodonuts.com/{{ file_name }}">
+    <link rel="icon" href="img/core-img/favicon-32.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://img.youtube.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="my-custom.css">
+
+    <link rel="stylesheet" href="css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="css/font-awesome.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="css/animate.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="css/magnific-popup.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="css/custom-icon.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="css/classy-nav.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="css/nice-select.min.css" media="print" onload="this.media='all'">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1459092348918801" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+        <img src="img/core-img/donut_loading.png" alt="おなおドーナツを準備中...">
+    </div>
+
+    <header class="header-area" id="header-placeholder"></header>
+
+    <div class="onao-brand-hero" id="recipeHero" style="background-color: #4b3e2a;">
+        <div class="onao-hero-content">
+            <h1 id="recipeTitle" class="onao-title-main onao-title-detail">{{ name }}</h1>
+        </div>
+    </div>
+
+    <article class="container-fluid mt-4">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-12">
+                <div class="onao-lead-card shadow-sm">
+                    <div class="row no-gutters">
+                        <div class="col-md-5 position-relative">
+                            <img id="descriptionMainImg" src="https://img.youtube.com/vi/{{ youtube }}/maxresdefault.jpg" alt="{{ name }}の完成写真" class="img-fluid onao-poke-img" decoding="async" width="1280" height="720">
+                            <div class="onao-floating-actions">
+                                <button id="faveBtn" class="onao-icon-only-btn" title="お気に入り" aria-label="このレシピをお気に入りに追加する">
+                                    <i id="faveIcon" class="fa-regular fa-heart"></i>
+                                </button>
+                                <button class="onao-icon-only-btn" onclick="window.print();" title="印刷" aria-label="このレシピを印刷する">
+                                    <i class="fa-solid fa-print"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-7 d-flex flex-column justify-content-center">
+                            <div id="recipeDescription" class="px-4 pt-4 pb-2 w-100 text-left">
+                                <div class="onao-comment-text">
+                                    <p>{{ description }}</p>
+                                </div>
+                            </div>
+                            <button id="readMoreBtn" class="onao-readmore-btn">続きを読む</button>
+
+                            <div class="onao-meta-inline px-4 pb-4 w-100 d-flex justify-content-center align-items-center">
+                                <span class="meta-badge">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <span class="time-val">{{ formatted_time }}</span>
+                                </span>
+                                <span class="meta-badge ml-4">
+                                    難易度: <span class="stars-area">{{ difficulty_stars }}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid mt-3"> 
+            <div class="row onao-recipe-main-row">
+                <!-- 材料エリア -->
+                <div class="col-12 col-lg-4 order-1 order-lg-2 mb-4">
+                    <div class="onao-ingredients-card shadow-sm">
+                        <div class="onao-section-title">
+                            <h2>材料 (計算機)</h2>
+                        </div>
+                        
+                        <div class="form-group mb-4 flour-calculator p-4">
+                            <label for="flourAmount" class="small text-uppercase font-weight-bold">粉の量 (g)</label>
+                            <input type="number" id="flourAmount" class="form-control mb-2" value="{{ base_flour }}" step="10">
+                            <p class="small text-muted mb-0">※粉量を変えると自動計算されます</p>
+                        </div>
+
+                        <div id="ingredientsList" class="px-2">
+                            {{ ingredients_html }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 作り方・動画・コラムエリア -->
+                <div class="col-12 col-lg-8 order-2 order-lg-1">
+                    <div class="onao-steps-side mb-4 shadow-sm"> 
+                        <div class="onao-section-title">
+                            <h2>作り方</h2>
+                        </div>
+                        <div id="stepsList" class="mb-5">
+                            {{ steps_html }}
+                        </div>
+
+                        <div class="onao-section-title">
+                            <h2>動画でチェック</h2>
+                        </div>
+                        <div id="videoContainer" style="max-width: 100%; margin: 0 auto;">
+                            <div class="embed-responsive embed-responsive-16by9" style="border-radius:15px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.15);">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ youtube }}" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if column %}
+                    <div id="recipeColumnSection" class="p-4 shadow-sm mb-4">
+                        <div class="onao-section-title mb-4">
+                            <h2>おいしく作るためのワンポイントコラム</h2>
+                        </div>
+                        <div id="recipeColumn" class="column-text" style="line-height: 1.8; color: #4a3f35; white-space: pre-wrap; font-size: 1rem;">
+{{ column }}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div id="relatedRecipesSection" class="p-4 shadow-sm">
+                        <div class="onao-section-title mb-4">
+                            <h2>こちらもおすすめ</h2>
+                        </div>
+                        <div id="relatedRecipes" class="row"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <footer class="footer-area">
+        <div id="footer-placeholder"></div>
+        <div id="footer-nav-placeholder" class="d-md-none"></div>
+    </footer>
+
+    <script src="js/jquery/jquery-2.2.4.min.js" defer></script>
+    <script src="js/bootstrap/popper.min.js" defer></script>
+    <script src="js/bootstrap/bootstrap.min.js" defer></script>
+    <script src="js/plugins/plugins.js" defer></script>
+
+    <script src="js/common.js" defer></script>    
+    <script src="js/active.js" defer></script>
+    <script src="js/recipe-detail-static.js" defer></script>
+</body>
+</html>
