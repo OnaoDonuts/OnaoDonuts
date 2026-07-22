@@ -1,1 +1,42 @@
+name: Build Static Recipe HTMLs
+
+# recipes.json か template.html か build.py が更新された時に自動実行
+on:
+  push:
+    paths:
+      - 'js/recipes.json'
+      - 'template.html'
+      - 'build.py'
+      - '.github/workflows/build.yml'
+  workflow_dispatch: # 手動で実行ボタンを押して動かすことも可能にする設定
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. リポジトリのコードを取得
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # 2. Python環境を準備
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    # 3. Pythonスクリプトを実行してHTMLを一括生成
+    - name: Run build script
+      run: python build.py
+
+    # 4. 生成されたHTMLファイルをGitHubに自動コミット＆保存
+    - name: Commit and push generated HTML files
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git add recipe-*.html
+        git diff --staged --quiet || (git commit -m "Auto-generate recipe HTML files" && git push)
 
