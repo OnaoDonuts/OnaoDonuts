@@ -26,6 +26,37 @@ def make_stars(diff_str):
             stars += '<i class="fa-regular fa-star"></i>'
     return stars
 
+def generate_sitemap(recipes):
+    site_url = "https://onaodonuts.com"
+    
+    # 固定ページのリスト
+    static_pages = [
+        "",
+        "index.html",
+        "recipe-search.html",
+        "profile.html",
+        # 他にある固定ページを追加
+    ]
+    
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    
+    # 固定ページを出力
+    for page in static_pages:
+        xml += f'  <url>\n    <loc>{site_url}/{page}</loc>\n    <priority>0.8</priority>\n  </url>\n'
+        
+    # 動的に作成された全レシピページを出力
+    for recipe in recipes:
+        if not recipe.get("isShort"):
+            recipe_id = recipe.get("id")
+            xml += f'  <url>\n    <loc>{site_url}/recipe-{recipe_id}.html</loc>\n    <priority>1.0</priority>\n  </url>\n'
+            
+    xml += '</urlset>'
+    
+    with open("sitemap.xml", "w", encoding="utf-8") as f:
+        f.write(xml)
+    print("sitemap.xml も自動生成完了しました！")
+
 def build_recipes():
     # 1. JSON読み込み
     json_path = os.path.join("js", "recipes.json")
@@ -101,14 +132,13 @@ def build_recipes():
                 display_num = i_idx + 1
                 unique_id = f"step-{s_idx}-{i_idx}"
                 
-                # タイマーリンク化処理（「5分割」などの誤誤爆を防ぎ、時間表記のみを正確に判定）
+                # タイマーリンク化処理
                 processed_text = step_text
                 
                 def replace_timer(match):
                     full_match = match.group(0)
                     return f'<span class="timer-link" style="color:var(--onao-green); font-weight:bold; cursor:pointer; text-decoration:underline;">{full_match}</span>'
 
-                # 「15分」「1時間半」「30秒」などのパターンのみを安全に置換
                 processed_text = re.sub(
                     r'(?<![0-9a-zA-Z\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF])(\d+〜?\d*(?:時間|分|秒)(?:半)?)',
                     replace_timer,
@@ -185,7 +215,6 @@ def build_recipes():
             html = html.replace("{% if column %}", "").replace("{% endif %}", "")
             html = html.replace("{{ column }}", column_text)
         else:
-            # コラムがない場合はそのセクションごと削除
             html = re.sub(r'\{% if column %\}[\s\S]*?\{% endif %\}', '', html)
 
         # ファイル出力
@@ -196,37 +225,8 @@ def build_recipes():
 
     print(f"完了！ {generated_count} 件の静的レシピHTMLを出力しました。")
 
+    # ★ ここでサイトマップ生成を呼び出す！
+    generate_sitemap(recipes)
+
 if __name__ == "__main__":
     build_recipes()
-
-# build.py の最後に以下のようなサイトマップ書き出し処理を追加
-def generate_sitemap(recipes):
-    site_url = "https://onaodonuts.com"
-    
-    # 固定ページのリスト
-    static_pages = [
-        "",
-        "index.html",
-        "recipe-search.html",
-        "profile.html",
-        # 他にある固定ページを追加
-    ]
-    
-    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    
-    # 固定ページを出力
-    for page in static_pages:
-        xml += f'  <url>\n    <loc>{site_url}/{page}</loc>\n    <priority>0.8</priority>\n  </url>\n'
-        
-    # 動的に作成された全レシピページを出力
-    for recipe in recipes:
-        if not recipe.get("isShort"):
-            recipe_id = recipe.get("id")
-            xml += f'  <url>\n    <loc>{site_url}/recipe-{recipe_id}.html</loc>\n    <priority>1.0</priority>\n  </url>\n'
-            
-    xml += '</urlset>'
-    
-    with open("sitemap.xml", "w", encoding="utf-8") as f:
-        f.write(xml)
-    print("sitemap.xml も自動生成完了しました！")
