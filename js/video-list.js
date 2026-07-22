@@ -224,7 +224,7 @@ function updateVideoListSchema(recipes) {
     const itemListElement = recipes.slice(0, 10).map((recipe, index) => ({
         "@type": "ListItem",
         "position": index + 1,
-        "url": `${window.location.origin}/recipe-detail.html?id=${recipe.id}`,
+        "url": `${window.location.origin}/recipe-${recipe.id}.html`,
         "name": `${recipe.name}の作り方動画`
     }));
 
