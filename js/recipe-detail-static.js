@@ -1,5 +1,5 @@
 /**
- * 静的レシピページ専用スクリプト（タイマー自動挿入版）
+ * 静的レシピページ専用スクリプト（タイマー自動挿入・粉量自動計算版）
  */
 
 let countdown;
@@ -57,7 +57,7 @@ function injectTimerModal() {
 }
 
 /**
- * ① recipes.json を読み込んで粉量計算機能を有効化する処理
+ * ① recipes.json を読み込んで粉量計算機能を有効化する処理（粉量自動算出修正版）
  */
 async function loadRecipeDataAndSetupFlour(recipeId) {
     const flourInput = document.getElementById('flourAmount');
@@ -72,24 +72,38 @@ async function loadRecipeDataAndSetupFlour(recipeId) {
 
         if (!currentRecipeData) return;
 
-        let baseAmount = 200;
+        // レシピ内の粉類（ratioの合計が100%に達するまでの材料）の合計量を算出
+        let totalFlourBase = 0;
+        let ratioSum = 0;
+
         if (currentRecipeData.ingredients) {
             for (const group in currentRecipeData.ingredients) {
-                const found = currentRecipeData.ingredients[group].find(ing => ing.ratio === 100);
-                if (found) {
-                    baseAmount = found.amount;
-                    break;
-                }
+                currentRecipeData.ingredients[group].forEach(ing => {
+                    const r = parseFloat(ing.ratio) || 0;
+                    const a = parseFloat(ing.amount) || 0;
+
+                    // ratioが入っていて、まだ粉の合計（100%）に達していない場合のみ加算
+                    if (r > 0 && ratioSum < 100) {
+                        totalFlourBase += a;
+                        ratioSum += r;
+                    }
+                });
             }
         }
 
-        if (!flourInput.value) {
-            flourInput.value = baseAmount;
-        }
+        // 万が一粉がないレシピの場合はデフォルト200gとする
+        if (totalFlourBase === 0) totalFlourBase = 200;
 
+        // 初期値をレシピの正確な粉の合計量にセットする
+        flourInput.value = totalFlourBase;
+
+        // 初回の材料リスト描画
+        updateIngredientsDisplay(totalFlourBase, totalFlourBase);
+
+        // 入力イベントリスナーの設定
         flourInput.addEventListener('input', () => {
             const inputVal = parseFloat(flourInput.value) || 0;
-            updateIngredientsDisplay(inputVal, baseAmount);
+            updateIngredientsDisplay(inputVal, totalFlourBase);
         });
 
     } catch (error) {
@@ -97,11 +111,17 @@ async function loadRecipeDataAndSetupFlour(recipeId) {
     }
 }
 
+/**
+ * 入力された粉の量に応じて画面上の材料数値を更新する関数
+ */
 function updateIngredientsDisplay(currentFlourVal, baseAmount) {
     if (!currentRecipeData || !currentRecipeData.ingredients) return;
 
     const listDiv = document.getElementById('ingredientsList');
     if (!listDiv) return;
+
+    // 現在の入力値 / 本来の総粉量 で正確な倍率（multiplier）を算出
+    const multiplier = baseAmount > 0 ? (currentFlourVal / baseAmount) : 1;
 
     let html = "";
     for (const group in currentRecipeData.ingredients) {
@@ -109,8 +129,7 @@ function updateIngredientsDisplay(currentFlourVal, baseAmount) {
         
         currentRecipeData.ingredients[group].forEach((item, index) => {
             let amt;
-            if (item.ratio !== undefined && item.ratio !== "") {
-                const multiplier = currentFlourVal / baseAmount;
+            if (item.ratio !== undefined && item.ratio !== "" && typeof item.amount === 'number') {
                 amt = Math.round((item.amount * multiplier) * 10) / 10;
             } else {
                 amt = item.amount || "";
@@ -161,13 +180,10 @@ function enableTimerLinksInSteps() {
  * ③ タイマー機能（iPad・iOSタッチイベント完全対応版）
  */
 function setupTimer() {
-    // iPad/iPhoneのタッチ操作とクリック両方に対応するハンドラー
     const handleTimerClick = (e) => {
-        // タッチされた要素、またはその親要素が .timer-link かチェック
         const target = e.target.closest('.timer-link');
         if (!target) return;
 
-        // タッチ操作時のデフォルト動作（ズームや選択）を一時防止
         if (e.type === 'touchend') {
             e.preventDefault();
         }
@@ -192,7 +208,6 @@ function setupTimer() {
         }
     };
 
-    // clickイベントとtouchendイベントの両方を監視（二重発火防止つき）
     let isTouched = false;
     document.addEventListener('touchend', (e) => {
         isTouched = true;
@@ -206,7 +221,6 @@ function setupTimer() {
         }
     });
 
-    // ストップ／閉じるボタンのイベント割り当て
     const stopBtn = document.getElementById('timerStop');
     const closeBtn = document.getElementById('timerClose');
 
@@ -238,7 +252,6 @@ function setupTimer() {
 }
 
 function startTimer(seconds) {
-    // iPad対策：ユーザーアクションの直後にAudioContextを即時無音解放する
     try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         if (AudioCtx) {
@@ -312,7 +325,6 @@ function playTimerSound() {
         console.error("Audio Error:", e);
     }
 }
-
 
 async function loadRelatedRecipes(currentId) {
     const relatedDiv = document.getElementById('relatedRecipes');
