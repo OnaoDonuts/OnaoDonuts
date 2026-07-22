@@ -101,15 +101,19 @@ def build_recipes():
                 display_num = i_idx + 1
                 unique_id = f"step-{s_idx}-{i_idx}"
                 
-                # タイマーリンク化処理
+                # タイマーリンク化処理（「5分割」などの誤誤爆を防ぎ、時間表記のみを正確に判定）
                 processed_text = step_text
-                time_matches = re.findall(r'(\d+〜?\d*)(時間|分)(半)?', step_text)
-                for match in time_matches:
-                    full_match = "".join(match)
-                    processed_text = processed_text.replace(
-                        full_match, 
-                        f'<span class="timer-link" style="color:var(--onao-green); font-weight:bold; cursor:pointer; text-decoration:underline;">{full_match}</span>'
-                    )
+                
+                def replace_timer(match):
+                    full_match = match.group(0)
+                    return f'<span class="timer-link" style="color:var(--onao-green); font-weight:bold; cursor:pointer; text-decoration:underline;">{full_match}</span>'
+
+                # 「15分」「1時間半」「30秒」などのパターンのみを安全に置換
+                processed_text = re.sub(
+                    r'(?<![0-9a-zA-Z\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF])(\d+〜?\d*(?:時間|分|秒)(?:半)?)',
+                    replace_timer,
+                    processed_text
+                )
 
                 instructions_ld.append({
                     "@type": "HowToStep",
