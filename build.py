@@ -198,3 +198,35 @@ def build_recipes():
 
 if __name__ == "__main__":
     build_recipes()
+
+# build.py の最後に以下のようなサイトマップ書き出し処理を追加
+def generate_sitemap(recipes):
+    site_url = "https://onaodonuts.com"
+    
+    # 固定ページのリスト
+    static_pages = [
+        "",
+        "index.html",
+        "recipe-search.html",
+        "profile.html",
+        # 他にある固定ページを追加
+    ]
+    
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    
+    # 固定ページを出力
+    for page in static_pages:
+        xml += f'  <url>\n    <loc>{site_url}/{page}</loc>\n    <priority>0.8</priority>\n  </url>\n'
+        
+    # 動的に作成された全レシピページを出力
+    for recipe in recipes:
+        if not recipe.get("isShort"):
+            recipe_id = recipe.get("id")
+            xml += f'  <url>\n    <loc>{site_url}/recipe-{recipe_id}.html</loc>\n    <priority>1.0</priority>\n  </url>\n'
+            
+    xml += '</urlset>'
+    
+    with open("sitemap.xml", "w", encoding="utf-8") as f:
+        f.write(xml)
+    print("sitemap.xml も自動生成完了しました！")
