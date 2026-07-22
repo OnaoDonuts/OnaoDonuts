@@ -1,13 +1,15 @@
 /**
- * 静的レシピページ専用スクリプト（完全修正版）
- * （計算機・かっこ対応タイマー・関連レシピ・お気に入り・チェックボックス）
+ * 静的レシピページ専用スクリプト（タイマー自動挿入版）
  */
 
 let countdown;
 let timerSeconds = 0;
-let currentRecipeData = null; // レシピデータを保持
+let currentRecipeData = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
+    // 0. ★ HTML上にタイマーモーダルが無い場合、JSで自動挿入する
+    injectTimerModal();
+
     // 1. URLから現在のレシピIDを取得 (例: recipe-v066.html -> v066)
     const path = window.location.pathname;
     const match = path.match(/recipe-(v\d+)\.html/);
@@ -30,6 +32,31 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 /**
+ * ★ タイマー用HTML（モーダル）を動的にページへ注入する関数
+ */
+function injectTimerModal() {
+    // すでにHTML内に #recipeTimer があれば二重追加を防ぐために処理をスキップ
+    if (document.getElementById('recipeTimer')) return;
+
+    // 画面に挿入したいタイマーのHTML構造
+    const modalHtml = `
+    <div id="recipeTimer" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;">
+        <div style="background:#fff; padding:30px; border-radius:15px; text-align:center; min-width:280px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+            <h4 style="margin-bottom:15px; font-weight:bold; color:#4b3e2a;">タイマー</h4>
+            <div id="timerDisplay" style="font-size:3rem; font-weight:bold; margin:20px 0; color:#4b3e2a;">00:00</div>
+            <div id="timerFinishedMessage" style="display:none; font-size:1.5rem; color:#ff6b6b; font-weight:bold; margin:20px 0;">時間になりました！</div>
+            <div style="display:flex; justify-content:center; gap:10px;">
+                <button id="timerStop" class="btn btn-danger" style="background-color:#ff6b6b; border:none; padding:8px 20px;">ストップ</button>
+                <button id="timerClose" class="btn btn-secondary" style="padding:8px 20px;">閉じる</button>
+            </div>
+        </div>
+    </div>`;
+
+    // <body> タグの一番最後（</body>の直前）に HTML を挿入する
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+}
+
+/**
  * ① recipes.json を読み込んで粉量計算機能を有効化する処理
  */
 async function loadRecipeDataAndSetupFlour(recipeId) {
@@ -45,7 +72,6 @@ async function loadRecipeDataAndSetupFlour(recipeId) {
 
         if (!currentRecipeData) return;
 
-        // 粉の基準量（ratio === 100 の材料）を自動取得
         let baseAmount = 200;
         if (currentRecipeData.ingredients) {
             for (const group in currentRecipeData.ingredients) {
@@ -57,12 +83,10 @@ async function loadRecipeDataAndSetupFlour(recipeId) {
             }
         }
 
-        // 初期値をセット
         if (!flourInput.value) {
             flourInput.value = baseAmount;
         }
 
-        // 入力イベントリスナーの設定
         flourInput.addEventListener('input', () => {
             const inputVal = parseFloat(flourInput.value) || 0;
             updateIngredientsDisplay(inputVal, baseAmount);
@@ -73,9 +97,6 @@ async function loadRecipeDataAndSetupFlour(recipeId) {
     }
 }
 
-/**
- * 入力された粉の量に応じて画面上の材料数値を更新する
- */
 function updateIngredientsDisplay(currentFlourVal, baseAmount) {
     if (!currentRecipeData || !currentRecipeData.ingredients) return;
 
@@ -109,20 +130,17 @@ function updateIngredientsDisplay(currentFlourVal, baseAmount) {
     }
     listDiv.innerHTML = html;
 
-    // 再描画後にチェックボックスイベントを再割り当て
     setupCheckEvent();
 }
 
 /**
  * ② 手順のテキストから時間表記を探してタイマーリンクに置換する
- * （かっこ付き・かっこ無し両方に対応）
  */
 function enableTimerLinksInSteps() {
     const stepTexts = document.querySelectorAll('.step-text');
     
     stepTexts.forEach(el => {
         let text = el.innerHTML;
-        // 「10分」「1時間半」「15〜20分」などを自動判定（かっこ無しOK）
         const timeMatch = text.match(/(\d+〜?\d*)(時間|分)(半)?/g);
         
         if (timeMatch) {
@@ -143,10 +161,9 @@ function enableTimerLinksInSteps() {
  * ③ タイマー機能（クリック監視・タイマーモーダル制御）
  */
 function setupTimer() {
-    // 画面全体のクリックを監視（動的な .timer-link も確実に反応）
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('timer-link')) {
-            const fullText = e.target.innerText; // 例：「1時間半」「15分」
+            const fullText = e.target.innerText;
             let totalSeconds = 0;
 
             const numMatch = fullText.match(/\d+/);
@@ -167,7 +184,6 @@ function setupTimer() {
         }
     });
 
-    // ストップ／閉じるボタンの設定
     const stopBtn = document.getElementById('timerStop');
     const closeBtn = document.getElementById('timerClose');
 
@@ -267,7 +283,6 @@ function playTimerSound(existingContext) {
     }
 }
 
-// 関連レシピをランダムで3つ抽出して表示する関数
 async function loadRelatedRecipes(currentId) {
     const relatedDiv = document.getElementById('relatedRecipes');
     if (!relatedDiv) return;
@@ -322,7 +337,6 @@ async function loadRelatedRecipes(currentId) {
     }
 }
 
-// お気に入りボタンの制御
 function setupFavorite(recipeId) {
     const faveBtn = document.getElementById('faveBtn');
     const faveIcon = document.getElementById('faveIcon');
@@ -358,7 +372,6 @@ function setupFavorite(recipeId) {
     };
 }
 
-// チェックボックスの打ち消し線イベント設定
 function setupCheckEvent() {
     document.querySelectorAll('.step-check').forEach(check => {
         check.addEventListener('change', function() {
