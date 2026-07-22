@@ -1,400 +1,347 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
-<!--  created with free sitemap generation system www.sitemapxml.jp  --> 
-<url>
-  <loc>https://onaodonuts.com/</loc>
-  <priority>1.0</priority>
-  <lastmod>2026-04-13T08:23:39+09:00</lastmod>
-</url>
-<url>
-  <loc>https://onaodonuts.com/recipe-search.html</loc>
-  <priority>0.8</priority>
-  <lastmod>2026-04-13T08:23:39+09:00</lastmod>
-</url>
-<url>
-  <loc>https://onaodonuts.com/video-list.html</loc>
-  <priority>0.8</priority>
-  <lastmod>2026-04-13T08:23:39+09:00</lastmod>
-</url>
-<url>
-  <loc>https://onaodonuts.com/recipe-search.html?cat=1</loc>
-  <priority>0.8</priority>
-  <lastmod>2026-04-13T08:23:39+09:00</lastmod>
-</url>
-<url>
-  <loc>https://onaodonuts.com/recipe-search.html?cat=2</loc>
-  <priority>0.8</priority>
-  <lastmod>2026-04-13T08:23:39+09:00</lastmod>
-</url>
-<url>
-  <loc>https://onaodonuts.com/recipe-search.html?cat=3</loc>
-  <priority>0.8</priority>
-  <lastmod>2026-04-13T08:23:39+09:00</lastmod>
-</url>
-<url>
-  <loc>https://onaodonuts.com/recipe-search.html?cat=4</loc>
-  <priority>0.8</priority>
-  <lastmod>2026-04-13T08:23:39+09:00</lastmod>
-</url>
- <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v010</loc>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://onaodonuts.com/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v011</loc>
+    <loc>https://onaodonuts.com/index.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v012</loc>
+    <loc>https://onaodonuts.com/recipe-search.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v013</loc>
+    <loc>https://onaodonuts.com/profile.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v017</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v010.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v019</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v011.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v025</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v012.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v027</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v013.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v029</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v017.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v033</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v019.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v034</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v025.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v035</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v027.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v038</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v029.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v040</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v033.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v041</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v034.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v042</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v035.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v043</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v038.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v045</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v040.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v049</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v042.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v051</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v045.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v053</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v053.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v056</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v056.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v057</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v057.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v058</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v058.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v060</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v060.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v062</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v062.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v063</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v063.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v065</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v065.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v066</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v066.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v068</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v068.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v070</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v070.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v071</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v071.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v072</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v072.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v075</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v075.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v076</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v076.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v077</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v077.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v079</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v079.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v080</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v080.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v082</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v082.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v084</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v084.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v085</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v085.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v086</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v086.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v088</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v088.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v089</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v089.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v092</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v092.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v093</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v093.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v094</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v094.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v095</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v095.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v096</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v096.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v098</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v098.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v099</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v099.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v100</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v100.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v103</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v103.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v105</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v105.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v107</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v107.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v109</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v109.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v110</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v110.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v112</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v112.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v113</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v113.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v114</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v114.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v115</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v115.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v116</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v116.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v117</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v117.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v118</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v118.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v120</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v120.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v121</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v121.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v122</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v122.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v123</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v123.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v124</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v124.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v125</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v125.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v126</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v126.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v127</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v127.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v128</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v128.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v129</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v129.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v130</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v130.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v131</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v131.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v132</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v132.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v133</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v133.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v134</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v134.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v135</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v135.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v136</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v136.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v137</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v137.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v138</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v138.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v139</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v139.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v140</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v140.html</loc>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://onaodonuts.com/recipe-detail.html?id=v141</loc>
-    <priority>0.8</priority>
+    <loc>https://onaodonuts.com/recipe-v141.html</loc>
+    <priority>1.0</priority>
   </url>
-<url>
-  <loc>https://onaodonuts.com/profile.html</loc>
-  <priority>0.5</priority>
-  <lastmod>2026-04-13T08:23:39+09:00</lastmod>
-</url>
-<url>
-  <loc>https://onaodonuts.com/policy.html</loc>
-  <priority>0.3</priority>
-  <lastmod>2026-04-13T08:23:39+09:00</lastmod>
-</url>
-<url>
-  <loc>https://onaodonuts.com/contact.html</loc>
-  <priority>0.5</priority>
-  <lastmod>2026-04-13T08:23:39+09:00</lastmod>
-</url>
-
 </urlset>
