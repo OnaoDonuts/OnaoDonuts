@@ -86,7 +86,11 @@ def build_recipes():
             continue
 
         recipe_id = recipe.get("id")
-        file_name = f"recipe-{recipe_id}.html"  # 出力ファイル名 (例: recipe-v066.html)
+        file_name = f"recipe-{recipe_id}.html"  # 出力ファイル名 (例: recipe-v141.html)
+
+        # ★ 画像用フォルダ（img/recipes/v141/ など）を自動作成する処理
+        image_dir = os.path.join("img", "recipes", recipe_id)
+        os.makedirs(image_dir, exist_ok=True)
 
         # 時間と難易度
         formatted_time = format_time(recipe.get("time", 0))
@@ -228,7 +232,7 @@ def build_recipes():
 
     print(f"完了！ {generated_count} 件の静的レシピHTMLを出力しました。")
 
-    # ★ ここでサイトマップ生成を呼び出す！
+    # サイトマップ生成を呼び出す
     generate_sitemap(recipes)
 
 if __name__ == "__main__":
