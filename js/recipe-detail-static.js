@@ -1,5 +1,5 @@
 /**
- * 静的レシピページ専用スクリプト（タイマー自動挿入・粉量自動計算・YouTube初期消音対応版）
+ * 静的レシピページ専用スクリプト（タイマー自動挿入・粉量自動計算・YouTube初期消音・WebP手順画像自動読み込み対応版）
  */
 
 let countdown;
@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         setupFavorite(currentId);
         await loadRecipeDataAndSetupFlour(currentId);
         await loadRelatedRecipes(currentId);
+        // ★ 各手順のWebP画像を自動ロードする処理を追加
+        loadStepImages(currentId);
     }
 
     // 2. 手順テキスト内の時間表記を自動でタイマー化（かっこ無し対応）
@@ -34,6 +36,45 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 5. YouTube動画プレイヤーの初期化（自動消音コントロール設定）
     setupMutedYouTubePlayer();
 });
+
+/**
+ * ★ 手順画像の自動挿入処理（WebP対応・レイアウト崩れ防止）
+ */
+function loadStepImages(recipeId) {
+    const stepItems = document.querySelectorAll('.single-preparation-step');
+
+    stepItems.forEach((stepEl, index) => {
+        const stepNum = index + 1; // 1から始まるステップ番号
+        const imgPath = `img/recipes/${recipeId}/step-${stepNum}.webp`;
+
+        // 画像の存在チェック (HEADリクエスト代わりにImageオブジェクトのonloadを使用)
+        const img = new Image();
+        img.src = imgPath;
+
+        img.onload = () => {
+            // 画像が存在する場合、テキストエリアの配下に挿入
+            const textContainer = stepEl.querySelector('.step-right-column') || stepEl.querySelector('.step-text')?.parentElement;
+
+            if (textContainer && !textContainer.querySelector('.step-inserted-image')) {
+                const imgDiv = document.createElement('div');
+                imgDiv.className = 'step-inserted-image mt-2 mb-2';
+                
+                // スマホで絶対にはみ出さない・崩れないスタイルを設定
+                imgDiv.innerHTML = `
+                    <img src="${imgPath}" 
+                         alt="手順${stepNum}の画像" 
+                         loading="lazy"
+                         style="width: 100%; max-width: 420px; height: auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: block; margin-top: 8px;">
+                `;
+                textContainer.appendChild(imgDiv);
+            }
+        };
+
+        img.onerror = () => {
+            // 画像が存在しない場合は何も表示しない（静かにスルー）
+        };
+    });
+}
 
 /**
  * ★ 埋め込みYouTube動画をAPI化して確実に初期消音（Mute）に設定する関数
