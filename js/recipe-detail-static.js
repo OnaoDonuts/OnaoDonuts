@@ -1,10 +1,11 @@
 /**
- * 静的レシピページ専用スクリプト（タイマー自動挿入・粉量自動計算版）
+ * 静的レシピページ専用スクリプト（タイマー自動挿入・粉量自動計算・YouTube初期消音対応版）
  */
 
 let countdown;
 let timerSeconds = 0;
 let currentRecipeData = null;
+let ytPlayer = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
     // 0. ★ HTML上にタイマーモーダルが無い場合、JSで自動挿入する
@@ -29,16 +30,71 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 4. チェックボックスのイベント
     setupCheckEvent();
+
+    // 5. YouTube動画プレイヤーの初期化（自動消音コントロール設定）
+    setupMutedYouTubePlayer();
 });
+
+/**
+ * ★ 埋め込みYouTube動画をAPI化して確実に初期消音（Mute）に設定する関数
+ */
+function setupMutedYouTubePlayer() {
+    const iframe = document.querySelector('#videoContainer iframe');
+    if (!iframe) return;
+
+    // iframeにidを付与して制御対象を明確化
+    iframe.id = 'recipeYoutubeIframe';
+
+    // iframeのURLに enablejsapi=1 と mute=1 を付与
+    let src = iframe.src;
+    if (!src.includes('enablejsapi=1')) {
+        src += (src.includes('?') ? '&' : '?') + 'enablejsapi=1&mute=1';
+        iframe.src = src;
+    }
+
+    // YouTube API スクリプトの読み込み
+    if (!window.YT) {
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+
+    // APIの準備ができたらプレイヤーをセットアップ
+    const initPlayer = () => {
+        if (window.YT && window.YT.Player) {
+            ytPlayer = new YT.Player('recipeYoutubeIframe', {
+                events: {
+                    'onReady': (event) => {
+                        // 準備完了時に確実にミュートを適用
+                        event.target.mute();
+                    },
+                    'onStateChange': (event) => {
+                        // 再生が開始された(PLAYING=1)瞬間に再度消音を補正
+                        if (event.data === 1) {
+                            event.target.mute();
+                        }
+                    }
+                }
+            });
+        } else {
+            setTimeout(initPlayer, 100);
+        }
+    };
+
+    if (window.YT && window.YT.Player) {
+        initPlayer();
+    } else {
+        window.onYouTubeIframeAPIReady = initPlayer;
+    }
+}
 
 /**
  * ★ タイマー用HTML（モーダル）を動的にページへ注入する関数
  */
 function injectTimerModal() {
-    // すでにHTML内に #recipeTimer があれば二重追加を防ぐために処理をスキップ
     if (document.getElementById('recipeTimer')) return;
 
-    // 画面に挿入したいタイマーのHTML構造
     const modalHtml = `
     <div id="recipeTimer" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;">
         <div style="background:#fff; padding:30px; border-radius:15px; text-align:center; min-width:280px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
@@ -52,7 +108,6 @@ function injectTimerModal() {
         </div>
     </div>`;
 
-    // <body> タグの一番最後（</body>の直前）に HTML を挿入する
     document.body.insertAdjacentHTML('beforeend', modalHtml);
 }
 
@@ -72,7 +127,6 @@ async function loadRecipeDataAndSetupFlour(recipeId) {
 
         if (!currentRecipeData) return;
 
-        // レシピ内の粉類（ratioの合計が100%に達するまでの材料）の合計量を算出
         let totalFlourBase = 0;
         let ratioSum = 0;
 
@@ -82,7 +136,6 @@ async function loadRecipeDataAndSetupFlour(recipeId) {
                     const r = parseFloat(ing.ratio) || 0;
                     const a = parseFloat(ing.amount) || 0;
 
-                    // ratioが入っていて、まだ粉の合計（100%）に達していない場合のみ加算
                     if (r > 0 && ratioSum < 100) {
                         totalFlourBase += a;
                         ratioSum += r;
@@ -91,16 +144,11 @@ async function loadRecipeDataAndSetupFlour(recipeId) {
             }
         }
 
-        // 万が一粉がないレシピの場合はデフォルト200gとする
         if (totalFlourBase === 0) totalFlourBase = 200;
 
-        // 初期値をレシピの正確な粉の合計量にセットする
         flourInput.value = totalFlourBase;
-
-        // 初回の材料リスト描画
         updateIngredientsDisplay(totalFlourBase, totalFlourBase);
 
-        // 入力イベントリスナーの設定
         flourInput.addEventListener('input', () => {
             const inputVal = parseFloat(flourInput.value) || 0;
             updateIngredientsDisplay(inputVal, totalFlourBase);
@@ -120,7 +168,6 @@ function updateIngredientsDisplay(currentFlourVal, baseAmount) {
     const listDiv = document.getElementById('ingredientsList');
     if (!listDiv) return;
 
-    // 現在の入力値 / 本来の総粉量 で正確な倍率（multiplier）を算出
     const multiplier = baseAmount > 0 ? (currentFlourVal / baseAmount) : 1;
 
     let html = "";
