@@ -29,7 +29,6 @@ def make_stars(diff_str):
 def generate_sitemap(recipes):
     site_url = "https://onaodonuts.com"
     
-    # 固定ページのリスト
     static_pages = [
         "",
         "index.html",
@@ -38,17 +37,14 @@ def generate_sitemap(recipes):
         "profile.html",
         "policy.html",
         "contact.html",
-        # 他にある固定ページを追加
     ]
     
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
     xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     
-    # 固定ページを出力
     for page in static_pages:
         xml += f'  <url>\n    <loc>{site_url}/{page}</loc>\n    <priority>0.8</priority>\n  </url>\n'
         
-    # 動的に作成された全レシピページを出力
     for recipe in recipes:
         if not recipe.get("isShort"):
             recipe_id = recipe.get("id")
@@ -61,7 +57,6 @@ def generate_sitemap(recipes):
     print("sitemap.xml も自動生成完了しました！")
 
 def build_recipes():
-    # 1. JSON読み込み
     json_path = os.path.join("js", "recipes.json")
     if not os.path.exists(json_path):
         print("Error: js/recipes.json が見つかりません。")
@@ -70,7 +65,6 @@ def build_recipes():
     with open(json_path, "r", encoding="utf-8") as f:
         recipes = json.load(f)
 
-    # 2. テンプレート読み込み
     if not os.path.exists("template.html"):
         print("Error: template.html が見つかりません。")
         return
@@ -81,22 +75,25 @@ def build_recipes():
     generated_count = 0
 
     for recipe in recipes:
-        # ショート動画専用レシピはスキップ
         if recipe.get("isShort") is True:
             continue
 
         recipe_id = recipe.get("id")
-        file_name = f"recipe-{recipe_id}.html"  # 出力ファイル名 (例: recipe-v141.html)
+        file_name = f"recipe-{recipe_id}.html"
 
-        # ★ 画像用フォルダ（img/recipes/v141/ など）を自動作成する処理
         image_dir = os.path.join("img", "recipes", recipe_id)
         os.makedirs(image_dir, exist_ok=True)
 
-        # 時間と難易度
         formatted_time = format_time(recipe.get("time", 0))
         difficulty_stars = make_stars(recipe.get("difficulty", 0))
 
-        # 材料HTMLと基準粉量の計算
+        youtube_id = recipe.get("youtube")
+        
+        # JSONからuploadDateを取得。空欄または未設定ならデフォルト値（例: 2024-01-01）を適用
+        upload_date = recipe.get("uploadDate")
+        if not upload_date or not upload_date.strip():
+            upload_date = "2024-01-01"
+
         base_flour = 200
         ingredients_html = ""
         ingredients_ld = []
@@ -124,7 +121,6 @@ def build_recipes():
                     </label>
                 </div>'''
 
-        # 手順HTMLとHowToStep構造化データ
         steps_html = ""
         instructions_ld = []
         raw_steps = recipe.get("steps", [])
@@ -139,7 +135,6 @@ def build_recipes():
                 display_num = i_idx + 1
                 unique_id = f"step-{s_idx}-{i_idx}"
                 
-                # タイマーリンク化処理
                 processed_text = step_text
                 
                 def replace_timer(match):
@@ -175,13 +170,13 @@ def build_recipes():
                     </div>
                 </div>'''
 
-        # JSON-LD構造化データの作成
+        # JSON-LD構造化データ
         json_ld_data = {
             "@context": "https://schema.org/",
             "@type": "Recipe",
             "name": recipe.get("name"),
             "image": [
-                f"https://img.youtube.com/vi/{recipe.get('youtube')}/maxresdefault.jpg"
+                f"https://img.youtube.com/vi/{youtube_id}/maxresdefault.jpg"
             ],
             "author": {
                 "@type": "Person",
@@ -197,17 +192,17 @@ def build_recipes():
                 "@type": "VideoObject",
                 "name": f"{recipe.get('name')}の作り方動画",
                 "description": recipe.get("description", ""),
-                "thumbnailUrl": f"https://img.youtube.com/vi/{recipe.get('youtube')}/maxresdefault.jpg",
-                "contentUrl": f"https://www.youtube.com/watch?v={recipe.get('youtube')}",
-                "embedUrl": f"https://www.youtube.com/embed/{recipe.get('youtube')}"
+                "thumbnailUrl": f"https://img.youtube.com/vi/{youtube_id}/maxresdefault.jpg",
+                "contentUrl": f"https://www.youtube.com/watch?v={youtube_id}",
+                "embedUrl": f"https://www.youtube.com/embed/{youtube_id}",
+                "uploadDate": f"{upload_date}T00:00:00+09:00"
             }
         }
 
-        # テンプレートの置換
         html = template_content
         html = html.replace("{{ name }}", recipe.get("name", ""))
         html = html.replace("{{ description }}", recipe.get("description", ""))
-        html = html.replace("{{ youtube }}", recipe.get("youtube", ""))
+        html = html.replace("{{ youtube }}", youtube_id or "")
         html = html.replace("{{ file_name }}", file_name)
         html = html.replace("{{ formatted_time }}", formatted_time)
         html = html.replace("{{ difficulty_stars }}", difficulty_stars)
@@ -216,7 +211,6 @@ def build_recipes():
         html = html.replace("{{ steps_html }}", steps_html)
         html = html.replace("{{ json_ld }}", json.dumps(json_ld_data, ensure_ascii=False, indent=2))
 
-        # コラム制御
         column_text = recipe.get("column", "")
         if column_text:
             html = html.replace("{% if column %}", "").replace("{% endif %}", "")
@@ -224,15 +218,12 @@ def build_recipes():
         else:
             html = re.sub(r'\{% if column %\}[\s\S]*?\{% endif %\}', '', html)
 
-        # ファイル出力
         with open(file_name, "w", encoding="utf-8") as out:
             out.write(html)
 
         generated_count += 1
 
     print(f"完了！ {generated_count} 件の静的レシピHTMLを出力しました。")
-
-    # サイトマップ生成を呼び出す
     generate_sitemap(recipes)
 
 if __name__ == "__main__":
