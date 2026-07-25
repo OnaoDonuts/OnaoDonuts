@@ -524,3 +524,29 @@ function setupCheckEvent() {
         });
     });
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    const recipeDescription = document.getElementById("recipeDescription");
+    const readMoreBtn = document.getElementById("readMoreBtn");
+
+    if (recipeDescription && readMoreBtn) {
+        // 文章の実際の高さが、制限している高さ（95px）より大きい場合だけボタンを表示する
+        // ※「95px」はCSSの max-height に合わせています
+        if (recipeDescription.scrollHeight > 95) {
+            readMoreBtn.style.display = "block";
+        } else {
+            readMoreBtn.style.display = "none";
+        }
+
+        // ボタンがクリックされたときの開閉処理
+        readMoreBtn.addEventListener("click", function() {
+            recipeDescription.classList.toggle("open");
+            
+            if (recipeDescription.classList.contains("open")) {
+                readMoreBtn.textContent = "閉じる";
+            } else {
+                readMoreBtn.textContent = "続きを読む";
+            }
+        });
+    }
+});
