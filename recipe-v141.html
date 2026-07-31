@@ -14,7 +14,7 @@
   "@type": "Recipe",
   "name": "シュガーバターパン",
   "image": [
-    "https://img.youtube.com/vi/a-B0tSFlkw8/maxresdefault.jpg"
+    "https://img.youtube.com/vi/a-B0tSFlkw8/hqdefault.jpg"
   ],
   "author": {
     "@type": "Person",
@@ -114,7 +114,7 @@
     "@type": "VideoObject",
     "name": "シュガーバターパンの作り方動画",
     "description": "今回は、パウンド型を使い、バブカ風の可愛いねじり模様に仕上げる「シュガーバターパン」のご紹介です！流れ出るバターの旨味を型で閉じ込め、カリッとジュワッとサクサクに仕上げる、とっておきのレシピとなっています。<br><br>コラムでは「夏場の水分調整」「フィリングのコツ」「綺麗な成形のコツ」の3つのコツをご紹介します。",
-    "thumbnailUrl": "https://img.youtube.com/vi/a-B0tSFlkw8/maxresdefault.jpg",
+    "thumbnailUrl": "https://img.youtube.com/vi/a-B0tSFlkw8/hqdefault.jpg",
     "contentUrl": "https://www.youtube.com/watch?v=a-B0tSFlkw8",
     "embedUrl": "https://www.youtube.com/embed/a-B0tSFlkw8",
     "uploadDate": "2025-07-29T00:00:00+09:00"
@@ -125,7 +125,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="シュガーバターパン | おなおドーナツ">
     <meta property="og:description" content="今回は、パウンド型を使い、バブカ風の可愛いねじり模様に仕上げる「シュガーバターパン」のご紹介です！流れ出るバターの旨味を型で閉じ込め、カリッとジュワッとサクサクに仕上げる、とっておきのレシピとなっています。<br><br>コラムでは「夏場の水分調整」「フィリングのコツ」「綺麗な成形のコツ」の3つのコツをご紹介します。">
-    <meta property="og:image" content="https://img.youtube.com/vi/a-B0tSFlkw8/maxresdefault.jpg">
+    <meta property="og:image" content="https://img.youtube.com/vi/a-B0tSFlkw8/hqdefault.jpg">
     <meta property="og:url" content="https://onaodonuts.com/recipe-v141.html">
 
     <link rel="canonical" href="https://onaodonuts.com/recipe-v141.html">
@@ -172,7 +172,10 @@
                 <div class="onao-lead-card shadow-sm">
                     <div class="row no-gutters">
                         <div class="col-md-5 position-relative">
-                            <img id="descriptionMainImg" src="https://img.youtube.com/vi/a-B0tSFlkw8/maxresdefault.jpg" alt="シュガーバターパンの完成写真" class="img-fluid onao-poke-img" decoding="async" width="1280" height="720">
+                            <!-- 16:9の枠（アスペクト比固定コンテナ）で囲む -->
+                            <div style="position: relative; width: 100%; padding-top: 56.5%; overflow: hidden; background: #000;">
+                                <img id="descriptionMainImg" src="https://img.youtube.com/vi/a-B0tSFlkw8/hqdefault.jpg" alt="シュガーバターパンの完成写真" class="onao-poke-img" decoding="async" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/a-B0tSFlkw8/mqdefault.jpg';">
+                            </div>
                             <div class="onao-floating-actions">
                                 <button id="faveBtn" class="onao-icon-only-btn" title="お気に入り" aria-label="このレシピをお気に入りに追加する">
                                     <i id="faveIcon" class="fa-regular fa-heart"></i>

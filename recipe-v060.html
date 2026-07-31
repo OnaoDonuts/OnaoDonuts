@@ -14,7 +14,7 @@
   "@type": "Recipe",
   "name": "酒粕ドーナツ",
   "image": [
-    "https://img.youtube.com/vi/DFJ9n2zpUCc/maxresdefault.jpg"
+    "https://img.youtube.com/vi/DFJ9n2zpUCc/hqdefault.jpg"
   ],
   "author": {
     "@type": "Person",
@@ -82,7 +82,7 @@
     "@type": "VideoObject",
     "name": "酒粕ドーナツの作り方動画",
     "description": "今回は、ほんのり和の香りが漂う『酒粕ドーナツ』をご紹介します！生地に酒粕を練り込んだしっとりリッチなドーナツで、お花の成形がとっても可愛い一品です。コラムでは「酒粕生地のコツ」「お花の成形」「揚げのコツ」の3つのポイントをご紹介します。",
-    "thumbnailUrl": "https://img.youtube.com/vi/DFJ9n2zpUCc/maxresdefault.jpg",
+    "thumbnailUrl": "https://img.youtube.com/vi/DFJ9n2zpUCc/hqdefault.jpg",
     "contentUrl": "https://www.youtube.com/watch?v=DFJ9n2zpUCc",
     "embedUrl": "https://www.youtube.com/embed/DFJ9n2zpUCc",
     "uploadDate": "2022-11-01T00:00:00+09:00"
@@ -93,7 +93,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="酒粕ドーナツ | おなおドーナツ">
     <meta property="og:description" content="今回は、ほんのり和の香りが漂う『酒粕ドーナツ』をご紹介します！生地に酒粕を練り込んだしっとりリッチなドーナツで、お花の成形がとっても可愛い一品です。コラムでは「酒粕生地のコツ」「お花の成形」「揚げのコツ」の3つのポイントをご紹介します。">
-    <meta property="og:image" content="https://img.youtube.com/vi/DFJ9n2zpUCc/maxresdefault.jpg">
+    <meta property="og:image" content="https://img.youtube.com/vi/DFJ9n2zpUCc/hqdefault.jpg">
     <meta property="og:url" content="https://onaodonuts.com/recipe-v060.html">
 
     <link rel="canonical" href="https://onaodonuts.com/recipe-v060.html">
@@ -140,7 +140,10 @@
                 <div class="onao-lead-card shadow-sm">
                     <div class="row no-gutters">
                         <div class="col-md-5 position-relative">
-                            <img id="descriptionMainImg" src="https://img.youtube.com/vi/DFJ9n2zpUCc/maxresdefault.jpg" alt="酒粕ドーナツの完成写真" class="img-fluid onao-poke-img" decoding="async" width="1280" height="720">
+                            <!-- 16:9の枠（アスペクト比固定コンテナ）で囲む -->
+                            <div style="position: relative; width: 100%; padding-top: 56.5%; overflow: hidden; background: #000;">
+                                <img id="descriptionMainImg" src="https://img.youtube.com/vi/DFJ9n2zpUCc/hqdefault.jpg" alt="酒粕ドーナツの完成写真" class="onao-poke-img" decoding="async" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/DFJ9n2zpUCc/mqdefault.jpg';">
+                            </div>
                             <div class="onao-floating-actions">
                                 <button id="faveBtn" class="onao-icon-only-btn" title="お気に入り" aria-label="このレシピをお気に入りに追加する">
                                     <i id="faveIcon" class="fa-regular fa-heart"></i>

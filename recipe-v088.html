@@ -14,7 +14,7 @@
   "@type": "Recipe",
   "name": "ビアリー",
   "image": [
-    "https://img.youtube.com/vi/cSfhAXFjqto/maxresdefault.jpg"
+    "https://img.youtube.com/vi/cSfhAXFjqto/hqdefault.jpg"
   ],
   "author": {
     "@type": "Person",
@@ -75,7 +75,7 @@
     "@type": "VideoObject",
     "name": "ビアリーの作り方動画",
     "description": "お湯で茹でずに焼くベーグル、アメリカ・ニューヨークの伝統パン『ビアリー』のレシピです。発酵時間を短く抑えたぎゅっと詰まった食感に、華やかなお花型の成形を組み合わせます。コラムでは「生地のコツ」「成形のコツ」「焼成のコツ」の3つのポイントをご紹介します。",
-    "thumbnailUrl": "https://img.youtube.com/vi/cSfhAXFjqto/maxresdefault.jpg",
+    "thumbnailUrl": "https://img.youtube.com/vi/cSfhAXFjqto/hqdefault.jpg",
     "contentUrl": "https://www.youtube.com/watch?v=cSfhAXFjqto",
     "embedUrl": "https://www.youtube.com/embed/cSfhAXFjqto",
     "uploadDate": "2023-08-15T00:00:00+09:00"
@@ -86,7 +86,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="ビアリー | おなおドーナツ">
     <meta property="og:description" content="お湯で茹でずに焼くベーグル、アメリカ・ニューヨークの伝統パン『ビアリー』のレシピです。発酵時間を短く抑えたぎゅっと詰まった食感に、華やかなお花型の成形を組み合わせます。コラムでは「生地のコツ」「成形のコツ」「焼成のコツ」の3つのポイントをご紹介します。">
-    <meta property="og:image" content="https://img.youtube.com/vi/cSfhAXFjqto/maxresdefault.jpg">
+    <meta property="og:image" content="https://img.youtube.com/vi/cSfhAXFjqto/hqdefault.jpg">
     <meta property="og:url" content="https://onaodonuts.com/recipe-v088.html">
 
     <link rel="canonical" href="https://onaodonuts.com/recipe-v088.html">
@@ -133,7 +133,10 @@
                 <div class="onao-lead-card shadow-sm">
                     <div class="row no-gutters">
                         <div class="col-md-5 position-relative">
-                            <img id="descriptionMainImg" src="https://img.youtube.com/vi/cSfhAXFjqto/maxresdefault.jpg" alt="ビアリーの完成写真" class="img-fluid onao-poke-img" decoding="async" width="1280" height="720">
+                            <!-- 16:9の枠（アスペクト比固定コンテナ）で囲む -->
+                            <div style="position: relative; width: 100%; padding-top: 56.5%; overflow: hidden; background: #000;">
+                                <img id="descriptionMainImg" src="https://img.youtube.com/vi/cSfhAXFjqto/hqdefault.jpg" alt="ビアリーの完成写真" class="onao-poke-img" decoding="async" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/cSfhAXFjqto/mqdefault.jpg';">
+                            </div>
                             <div class="onao-floating-actions">
                                 <button id="faveBtn" class="onao-icon-only-btn" title="お気に入り" aria-label="このレシピをお気に入りに追加する">
                                     <i id="faveIcon" class="fa-regular fa-heart"></i>

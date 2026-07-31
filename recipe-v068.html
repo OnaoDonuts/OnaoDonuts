@@ -14,7 +14,7 @@
   "@type": "Recipe",
   "name": "ニューヨークロール",
   "image": [
-    "https://img.youtube.com/vi/EvON7t3cbm0/maxresdefault.jpg"
+    "https://img.youtube.com/vi/EvON7t3cbm0/hqdefault.jpg"
   ],
   "author": {
     "@type": "Person",
@@ -88,7 +88,7 @@
     "@type": "VideoObject",
     "name": "ニューヨークロールの作り方動画",
     "description": "幾重にも重なる美しい層と丸いフォルムが目を引く、ニューヨーク発祥の話題のスイーツ『ニューヨークロール』のレシピです！今回は本格的な味わいをおうちで楽しめるよう、こだわりの折り込み生地で作ります。コラムでは「生地の配合のコツ」「美しく焼き上げる焼成のコツ」の2つのポイントをご紹介します。",
-    "thumbnailUrl": "https://img.youtube.com/vi/EvON7t3cbm0/maxresdefault.jpg",
+    "thumbnailUrl": "https://img.youtube.com/vi/EvON7t3cbm0/hqdefault.jpg",
     "contentUrl": "https://www.youtube.com/watch?v=EvON7t3cbm0",
     "embedUrl": "https://www.youtube.com/embed/EvON7t3cbm0",
     "uploadDate": "2023-02-03T00:00:00+09:00"
@@ -99,7 +99,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="ニューヨークロール | おなおドーナツ">
     <meta property="og:description" content="幾重にも重なる美しい層と丸いフォルムが目を引く、ニューヨーク発祥の話題のスイーツ『ニューヨークロール』のレシピです！今回は本格的な味わいをおうちで楽しめるよう、こだわりの折り込み生地で作ります。コラムでは「生地の配合のコツ」「美しく焼き上げる焼成のコツ」の2つのポイントをご紹介します。">
-    <meta property="og:image" content="https://img.youtube.com/vi/EvON7t3cbm0/maxresdefault.jpg">
+    <meta property="og:image" content="https://img.youtube.com/vi/EvON7t3cbm0/hqdefault.jpg">
     <meta property="og:url" content="https://onaodonuts.com/recipe-v068.html">
 
     <link rel="canonical" href="https://onaodonuts.com/recipe-v068.html">
@@ -146,7 +146,10 @@
                 <div class="onao-lead-card shadow-sm">
                     <div class="row no-gutters">
                         <div class="col-md-5 position-relative">
-                            <img id="descriptionMainImg" src="https://img.youtube.com/vi/EvON7t3cbm0/maxresdefault.jpg" alt="ニューヨークロールの完成写真" class="img-fluid onao-poke-img" decoding="async" width="1280" height="720">
+                            <!-- 16:9の枠（アスペクト比固定コンテナ）で囲む -->
+                            <div style="position: relative; width: 100%; padding-top: 56.5%; overflow: hidden; background: #000;">
+                                <img id="descriptionMainImg" src="https://img.youtube.com/vi/EvON7t3cbm0/hqdefault.jpg" alt="ニューヨークロールの完成写真" class="onao-poke-img" decoding="async" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/EvON7t3cbm0/mqdefault.jpg';">
+                            </div>
                             <div class="onao-floating-actions">
                                 <button id="faveBtn" class="onao-icon-only-btn" title="お気に入り" aria-label="このレシピをお気に入りに追加する">
                                     <i id="faveIcon" class="fa-regular fa-heart"></i>

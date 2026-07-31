@@ -14,7 +14,7 @@
   "@type": "Recipe",
   "name": "お花ドーナツ",
   "image": [
-    "https://img.youtube.com/vi/4NvoMrH4O90/maxresdefault.jpg"
+    "https://img.youtube.com/vi/4NvoMrH4O90/hqdefault.jpg"
   ],
   "author": {
     "@type": "Person",
@@ -71,7 +71,7 @@
     "@type": "VideoObject",
     "name": "お花ドーナツの作り方動画",
     "description": "今回は特別な型や道具を使わずに作れる、見た目も可愛い「お花ドーナツ」をご紹介します！中央にくぼみを作り、周りに切れ込みを入れるだけで、まるでお店のような形に仕上がります。<br><br>コラムでは「粉の配合のコツ」「成形のコツ」「揚げのコツ」の3つのポイントをご紹介します。",
-    "thumbnailUrl": "https://img.youtube.com/vi/4NvoMrH4O90/maxresdefault.jpg",
+    "thumbnailUrl": "https://img.youtube.com/vi/4NvoMrH4O90/hqdefault.jpg",
     "contentUrl": "https://www.youtube.com/watch?v=4NvoMrH4O90",
     "embedUrl": "https://www.youtube.com/embed/4NvoMrH4O90",
     "uploadDate": "2022-01-21T00:00:00+09:00"
@@ -82,7 +82,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="お花ドーナツ | おなおドーナツ">
     <meta property="og:description" content="今回は特別な型や道具を使わずに作れる、見た目も可愛い「お花ドーナツ」をご紹介します！中央にくぼみを作り、周りに切れ込みを入れるだけで、まるでお店のような形に仕上がります。<br><br>コラムでは「粉の配合のコツ」「成形のコツ」「揚げのコツ」の3つのポイントをご紹介します。">
-    <meta property="og:image" content="https://img.youtube.com/vi/4NvoMrH4O90/maxresdefault.jpg">
+    <meta property="og:image" content="https://img.youtube.com/vi/4NvoMrH4O90/hqdefault.jpg">
     <meta property="og:url" content="https://onaodonuts.com/recipe-v011.html">
 
     <link rel="canonical" href="https://onaodonuts.com/recipe-v011.html">
@@ -129,7 +129,10 @@
                 <div class="onao-lead-card shadow-sm">
                     <div class="row no-gutters">
                         <div class="col-md-5 position-relative">
-                            <img id="descriptionMainImg" src="https://img.youtube.com/vi/4NvoMrH4O90/maxresdefault.jpg" alt="お花ドーナツの完成写真" class="img-fluid onao-poke-img" decoding="async" width="1280" height="720">
+                            <!-- 16:9の枠（アスペクト比固定コンテナ）で囲む -->
+                            <div style="position: relative; width: 100%; padding-top: 56.5%; overflow: hidden; background: #000;">
+                                <img id="descriptionMainImg" src="https://img.youtube.com/vi/4NvoMrH4O90/hqdefault.jpg" alt="お花ドーナツの完成写真" class="onao-poke-img" decoding="async" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/4NvoMrH4O90/mqdefault.jpg';">
+                            </div>
                             <div class="onao-floating-actions">
                                 <button id="faveBtn" class="onao-icon-only-btn" title="お気に入り" aria-label="このレシピをお気に入りに追加する">
                                     <i id="faveIcon" class="fa-regular fa-heart"></i>

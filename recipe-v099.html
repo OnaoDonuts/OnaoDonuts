@@ -14,7 +14,7 @@
   "@type": "Recipe",
   "name": "スターブレッド",
   "image": [
-    "https://img.youtube.com/vi/gRH_0zo9oY4/maxresdefault.jpg"
+    "https://img.youtube.com/vi/gRH_0zo9oY4/hqdefault.jpg"
   ],
   "author": {
     "@type": "Person",
@@ -93,7 +93,7 @@
     "@type": "VideoObject",
     "name": "スターブレッドの作り方動画",
     "description": "今回は、海外のホリデーシーズンでも大人気の華やかな星模様に焼き上げる「スターブレッド」をご紹介します！リッチな生地とホワイトチョコフィリングを重ねて作る、素敵な成形のレシピです。<br><br>コラムでは「生地作りのコツ」「成形のコツ」の2つのポイントをご紹介します。",
-    "thumbnailUrl": "https://img.youtube.com/vi/gRH_0zo9oY4/maxresdefault.jpg",
+    "thumbnailUrl": "https://img.youtube.com/vi/gRH_0zo9oY4/hqdefault.jpg",
     "contentUrl": "https://www.youtube.com/watch?v=gRH_0zo9oY4",
     "embedUrl": "https://www.youtube.com/embed/gRH_0zo9oY4",
     "uploadDate": "2023-11-22T00:00:00+09:00"
@@ -104,7 +104,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="スターブレッド | おなおドーナツ">
     <meta property="og:description" content="今回は、海外のホリデーシーズンでも大人気の華やかな星模様に焼き上げる「スターブレッド」をご紹介します！リッチな生地とホワイトチョコフィリングを重ねて作る、素敵な成形のレシピです。<br><br>コラムでは「生地作りのコツ」「成形のコツ」の2つのポイントをご紹介します。">
-    <meta property="og:image" content="https://img.youtube.com/vi/gRH_0zo9oY4/maxresdefault.jpg">
+    <meta property="og:image" content="https://img.youtube.com/vi/gRH_0zo9oY4/hqdefault.jpg">
     <meta property="og:url" content="https://onaodonuts.com/recipe-v099.html">
 
     <link rel="canonical" href="https://onaodonuts.com/recipe-v099.html">
@@ -151,7 +151,10 @@
                 <div class="onao-lead-card shadow-sm">
                     <div class="row no-gutters">
                         <div class="col-md-5 position-relative">
-                            <img id="descriptionMainImg" src="https://img.youtube.com/vi/gRH_0zo9oY4/maxresdefault.jpg" alt="スターブレッドの完成写真" class="img-fluid onao-poke-img" decoding="async" width="1280" height="720">
+                            <!-- 16:9の枠（アスペクト比固定コンテナ）で囲む -->
+                            <div style="position: relative; width: 100%; padding-top: 56.5%; overflow: hidden; background: #000;">
+                                <img id="descriptionMainImg" src="https://img.youtube.com/vi/gRH_0zo9oY4/hqdefault.jpg" alt="スターブレッドの完成写真" class="onao-poke-img" decoding="async" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/gRH_0zo9oY4/mqdefault.jpg';">
+                            </div>
                             <div class="onao-floating-actions">
                                 <button id="faveBtn" class="onao-icon-only-btn" title="お気に入り" aria-label="このレシピをお気に入りに追加する">
                                     <i id="faveIcon" class="fa-regular fa-heart"></i>

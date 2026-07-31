@@ -14,7 +14,7 @@
   "@type": "Recipe",
   "name": "アーモンドブレッド",
   "image": [
-    "https://img.youtube.com/vi/SYtiPSDJgGs/maxresdefault.jpg"
+    "https://img.youtube.com/vi/SYtiPSDJgGs/hqdefault.jpg"
   ],
   "author": {
     "@type": "Person",
@@ -88,7 +88,7 @@
     "@type": "VideoObject",
     "name": "アーモンドブレッドの作り方動画",
     "description": "アーモンドパウダーを贅沢に使い、濃厚な特製フィリングを巻き込んで焼き上げる『アーモンドブレッド』のレシピです！今回はバブカのように生地をねじって型に入れることで、どこを切っても美しい層が現れる華やかな仕上がりに。コラムでは「フィリングのコツ」「成形のコツ」「焼成のコツ」の3つのポイントをご紹介します。",
-    "thumbnailUrl": "https://img.youtube.com/vi/SYtiPSDJgGs/maxresdefault.jpg",
+    "thumbnailUrl": "https://img.youtube.com/vi/SYtiPSDJgGs/hqdefault.jpg",
     "contentUrl": "https://www.youtube.com/watch?v=SYtiPSDJgGs",
     "embedUrl": "https://www.youtube.com/embed/SYtiPSDJgGs",
     "uploadDate": "2023-10-06T00:00:00+09:00"
@@ -99,7 +99,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="アーモンドブレッド | おなおドーナツ">
     <meta property="og:description" content="アーモンドパウダーを贅沢に使い、濃厚な特製フィリングを巻き込んで焼き上げる『アーモンドブレッド』のレシピです！今回はバブカのように生地をねじって型に入れることで、どこを切っても美しい層が現れる華やかな仕上がりに。コラムでは「フィリングのコツ」「成形のコツ」「焼成のコツ」の3つのポイントをご紹介します。">
-    <meta property="og:image" content="https://img.youtube.com/vi/SYtiPSDJgGs/maxresdefault.jpg">
+    <meta property="og:image" content="https://img.youtube.com/vi/SYtiPSDJgGs/hqdefault.jpg">
     <meta property="og:url" content="https://onaodonuts.com/recipe-v094.html">
 
     <link rel="canonical" href="https://onaodonuts.com/recipe-v094.html">
@@ -146,7 +146,10 @@
                 <div class="onao-lead-card shadow-sm">
                     <div class="row no-gutters">
                         <div class="col-md-5 position-relative">
-                            <img id="descriptionMainImg" src="https://img.youtube.com/vi/SYtiPSDJgGs/maxresdefault.jpg" alt="アーモンドブレッドの完成写真" class="img-fluid onao-poke-img" decoding="async" width="1280" height="720">
+                            <!-- 16:9の枠（アスペクト比固定コンテナ）で囲む -->
+                            <div style="position: relative; width: 100%; padding-top: 56.5%; overflow: hidden; background: #000;">
+                                <img id="descriptionMainImg" src="https://img.youtube.com/vi/SYtiPSDJgGs/hqdefault.jpg" alt="アーモンドブレッドの完成写真" class="onao-poke-img" decoding="async" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/SYtiPSDJgGs/mqdefault.jpg';">
+                            </div>
                             <div class="onao-floating-actions">
                                 <button id="faveBtn" class="onao-icon-only-btn" title="お気に入り" aria-label="このレシピをお気に入りに追加する">
                                     <i id="faveIcon" class="fa-regular fa-heart"></i>

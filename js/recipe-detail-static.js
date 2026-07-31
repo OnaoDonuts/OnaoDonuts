@@ -453,7 +453,10 @@ async function loadRelatedRecipes(currentId) {
                 <div class="col-12 col-sm-4 mb-4">
                     <div class="onao-related-card" style="cursor:pointer;" onclick="location.href='recipe-${r.id}.html'">
                         <div class="onao-related-thumb">
-                            <img src="https://img.youtube.com/vi/${r.youtube}/mqdefault.jpg" alt="${r.name}の完成写真" loading="lazy">
+                            <img src="https://img.youtube.com/vi/${r.youtube}/hqdefault.jpg" 
+                                 alt="${r.name}の完成写真" 
+                                 loading="lazy"
+                                 onerror="this.src='https://img.youtube.com/vi/${r.youtube}/mqdefault.jpg';">
                         </div>
                         <div class="onao-related-body">
                             <h3 style="font-size:1rem; margin-top:10px; color:#4b3e2a;">${r.name}</h3>

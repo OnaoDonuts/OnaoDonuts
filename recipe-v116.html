@@ -14,7 +14,7 @@
   "@type": "Recipe",
   "name": "鯛焼きパン",
   "image": [
-    "https://img.youtube.com/vi/AiRnNQUziqU/maxresdefault.jpg"
+    "https://img.youtube.com/vi/AiRnNQUziqU/hqdefault.jpg"
   ],
   "author": {
     "@type": "Person",
@@ -99,7 +99,7 @@
     "@type": "VideoObject",
     "name": "鯛焼きパンの作り方動画",
     "description": "今回は、大好きな和菓子をパンで再現した『鯛焼きパン』のレシピです！マフィン型を使って焼き上げ、中にはあんことカスタードを贅沢に詰め込んだ、一口で幸せになれるおうちパンです。コラムでは「生地のコツ」「片栗粉でカスタードクリーム」「おすすめの食べ方」の3つのポイントをご紹介します。",
-    "thumbnailUrl": "https://img.youtube.com/vi/AiRnNQUziqU/maxresdefault.jpg",
+    "thumbnailUrl": "https://img.youtube.com/vi/AiRnNQUziqU/hqdefault.jpg",
     "contentUrl": "https://www.youtube.com/watch?v=AiRnNQUziqU",
     "embedUrl": "https://www.youtube.com/embed/AiRnNQUziqU",
     "uploadDate": "2024-05-28T00:00:00+09:00"
@@ -110,7 +110,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="鯛焼きパン | おなおドーナツ">
     <meta property="og:description" content="今回は、大好きな和菓子をパンで再現した『鯛焼きパン』のレシピです！マフィン型を使って焼き上げ、中にはあんことカスタードを贅沢に詰め込んだ、一口で幸せになれるおうちパンです。コラムでは「生地のコツ」「片栗粉でカスタードクリーム」「おすすめの食べ方」の3つのポイントをご紹介します。">
-    <meta property="og:image" content="https://img.youtube.com/vi/AiRnNQUziqU/maxresdefault.jpg">
+    <meta property="og:image" content="https://img.youtube.com/vi/AiRnNQUziqU/hqdefault.jpg">
     <meta property="og:url" content="https://onaodonuts.com/recipe-v116.html">
 
     <link rel="canonical" href="https://onaodonuts.com/recipe-v116.html">
@@ -157,7 +157,10 @@
                 <div class="onao-lead-card shadow-sm">
                     <div class="row no-gutters">
                         <div class="col-md-5 position-relative">
-                            <img id="descriptionMainImg" src="https://img.youtube.com/vi/AiRnNQUziqU/maxresdefault.jpg" alt="鯛焼きパンの完成写真" class="img-fluid onao-poke-img" decoding="async" width="1280" height="720">
+                            <!-- 16:9の枠（アスペクト比固定コンテナ）で囲む -->
+                            <div style="position: relative; width: 100%; padding-top: 56.5%; overflow: hidden; background: #000;">
+                                <img id="descriptionMainImg" src="https://img.youtube.com/vi/AiRnNQUziqU/hqdefault.jpg" alt="鯛焼きパンの完成写真" class="onao-poke-img" decoding="async" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/AiRnNQUziqU/mqdefault.jpg';">
+                            </div>
                             <div class="onao-floating-actions">
                                 <button id="faveBtn" class="onao-icon-only-btn" title="お気に入り" aria-label="このレシピをお気に入りに追加する">
                                     <i id="faveIcon" class="fa-regular fa-heart"></i>

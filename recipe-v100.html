@@ -14,7 +14,7 @@
   "@type": "Recipe",
   "name": "ティーバッグクッキー",
   "image": [
-    "https://img.youtube.com/vi/Y4C92QbCBBM/maxresdefault.jpg"
+    "https://img.youtube.com/vi/Y4C92QbCBBM/hqdefault.jpg"
   ],
   "author": {
     "@type": "Person",
@@ -67,7 +67,7 @@
     "@type": "VideoObject",
     "name": "ティーバッグクッキーの作り方動画",
     "description": "紅茶のパックの形をした、とっても可愛い『ティーバッグクッキー』のレシピです！身近な材料で遊び心たっぷりに仕上げます。コラムでは「砂糖選びのコツ」「手作り型のコツ」「コーティングのコツ」の3つのポイントをご紹介します。",
-    "thumbnailUrl": "https://img.youtube.com/vi/Y4C92QbCBBM/maxresdefault.jpg",
+    "thumbnailUrl": "https://img.youtube.com/vi/Y4C92QbCBBM/hqdefault.jpg",
     "contentUrl": "https://www.youtube.com/watch?v=Y4C92QbCBBM",
     "embedUrl": "https://www.youtube.com/embed/Y4C92QbCBBM",
     "uploadDate": "2023-12-01T00:00:00+09:00"
@@ -78,7 +78,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="ティーバッグクッキー | おなおドーナツ">
     <meta property="og:description" content="紅茶のパックの形をした、とっても可愛い『ティーバッグクッキー』のレシピです！身近な材料で遊び心たっぷりに仕上げます。コラムでは「砂糖選びのコツ」「手作り型のコツ」「コーティングのコツ」の3つのポイントをご紹介します。">
-    <meta property="og:image" content="https://img.youtube.com/vi/Y4C92QbCBBM/maxresdefault.jpg">
+    <meta property="og:image" content="https://img.youtube.com/vi/Y4C92QbCBBM/hqdefault.jpg">
     <meta property="og:url" content="https://onaodonuts.com/recipe-v100.html">
 
     <link rel="canonical" href="https://onaodonuts.com/recipe-v100.html">
@@ -125,7 +125,10 @@
                 <div class="onao-lead-card shadow-sm">
                     <div class="row no-gutters">
                         <div class="col-md-5 position-relative">
-                            <img id="descriptionMainImg" src="https://img.youtube.com/vi/Y4C92QbCBBM/maxresdefault.jpg" alt="ティーバッグクッキーの完成写真" class="img-fluid onao-poke-img" decoding="async" width="1280" height="720">
+                            <!-- 16:9の枠（アスペクト比固定コンテナ）で囲む -->
+                            <div style="position: relative; width: 100%; padding-top: 56.5%; overflow: hidden; background: #000;">
+                                <img id="descriptionMainImg" src="https://img.youtube.com/vi/Y4C92QbCBBM/hqdefault.jpg" alt="ティーバッグクッキーの完成写真" class="onao-poke-img" decoding="async" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/Y4C92QbCBBM/mqdefault.jpg';">
+                            </div>
                             <div class="onao-floating-actions">
                                 <button id="faveBtn" class="onao-icon-only-btn" title="お気に入り" aria-label="このレシピをお気に入りに追加する">
                                     <i id="faveIcon" class="fa-regular fa-heart"></i>

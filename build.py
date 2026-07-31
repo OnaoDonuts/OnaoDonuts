@@ -176,7 +176,7 @@ def build_recipes():
             "@type": "Recipe",
             "name": recipe.get("name"),
             "image": [
-                f"https://img.youtube.com/vi/{youtube_id}/maxresdefault.jpg"
+                f"https://img.youtube.com/vi/{youtube_id}/hqdefault.jpg"
             ],
             "author": {
                 "@type": "Person",
@@ -192,7 +192,7 @@ def build_recipes():
                 "@type": "VideoObject",
                 "name": f"{recipe.get('name')}の作り方動画",
                 "description": recipe.get("description", ""),
-                "thumbnailUrl": f"https://img.youtube.com/vi/{youtube_id}/maxresdefault.jpg",
+                "thumbnailUrl": f"https://img.youtube.com/vi/{youtube_id}/hqdefault.jpg",
                 "contentUrl": f"https://www.youtube.com/watch?v={youtube_id}",
                 "embedUrl": f"https://www.youtube.com/embed/{youtube_id}",
                 "uploadDate": f"{upload_date}T00:00:00+09:00"

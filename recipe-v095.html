@@ -14,7 +14,7 @@
   "@type": "Recipe",
   "name": "ハラーブレッド",
   "image": [
-    "https://img.youtube.com/vi/K89873YdZdY/maxresdefault.jpg"
+    "https://img.youtube.com/vi/K89873YdZdY/hqdefault.jpg"
   ],
   "author": {
     "@type": "Person",
@@ -82,7 +82,7 @@
     "@type": "VideoObject",
     "name": "ハラーブレッドの作り方動画",
     "description": "祝祭日にぴったりな、ボリューム満点の華やかな三つ編みパン『ハラーブレッド』のアレンジレシピです。卵やバターを加えたリッチな生地でふんわり焼き上げます。コラムでは「生地のコツ」「三つ編み成形のコツ」の2つのポイントをご紹介します。",
-    "thumbnailUrl": "https://img.youtube.com/vi/K89873YdZdY/maxresdefault.jpg",
+    "thumbnailUrl": "https://img.youtube.com/vi/K89873YdZdY/hqdefault.jpg",
     "contentUrl": "https://www.youtube.com/watch?v=K89873YdZdY",
     "embedUrl": "https://www.youtube.com/embed/K89873YdZdY",
     "uploadDate": "2023-10-13T00:00:00+09:00"
@@ -93,7 +93,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="ハラーブレッド | おなおドーナツ">
     <meta property="og:description" content="祝祭日にぴったりな、ボリューム満点の華やかな三つ編みパン『ハラーブレッド』のアレンジレシピです。卵やバターを加えたリッチな生地でふんわり焼き上げます。コラムでは「生地のコツ」「三つ編み成形のコツ」の2つのポイントをご紹介します。">
-    <meta property="og:image" content="https://img.youtube.com/vi/K89873YdZdY/maxresdefault.jpg">
+    <meta property="og:image" content="https://img.youtube.com/vi/K89873YdZdY/hqdefault.jpg">
     <meta property="og:url" content="https://onaodonuts.com/recipe-v095.html">
 
     <link rel="canonical" href="https://onaodonuts.com/recipe-v095.html">
@@ -140,7 +140,10 @@
                 <div class="onao-lead-card shadow-sm">
                     <div class="row no-gutters">
                         <div class="col-md-5 position-relative">
-                            <img id="descriptionMainImg" src="https://img.youtube.com/vi/K89873YdZdY/maxresdefault.jpg" alt="ハラーブレッドの完成写真" class="img-fluid onao-poke-img" decoding="async" width="1280" height="720">
+                            <!-- 16:9の枠（アスペクト比固定コンテナ）で囲む -->
+                            <div style="position: relative; width: 100%; padding-top: 56.5%; overflow: hidden; background: #000;">
+                                <img id="descriptionMainImg" src="https://img.youtube.com/vi/K89873YdZdY/hqdefault.jpg" alt="ハラーブレッドの完成写真" class="onao-poke-img" decoding="async" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/K89873YdZdY/mqdefault.jpg';">
+                            </div>
                             <div class="onao-floating-actions">
                                 <button id="faveBtn" class="onao-icon-only-btn" title="お気に入り" aria-label="このレシピをお気に入りに追加する">
                                     <i id="faveIcon" class="fa-regular fa-heart"></i>
