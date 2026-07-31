@@ -478,10 +478,11 @@ async function loadRelatedRecipes(currentId) {
             html += `
                 <div class="col-12 col-sm-4 mb-4">
                     <div class="onao-related-card" style="cursor:pointer;" onclick="location.href='recipe-${r.id}.html'">
-                        <div class="onao-related-thumb">
+                        <div class="onao-related-thumb" style="position: relative; overflow: hidden; background: #000;">
                             <img src="https://img.youtube.com/vi/${r.youtube}/hqdefault.jpg" 
                                  alt="${r.name}の完成写真" 
                                  loading="lazy"
+                                 style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); transform-origin: center;"
                                  onerror="this.src='https://img.youtube.com/vi/${r.youtube}/mqdefault.jpg';">
                         </div>
                         <div class="onao-related-body">
