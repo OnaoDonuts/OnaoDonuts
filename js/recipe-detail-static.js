@@ -482,7 +482,7 @@ async function loadRelatedRecipes(currentId) {
                             <img src="https://img.youtube.com/vi/${r.youtube}/hqdefault.jpg" 
                                  alt="${r.name}の完成写真" 
                                  loading="lazy"
-                                 style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.35); transform-origin: center;"
+                                 style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.5); transform-origin: center;"
                                  onerror="this.src='https://img.youtube.com/vi/${r.youtube}/mqdefault.jpg';">
                         </div>
                         <div class="onao-related-body">
