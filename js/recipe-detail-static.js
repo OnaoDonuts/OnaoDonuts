@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         loadStepImages(currentId);
     }
 
-    // 2. 手順テキスト内の「時間・分」をタイマー化 ＆ 「[動画 MM:SS]」をタイムスタンプ化
+    // 2. 手順およびコラム内の「時間・分」をタイマー化 ＆ 「[動画 MM:SS]」をタイムスタンプ化
     enableStepLinks();
 
     // 3. タイマーの起動・停止ロジックをセットアップ
@@ -38,15 +38,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 /**
- * ★ 手順テキスト内の「〜分」と「[動画 MM:SS]」を同時にリンク化する関数
+ * ★ 手順およびコラム内の「〜分」「[動画 MM:SS]」を同時にリンク化する関数
  */
 function enableStepLinks() {
+    // 1. 手順テキスト内の処理
     const stepTexts = document.querySelectorAll('.step-text');
-    
     stepTexts.forEach(el => {
         let text = el.innerHTML;
         
-        // 1. 「〜時間」「〜分」をタイマーリンクに置換
         const timeMatch = text.match(/(\d+〜?\d*)(時間|分)(半)?/g);
         if (timeMatch) {
             timeMatch.forEach(match => {
@@ -59,7 +58,6 @@ function enableStepLinks() {
             });
         }
 
-        // 2. 「[動画 MM:SS]」をYouTubeジャンプ用リンクに置換
         const videoMatch = text.match(/\[動画\s*(\d+:\d{2}(?::\d{2})?)\]/g);
         if (videoMatch) {
             text = text.replace(
@@ -70,6 +68,20 @@ function enableStepLinks() {
 
         el.innerHTML = text;
     });
+
+    // 2. コラム（#recipeColumn）内のタイムスタンプ処理
+    const columnEl = document.getElementById('recipeColumn');
+    if (columnEl) {
+        let colText = columnEl.innerHTML;
+        const colVideoMatch = colText.match(/\[動画\s*(\d+:\d{2}(?::\d{2})?)\]/g);
+        if (colVideoMatch) {
+            colText = colText.replace(
+                /\[動画\s*(\d+:\d{2}(?::\d{2})?)\]/g, 
+                `<span class="video-timestamp" style="color:var(--onao-green, #52ad1a); font-weight:bold; cursor:pointer; text-decoration:underline;">[動画 $1]</span>`
+            );
+            columnEl.innerHTML = colText;
+        }
+    }
 }
 
 /**
