@@ -1,5 +1,5 @@
 /**
- * 静的レシピページ専用スクリプト（タイマー自動挿入・粉量自動計算・YouTube初期消音・WebP手順画像自動読み込み対応版）
+ * 静的レシピページ専用スクリプト（完全修正版：動画タイムスタンプ＆タイマー連動対応）
  */
 
 let countdown;
@@ -8,10 +8,10 @@ let currentRecipeData = null;
 let ytPlayer = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // 0. ★ HTML上にタイマーモーダルが無い場合、JSで自動挿入する
+    // 0. HTML上にタイマーモーダルが無い場合、JSで自動挿入する
     injectTimerModal();
 
-    // 1. URLから現在のレシピIDを取得 (例: recipe-v066.html -> v066)
+    // 1. URLから現在のレシピIDを取得
     const path = window.location.pathname;
     const match = path.match(/recipe-(v\d+)\.html/);
     const currentId = match ? match[1] : null;
@@ -20,12 +20,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         setupFavorite(currentId);
         await loadRecipeDataAndSetupFlour(currentId);
         await loadRelatedRecipes(currentId);
-        // ★ 各手順のWebP画像を自動ロードする処理を追加
         loadStepImages(currentId);
     }
 
-    // 2. 手順テキスト内の時間表記を自動でタイマー化（かっこ無し対応）
-    enableTimerLinksInSteps();
+    // 2. 手順テキスト内の「時間・分」をタイマー化 ＆ 「[動画 MM:SS]」をタイムスタンプ化
+    enableStepLinks();
 
     // 3. タイマーの起動・停止ロジックをセットアップ
     setupTimer();
@@ -33,33 +32,112 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 4. チェックボックスのイベント
     setupCheckEvent();
 
-    // 5. YouTube動画プレイヤーの初期化（自動消音コントロール設定）
+    // 5. YouTube動画プレイヤーの初期化＆タイムスタンプクリック設定
     setupMutedYouTubePlayer();
+    setupVideoTimestampLinks();
 });
 
 /**
- * ★ 手順画像の自動挿入処理（WebP対応・レイアウト崩れ防止）
+ * ★ 手順テキスト内の「〜分」と「[動画 MM:SS]」を同時にリンク化する関数
+ */
+function enableStepLinks() {
+    const stepTexts = document.querySelectorAll('.step-text');
+    
+    stepTexts.forEach(el => {
+        let text = el.innerHTML;
+        
+        // 1. 「〜時間」「〜分」をタイマーリンクに置換
+        const timeMatch = text.match(/(\d+〜?\d*)(時間|分)(半)?/g);
+        if (timeMatch) {
+            timeMatch.forEach(match => {
+                if (!text.includes(`class="timer-link"`)) {
+                    text = text.replace(
+                        match, 
+                        `<span class="timer-link" style="color:var(--onao-green, #52ad1a); font-weight:bold; cursor:pointer; text-decoration:underline;">${match}</span>`
+                    );
+                }
+            });
+        }
+
+        // 2. 「[動画 MM:SS]」をYouTubeジャンプ用リンクに置換
+        const videoMatch = text.match(/\[動画\s*(\d+:\d{2}(?::\d{2})?)\]/g);
+        if (videoMatch) {
+            text = text.replace(
+                /\[動画\s*(\d+:\d{2}(?::\d{2})?)\]/g, 
+                `<span class="video-timestamp" style="color:var(--onao-green, #52ad1a); font-weight:bold; cursor:pointer; text-decoration:underline;">[動画 $1]</span>`
+            );
+        }
+
+        el.innerHTML = text;
+    });
+}
+
+/**
+ * ★ タイムスタンプをクリックしたときにYouTubeを指定時間にジャンプさせる処理
+ */
+function setupVideoTimestampLinks() {
+    document.addEventListener('click', (e) => {
+        const target = e.target.closest('.video-timestamp');
+        if (!target) return;
+
+        e.preventDefault();
+        const text = target.innerText;
+        const match = text.match(/(\d+:\d{2}(?:\:\d{2})?)/);
+        if (!match) return;
+
+        const timeStr = match[1];
+        const seconds = convertVideoTimeToSeconds(timeStr);
+
+        // iframeのsrcを書き換えて指定秒数へジャンプ＆自動再生させる
+        const iframe = document.querySelector('#videoContainer iframe');
+        if (iframe) {
+            let src = iframe.src.split('&start=')[0].split('?start=')[0];
+            const separator = src.includes('?') ? '&' : '?';
+            iframe.src = `${src}${separator}start=${seconds}&autoplay=1`;
+
+            const videoContainer = document.getElementById('videoContainer');
+            if (videoContainer) {
+                videoContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    });
+}
+
+/**
+ * 動画の時間文字列を秒数に変換するヘルパー
+ */
+function convertVideoTimeToSeconds(timeStr) {
+    const parts = timeStr.trim().split(':').map(Number);
+    if (parts.length === 3) {
+        return parts[0] * 3600 + parts[1] * 60 + parts[2];
+    } else if (parts.length === 2) {
+        return parts[0] * 60 + parts[1];
+    } else if (parts.length === 1 && !isNaN(parts[0])) {
+        return parts[0];
+    }
+    return 0;
+}
+
+/**
+ * 手順画像の自動挿入処理
  */
 function loadStepImages(recipeId) {
     const stepItems = document.querySelectorAll('.single-preparation-step');
 
     stepItems.forEach((stepEl, index) => {
-        const stepNum = index + 1; // 1から始まるステップ番号
+        const stepNum = index + 1;
         const imgPath = `img/recipes/${recipeId}/step-${stepNum}.webp`;
 
-        // 画像の存在チェック (HEADリクエスト代わりにImageオブジェクトのonloadを使用)
         const img = new Image();
         img.src = imgPath;
 
         img.onload = () => {
-            // 画像が存在する場合、テキストエリアの配下に挿入
             const textContainer = stepEl.querySelector('.step-right-column') || stepEl.querySelector('.step-text')?.parentElement;
 
             if (textContainer && !textContainer.querySelector('.step-inserted-image')) {
                 const imgDiv = document.createElement('div');
                 imgDiv.className = 'step-inserted-image mt-2 mb-2';
                 
-                // スマホで絶対にはみ出さない・崩れないスタイルを設定
                 imgDiv.innerHTML = `
                     <img src="${imgPath}" 
                          alt="手順${stepNum}の画像" 
@@ -70,68 +148,28 @@ function loadStepImages(recipeId) {
             }
         };
 
-        img.onerror = () => {
-            // 画像が存在しない場合は何も表示しない（静かにスルー）
-        };
+        img.onerror = () => {};
     });
 }
 
 /**
- * ★ 埋め込みYouTube動画をAPI化して確実に初期消音（Mute）に設定する関数
+ * 埋め込みYouTube動画をAPI化して確実に初期消音（Mute）に設定する関数
  */
 function setupMutedYouTubePlayer() {
     const iframe = document.querySelector('#videoContainer iframe');
     if (!iframe) return;
 
-    // iframeにidを付与して制御対象を明確化
     iframe.id = 'recipeYoutubeIframe';
 
-    // iframeのURLに enablejsapi=1 と mute=1 を付与
     let src = iframe.src;
     if (!src.includes('enablejsapi=1')) {
         src += (src.includes('?') ? '&' : '?') + 'enablejsapi=1&mute=1';
         iframe.src = src;
     }
-
-    // YouTube API スクリプトの読み込み
-    if (!window.YT) {
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        const firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    }
-
-    // APIの準備ができたらプレイヤーをセットアップ
-    const initPlayer = () => {
-        if (window.YT && window.YT.Player) {
-            ytPlayer = new YT.Player('recipeYoutubeIframe', {
-                events: {
-                    'onReady': (event) => {
-                        // 準備完了時に確実にミュートを適用
-                        event.target.mute();
-                    },
-                    'onStateChange': (event) => {
-                        // 再生が開始された(PLAYING=1)瞬間に再度消音を補正
-                        if (event.data === 1) {
-                            event.target.mute();
-                        }
-                    }
-                }
-            });
-        } else {
-            setTimeout(initPlayer, 100);
-        }
-    };
-
-    if (window.YT && window.YT.Player) {
-        initPlayer();
-    } else {
-        window.onYouTubeIframeAPIReady = initPlayer;
-    }
 }
 
 /**
- * ★ タイマー用HTML（モーダル）を動的にページへ注入する関数
+ * タイマー用HTML（モーダル）を動的にページへ注入する関数
  */
 function injectTimerModal() {
     if (document.getElementById('recipeTimer')) return;
@@ -153,7 +191,7 @@ function injectTimerModal() {
 }
 
 /**
- * ① recipes.json を読み込んで粉量計算機能を有効化する処理（粉量自動算出修正版）
+ * recipes.json を読み込んで粉量に応じた材料数値を動的計算・更新する処理
  */
 async function loadRecipeDataAndSetupFlour(recipeId) {
     const flourInput = document.getElementById('flourAmount');
@@ -190,10 +228,11 @@ async function loadRecipeDataAndSetupFlour(recipeId) {
         flourInput.value = totalFlourBase;
         updateIngredientsDisplay(totalFlourBase, totalFlourBase);
 
-        flourInput.addEventListener('input', () => {
-            const inputVal = parseFloat(flourInput.value) || 0;
-            updateIngredientsDisplay(inputVal, totalFlourBase);
-        });
+        // 粉量が変わったときのイベント
+        flourInput.oninput = (e) => {
+            const val = parseFloat(e.target.value) || 0;
+            updateIngredientsDisplay(val, totalFlourBase);
+        };
 
     } catch (error) {
         console.error("Flour Calc Setup Error:", error);
@@ -241,31 +280,7 @@ function updateIngredientsDisplay(currentFlourVal, baseAmount) {
 }
 
 /**
- * ② 手順のテキストから時間表記を探してタイマーリンクに置換する
- */
-function enableTimerLinksInSteps() {
-    const stepTexts = document.querySelectorAll('.step-text');
-    
-    stepTexts.forEach(el => {
-        let text = el.innerHTML;
-        const timeMatch = text.match(/(\d+〜?\d*)(時間|分)(半)?/g);
-        
-        if (timeMatch) {
-            timeMatch.forEach(match => {
-                if (!text.includes(`class="timer-link"`)) {
-                    text = text.replace(
-                        match, 
-                        `<span class="timer-link" style="color:var(--onao-green, #52ad1a); font-weight:bold; cursor:pointer; text-decoration:underline;">${match}</span>`
-                    );
-                }
-            });
-            el.innerHTML = text;
-        }
-    });
-}
-
-/**
- * ③ タイマー機能（iPad・iOSタッチイベント完全対応版）
+ * タイマー機能
  */
 function setupTimer() {
     const handleTimerClick = (e) => {
@@ -346,9 +361,7 @@ function startTimer(seconds) {
             const tempCtx = new AudioCtx();
             tempCtx.resume();
         }
-    } catch (e) {
-        console.log("AudioContext init skipped");
-    }
+    } catch (e) {}
 
     const timerOverlay = document.getElementById('recipeTimer');
     const display = document.getElementById('timerDisplay');
@@ -409,11 +422,12 @@ function playTimerSound() {
         
         oscillator.start();
         oscillator.stop(context.currentTime + 0.5);
-    } catch (e) {
-        console.error("Audio Error:", e);
-    }
+    } catch (e) {}
 }
 
+/**
+ * 関連レシピの読み込み
+ */
 async function loadRelatedRecipes(currentId) {
     const relatedDiv = document.getElementById('relatedRecipes');
     if (!relatedDiv) return;
@@ -466,11 +480,12 @@ async function loadRelatedRecipes(currentId) {
         });
         relatedDiv.innerHTML = html;
 
-    } catch (error) {
-        console.error("Related Recipes Error:", error);
-    }
+    } catch (error) {}
 }
 
+/**
+ * お気に入り機能
+ */
 function setupFavorite(recipeId) {
     const faveBtn = document.getElementById('faveBtn');
     const faveIcon = document.getElementById('faveIcon');
@@ -506,6 +521,9 @@ function setupFavorite(recipeId) {
     };
 }
 
+/**
+ * チェックボックスの打ち消し線などのイベント
+ */
 function setupCheckEvent() {
     document.querySelectorAll('.step-check').forEach(check => {
         check.addEventListener('change', function() {
@@ -528,20 +546,20 @@ function setupCheckEvent() {
     });
 }
 
+/**
+ * コラムの「続きを読む」開閉処理
+ */
 document.addEventListener("DOMContentLoaded", function() {
     const recipeDescription = document.getElementById("recipeDescription");
     const readMoreBtn = document.getElementById("readMoreBtn");
 
     if (recipeDescription && readMoreBtn) {
-        // 文章の実際の高さが、制限している高さ（95px）より大きい場合だけボタンを表示する
-        // ※「95px」はCSSの max-height に合わせています
         if (recipeDescription.scrollHeight > 95) {
             readMoreBtn.style.display = "block";
         } else {
             readMoreBtn.style.display = "none";
         }
 
-        // ボタンがクリックされたときの開閉処理
         readMoreBtn.addEventListener("click", function() {
             recipeDescription.classList.toggle("open");
             
