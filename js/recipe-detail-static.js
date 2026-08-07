@@ -218,23 +218,33 @@ async function loadRecipeDataAndSetupFlour(recipeId) {
 
         if (!currentRecipeData) return;
 
+        // 【修正版】セクション名と粉名の部分一致キーワードリスト
+        const targetSections = ["生地", "湯種"];
+        const targetFlours = ["強力粉", "薄力粉", "小麦粉", "米粉", "全粒粉", "リスドォル", "中力粉", "準強力粉", "ライ麦粉"];
+
         let totalFlourBase = 0;
-        let ratioSum = 0;
 
         if (currentRecipeData.ingredients) {
-            for (const group in currentRecipeData.ingredients) {
-                currentRecipeData.ingredients[group].forEach(ing => {
-                    const r = parseFloat(ing.ratio) || 0;
-                    const a = parseFloat(ing.amount) || 0;
+            for (const sectionName in currentRecipeData.ingredients) {
+                // セクション名の部分一致判定
+                const isTargetSection = targetSections.some(sec => sectionName && sectionName.includes(sec));
+                if (!isTargetSection) continue;
 
-                    if (r > 0 && ratioSum < 100) {
-                        totalFlourBase += a;
-                        ratioSum += r;
-                    }
-                });
+                const ingredients = currentRecipeData.ingredients[sectionName];
+                if (ingredients && Array.isArray(ingredients)) {
+                    ingredients.forEach(ing => {
+                        // 粉名の部分一致判定
+                        const isTargetFlour = targetFlours.some(f => ing.name && ing.name.includes(f));
+
+                        if (isTargetFlour && typeof ing.amount === 'number') {
+                            totalFlourBase += ing.amount;
+                        }
+                    });
+                }
             }
         }
 
+        // 粉が一つも見つからなかった場合は 200g を基準とする
         if (totalFlourBase === 0) totalFlourBase = 200;
 
         flourInput.value = totalFlourBase;
