@@ -28,7 +28,7 @@ def make_stars(diff_str):
 
 def generate_sitemap(recipes):
     site_url = "https://onaodonuts.com"
-    
+
     static_pages = [
         "",
         "index.html",
@@ -38,26 +38,28 @@ def generate_sitemap(recipes):
         "policy.html",
         "contact.html",
     ]
-    
+
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
     xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    
+
     for page in static_pages:
         xml += f'  <url>\n    <loc>{site_url}/{page}</loc>\n    <priority>0.8</priority>\n  </url>\n'
-        
+
     for recipe in recipes:
         if not recipe.get("isShort"):
             recipe_id = recipe.get("id")
             xml += f'  <url>\n    <loc>{site_url}/recipe-{recipe_id}.html</loc>\n    <priority>1.0</priority>\n  </url>\n'
-            
+
     xml += '</urlset>'
-    
+
     with open("sitemap.xml", "w", encoding="utf-8") as f:
         f.write(xml)
+
     print("sitemap.xml も自動生成完了しました！")
 
 def build_recipes():
     json_path = os.path.join("js", "recipes.json")
+
     if not os.path.exists(json_path):
         print("Error: js/recipes.json が見つかりません。")
         return
@@ -88,8 +90,8 @@ def build_recipes():
         difficulty_stars = make_stars(recipe.get("difficulty", 0))
 
         youtube_id = recipe.get("youtube")
-        
-        # JSONからuploadDateを取得。空欄または未設定ならデフォルト値（例: 2024-01-01）を適用
+
+        # Get uploadDate from JSON. Use default value if empty or not set.
         upload_date = recipe.get("uploadDate")
         if not upload_date or not upload_date.strip():
             upload_date = "2024-01-01"
@@ -99,8 +101,10 @@ def build_recipes():
         ingredients_ld = []
 
         raw_ingredients = recipe.get("ingredients", {})
+
         for group, items in raw_ingredients.items():
             ingredients_html += f'<div class="onao-ingredient-group"><h3>{group}</h3></div>'
+
             for idx, item in enumerate(items):
                 name = item.get("name", "")
                 amt = item.get("amount", "")
@@ -111,8 +115,9 @@ def build_recipes():
                     base_flour = amt
 
                 ingredients_ld.append(f"{name} {amt}{unit}".strip())
-                
+
                 check_id = f"check-{re.sub(r'\\s+', '', group)}-{idx}"
+
                 ingredients_html += f'''
                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
                     <input type="checkbox" class="custom-control-input ingredient-check" id="{check_id}">
@@ -127,16 +132,18 @@ def build_recipes():
 
         for s_idx, section in enumerate(raw_steps):
             group_title = section.get("group")
+
             if group_title:
                 steps_html += f'<div class="onao-section-title"><h3>{group_title}</h3></div>'
-            
+
             items = section.get("items", [])
+
             for i_idx, step_text in enumerate(items):
                 display_num = i_idx + 1
                 unique_id = f"step-{s_idx}-{i_idx}"
-                
+
                 processed_text = step_text
-                
+
                 def replace_timer(match):
                     full_match = match.group(0)
                     return f'<span class="timer-link" style="color:var(--onao-green); font-weight:bold; cursor:pointer; text-decoration:underline;">{full_match}</span>'
@@ -146,6 +153,22 @@ def build_recipes():
                     replace_timer,
                     processed_text
                 )
+
+                # Split STEP text into title and description at the first double line break.
+                step_parts = re.split(
+                    r'<br\s*/?>\s*<br\s*/?>',
+                    processed_text,
+                    maxsplit=1,
+                    flags=re.IGNORECASE
+                )
+
+                step_title = step_parts[0].strip()
+                step_description = step_parts[1].strip() if len(step_parts) > 1 else ""
+
+                if step_description:
+                    step_content = f'<strong>{step_title}</strong><br><br>{step_description}'
+                else:
+                    step_content = f'<strong>{step_title}</strong>'
 
                 instructions_ld.append({
                     "@type": "HowToStep",
@@ -164,13 +187,14 @@ def build_recipes():
                                 <label class="custom-control-label" for="{unique_id}"></label>
                             </div>
                         </div>
+
                         <div class="step-right-column flex-grow-1">
-                            <p class="step-text">{processed_text}</p>
+                            <div class="step-text" style="font-size: 1rem; font-weight: 400; line-height: 1.8; color: #5d4037;">{step_content}</div>
                         </div>
                     </div>
                 </div>'''
 
-        # JSON-LD構造化データ
+        # JSON-LD structured data
         json_ld_data = {
             "@context": "https://schema.org/",
             "@type": "Recipe",
@@ -212,6 +236,7 @@ def build_recipes():
         html = html.replace("{{ json_ld }}", json.dumps(json_ld_data, ensure_ascii=False, indent=2))
 
         column_text = recipe.get("column", "")
+
         if column_text:
             html = html.replace("{% if column %}", "").replace("{% endif %}", "")
             html = html.replace("{{ column }}", column_text)
@@ -224,7 +249,9 @@ def build_recipes():
         generated_count += 1
 
     print(f"完了！ {generated_count} 件の静的レシピHTMLを出力しました。")
+
     generate_sitemap(recipes)
+
 
 if __name__ == "__main__":
     build_recipes()

@@ -2353,12 +2353,10 @@ div:has(+ #videoContainer) h2::before,
     color: #5d4037 !important; /* おなおブラウン */
 }
 
-/* 手順欄の文字サイズ */
-.step-text,
 .onao-comment-text p {
 text-align: left !important;
     font-size: 15px !important;
-    font-weight: 600;
+    font-weight: 400;
     color: #5d4037 !important;
     line-height: 1.7 !important; /* 行間も揃えるときれいです */
 }
@@ -3075,3 +3073,4 @@ text-align: left !important;
         word-break: break-all !important; /* 長い単語があっても途中で折り返す */
     }
 }
+
