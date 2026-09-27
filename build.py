@@ -132,11 +132,13 @@ def build_recipes():
 
         for s_idx, section in enumerate(raw_steps):
             group_title = section.get("group")
+            anchor_id = section.get("anchor", group_title)
 
             if group_title:
-                steps_html += f'<div class="onao-section-title"><h3>{group_title}</h3></div>'
+                steps_html += f'<div class="onao-section-title" id="{anchor_id}"><h3>{group_title}</h3></div>'
 
             items = section.get("items", [])
+
 
             for i_idx, step_text in enumerate(items):
                 display_num = i_idx + 1
@@ -148,8 +150,9 @@ def build_recipes():
                     full_match = match.group(0)
                     return f'<span class="timer-link" style="color:var(--onao-green); font-weight:bold; cursor:pointer; text-decoration:underline;">{full_match}</span>'
 
+
                 processed_text = re.sub(
-                    r'(?<![0-9a-zA-Z\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF])(\d+〜?\d*(?:時間|分|秒)(?:半)?)',
+                    r'(?<![0-9a-zA-Z\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF])(\d+〜?\d*(?:時間|分|秒)(?:半)?)(?![割量類])',
                     replace_timer,
                     processed_text
                 )

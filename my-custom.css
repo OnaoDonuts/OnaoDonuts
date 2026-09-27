@@ -2363,7 +2363,20 @@ text-align: left !important;
     line-height: 1.7 !important; /* 行間も揃えるときれいです */
 }
 
+.step-text a {
+    color: #8b5e3c;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
 
+.step-text a:visited {
+    color: #8b5e3c;
+}
+
+.step-text a:hover {
+    color: #6f472d;
+}
 /* =========================================
    レシピ詳細ヒーローエリア
    ========================================= */
@@ -3073,5 +3086,26 @@ text-align: left !important;
     .onao-title-detail {
         white-space: normal !important;   /* ★最重要：絶対に改行させない設定を解除し、自動改行を許可する */
         word-break: break-all !important; /* 長い単語があっても途中で折り返す */
+    }
+}
+
+
+/* =========================================
+    レシピ手順：スマホ表示の改善
+=========================================*/
+@media (max-width: 767px) {
+    .step-left-column {
+        min-width: 30px;
+	}
+    .onao-steps-side {
+        padding: 20px 10px !important;
+    }
+    
+    #recipeColumnSection {
+        padding: 20px 8px 20px 15px !important;
+    }
+    
+    .step-number h4 {
+        margin-left: -4px !important;
     }
 }

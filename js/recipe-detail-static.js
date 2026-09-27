@@ -46,17 +46,22 @@ function enableStepLinks() {
     stepTexts.forEach(el => {
         let text = el.innerHTML;
         
-        const timeMatch = text.match(/(\d+〜?\d*)(時間|分)(半)?/g);
-        if (timeMatch) {
-            timeMatch.forEach(match => {
-                if (!text.includes(`class="timer-link"`)) {
-                    text = text.replace(
-                        match, 
-                        `<span class="timer-link" style="color:var(--onao-green, #52ad1a); font-weight:bold; cursor:pointer; text-decoration:underline;">${match}</span>`
-                    );
-                }
-            });
-        }
+const timeMatch = text.match(/(\d+〜?\d*)(時間|分)(半)?/g);
+
+if (timeMatch) {
+    timeMatch.forEach(match => {
+        // 「25分割」「10分量」など、単語の一部になっているものは除外
+        const regex = new RegExp(
+            `(?<![\\d])${match}(?![割量類])`,
+            'g'
+        );
+
+        text = text.replace(
+            regex,
+            `<span class="timer-link" style="color:var(--onao-green, #52ad1a); font-weight:bold; cursor:pointer; text-decoration:underline;">${match}</span>`
+        );
+    });
+}
 
         const videoMatch = text.match(/\[動画\s*(\d+:\d{2}(?::\d{2})?)\]/g);
         if (videoMatch) {
