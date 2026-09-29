@@ -2353,15 +2353,30 @@ div:has(+ #videoContainer) h2::before,
     color: #5d4037 !important; /* おなおブラウン */
 }
 
+/* 手順欄の文字サイズ */
+.step-text,
 .onao-comment-text p {
 text-align: left !important;
     font-size: 15px !important;
-    font-weight: 400;
+    font-weight: 600;
     color: #5d4037 !important;
     line-height: 1.7 !important; /* 行間も揃えるときれいです */
 }
 
+.step-text a {
+    color: #8b5e3c;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
 
+.step-text a:visited {
+    color: #8b5e3c;
+}
+
+.step-text a:hover {
+    color: #6f472d;
+}
 /* =========================================
    レシピ詳細ヒーローエリア
    ========================================= */
@@ -3074,3 +3089,23 @@ text-align: left !important;
     }
 }
 
+
+/* =========================================
+    レシピ手順：スマホ表示の改善
+=========================================*/
+@media (max-width: 767px) {
+    .step-left-column {
+        min-width: 30px;
+	}
+    .onao-steps-side {
+        padding: 20px 10px !important;
+    }
+    
+    #recipeColumnSection {
+        padding: 20px 8px 20px 15px !important;
+    }
+    
+    .step-number h4 {
+        margin-left: -4px !important;
+    }
+}
