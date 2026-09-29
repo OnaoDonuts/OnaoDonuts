@@ -118,6 +118,7 @@
             4
         ],
         "time": 125,
+        "yield": 8,
         "ingredients": {
             "生地": [
                 {
@@ -227,6 +228,7 @@
             1
         ],
         "time": 150,
+        "yield": 6,
         "ingredients": {
             "生地": [
                 {
@@ -905,6 +907,7 @@
             4
         ],
         "time": 240,
+        "yield": 5,
         "ingredients": {
             "生地": [
                 {
@@ -1029,6 +1032,7 @@
             2
         ],
         "time": 230,
+        "yield": 2,
         "ingredients": {
             "生地": [
                 {
@@ -1121,6 +1125,7 @@
             3
         ],
         "time": 60,
+        "yield": 6,
         "ingredients": {
             "生地": [
                 {
@@ -1231,6 +1236,7 @@
             4
         ],
         "time": 140,
+        "yield": 5,
         "ingredients": {
             "生地": [
                 {
@@ -1330,6 +1336,7 @@
             4
         ],
         "time": 160,
+        "yield": 5,
         "ingredients": {
             "生地": [
                 {
@@ -1471,6 +1478,7 @@
             3
         ],
         "time": 150,
+        "yield": 8,
         "ingredients": {
             "生地": [
                 {
@@ -1616,6 +1624,7 @@
             4
         ],
         "time": 150,
+        "yield": 9,
         "ingredients": {
             "生地": [
                 {
@@ -1758,6 +1767,7 @@
             1
         ],
         "time": 170,
+        "yield": 8,
         "ingredients": {
             "生地": [
                 {
@@ -1966,6 +1976,7 @@
             1
         ],
         "time": 150,
+        "yield": 4,
         "ingredients": {
             "生地": [
                 {
@@ -2071,6 +2082,7 @@
             3
         ],
         "time": 150,
+        "yield": 5,
         "ingredients": {
             "生地": [
                 {
@@ -2190,6 +2202,7 @@
             4
         ],
         "time": 150,
+        "yield": 5,
         "ingredients": {
             "生地": [
                 {
@@ -2302,6 +2315,7 @@
             1
         ],
         "time": 60,
+        "yield": 6,
         "ingredients": {
             "米粉食パン(1斤)": [
                 {
@@ -2439,6 +2453,7 @@
             4
         ],
         "time": 150,
+        "yield": 8,
         "ingredients": {
             "生地": [
                 {
@@ -2548,6 +2563,7 @@
             3
         ],
         "time": 100,
+        "yield": 25,
         "ingredients": {
             "カスタードクリーム": [
                 {
@@ -2678,6 +2694,7 @@
             3
         ],
         "time": 200,
+        "yield": 2,
         "ingredients": {
             "ドライフルーツのラム酒漬け": [
                 {
@@ -2865,6 +2882,7 @@
             4
         ],
         "time": 270,
+        "yield": 9,
         "ingredients": {
             "生地": [
                 {
@@ -3057,6 +3075,7 @@
             4
         ],
         "time": 210,
+        "yield": 6,
         "ingredients": {
             "生地": [
                 {
@@ -3180,6 +3199,7 @@
             4
         ],
         "time": 270,
+        "yield": 5,
         "ingredients": {
             "生地": [
                 {
@@ -3471,6 +3491,7 @@
             4
         ],
         "time": 200,
+        "yield": 9,
         "ingredients": {
             "生地": [
                 {
@@ -3600,6 +3621,7 @@
             1
         ],
         "time": 180,
+        "yield": 6,
         "ingredients": {
             "生地": [
                 {
@@ -3741,6 +3763,7 @@
             1
         ],
         "time": 200,
+        "yield": 8,
         "ingredients": {
             "生地": [
                 {
@@ -3843,6 +3866,7 @@
             3
         ],
         "time": 200,
+        "yield": 5,
         "ingredients": {
             "湯種(タンジョン)": [
                 {
@@ -4044,6 +4068,7 @@
             3
         ],
         "time": 160,
+        "yield": 12,
         "ingredients": {
             "生地": [
                 {
@@ -4199,6 +4224,7 @@
             4
         ],
         "time": 180,
+        "yield": 9,
         "ingredients": {
             "生地": [
                 {
@@ -4331,6 +4357,7 @@
             3
         ],
         "time": 90,
+        "yield": 9,
         "ingredients": {
             "生地": [
                 {
@@ -4821,6 +4848,7 @@
             1
         ],
         "time": 180,
+        "yield": 10,
         "ingredients": {
             "生地": [
                 {
@@ -4936,6 +4964,7 @@
             4
         ],
         "time": 120,
+        "yield": 4,
         "ingredients": {
             "生地": [
                 {
@@ -5582,6 +5611,7 @@
             4
         ],
         "time": 180,
+        "yield": 2,
         "ingredients": {
             "生地": [
                 {
@@ -5845,6 +5875,7 @@
             4
         ],
         "time": 170,
+        "yield": 4,
         "ingredients": {
             "生地": [
                 {
@@ -6079,6 +6110,7 @@
             3
         ],
         "time": 100,
+        "yield": 20,
         "ingredients": {
             "生地": [
                 {
@@ -6178,6 +6210,7 @@
             4
         ],
         "time": 180,
+        "yield": 5,
         "ingredients": {
             "生地": [
                 {
@@ -6298,6 +6331,7 @@
             4
         ],
         "time": 170,
+        "yield": 4,
         "ingredients": {
             "生地": [
                 {
@@ -6460,6 +6494,7 @@
             4
         ],
         "time": 170,
+        "yield": 2,
         "ingredients": {
             "生地": [
                 {
@@ -6597,6 +6632,7 @@
             1
         ],
         "time": 170,
+        "yield": 6,
         "ingredients": {
             "生地": [
                 {
@@ -6694,6 +6730,7 @@
             3
         ],
         "time": 130,
+        "yield": 10,
         "ingredients": {
             "生地": [
                 {
@@ -7196,6 +7233,7 @@
             3
         ],
         "time": 150,
+        "yield": 3,
         "ingredients": {
             "生地": [
                 {
@@ -7296,6 +7334,7 @@
             1
         ],
         "time": 180,
+        "yield": 5,
         "ingredients": {
             "生地": [
                 {
@@ -7448,6 +7487,7 @@
             3
         ],
         "time": 50,
+        "yield": 9,
         "ingredients": {
             "生地": [
                 {
@@ -7543,6 +7583,7 @@
             4
         ],
         "time": 150,
+        "yield": 5,
         "ingredients": {
             "生地": [
                 {
@@ -7896,6 +7937,7 @@
             2
         ],
         "time": 250,
+        "yield": 3,
         "ingredients": {
             "生地": [
                 {
@@ -7998,6 +8040,7 @@
             4
         ],
         "time": 190,
+        "yield": 4,
         "ingredients": {
             "生地": [
                 {
@@ -8091,6 +8134,7 @@
             4
         ],
         "time": 170,
+        "yield": 2,
         "ingredients": {
             "生地": [
                 {
@@ -8350,6 +8394,7 @@
             4
         ],
         "time": 160,
+        "yield": 9,
         "ingredients": {
             "生地": [
                 {
@@ -8455,6 +8500,7 @@
             4
         ],
         "time": 270,
+        "yield": 6,
         "ingredients": {
             "生地": [
                 {
@@ -8581,6 +8627,7 @@
             4
         ],
         "time": 170,
+        "yield": 8,
         "ingredients": {
             "生地": [
                 {
@@ -9112,6 +9159,7 @@
             4
         ],
         "time": 240,
+        "yield": 6,
         "ingredients": {
             "生地": [
                 {
@@ -9625,6 +9673,7 @@
             3
         ],
         "time": 150,
+        "yield": 6,
         "ingredients": {
             "生地": [
                 {
@@ -9718,6 +9767,7 @@
             2
         ],
         "time": 360,
+        "yield": 3,
         "ingredients": {
             "生地": [
                 {
@@ -9809,6 +9859,7 @@
             3
         ],
         "time": 150,
+        "yield": 8,
         "ingredients": {
             "生地": [
                 {

@@ -168,8 +168,8 @@ body, h1, h2, h3, h4, h5, h6 {
     .classy-navbar-toggler ~ .classy-menu {
         display: none;
     }
-    
     /* メニューが開いた時（breakpoint-onクラスがついた時）だけ表示する */
+    
     .breakpoint-off .classy-menu {
         display: none;
     }
@@ -3108,4 +3108,40 @@ text-align: left !important;
     .step-number h4 {
         margin-left: -4px !important;
     }
+}
+
+
+/* =========================================
+ --- 見出し内の「○個分」 --- 
+=========================================*/
+.yield-inline {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 2px;
+    margin-left: 10px;
+    font-size: 0.7em;          /* 見出しの大きさに連動するのでスマホでも崩れない */
+    font-weight: 700;
+    white-space: nowrap;       /* 「4個分」の途中で改行させない */
+}
+
+#yieldAmount {
+    display: inline-block;
+    font-size: 1.3em;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--onao-green);
+    font-variant-numeric: tabular-nums;
+}
+
+.yield-unit {
+    color: var(--onao-light-brown);
+}
+
+#yieldAmount.yield-pop {
+    animation: yieldPop 0.35s ease;
+}
+@keyframes yieldPop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.25); }
+    100% { transform: scale(1); }
 }

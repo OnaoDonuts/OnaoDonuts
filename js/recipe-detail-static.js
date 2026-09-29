@@ -277,6 +277,18 @@ function updateIngredientsDisplay(currentFlourVal, baseAmount) {
 
     const multiplier = baseAmount > 0 ? (currentFlourVal / baseAmount) : 1;
 
+const yieldAmount = document.getElementById('yieldAmount');
+const baseYield = Number(currentRecipeData.yield);
+
+if (yieldAmount && baseYield > 0) {
+    const y = Math.round(baseYield * multiplier * 10) / 10;   // 小数第一位で四捨五入
+    yieldAmount.textContent = y;
+
+    yieldAmount.classList.remove('yield-pop');
+    void yieldAmount.offsetWidth;
+    yieldAmount.classList.add('yield-pop');
+}
+
     let html = "";
     for (const group in currentRecipeData.ingredients) {
         html += `<div class="onao-ingredient-group"><h3>${group}</h3></div>`;

@@ -97,6 +97,7 @@ def build_recipes():
             upload_date = "2024-01-01"
 
         base_flour = 200
+        base_yield = recipe.get("yield")
         ingredients_html = ""
         ingredients_ld = []
 
@@ -226,6 +227,14 @@ def build_recipes():
             }
         }
 
+        yield_heading = ""
+        if base_yield:
+            yield_heading = (
+                f' <span class="yield-inline">'
+                f'<span id="yieldAmount">{base_yield}</span>'
+                f'<span class="yield-unit">個分</span></span>'
+            )
+            
         html = template_content
         html = html.replace("{{ name }}", recipe.get("name", ""))
         html = html.replace("{{ description }}", recipe.get("description", ""))
@@ -234,6 +243,7 @@ def build_recipes():
         html = html.replace("{{ formatted_time }}", formatted_time)
         html = html.replace("{{ difficulty_stars }}", difficulty_stars)
         html = html.replace("{{ base_flour }}", str(base_flour))
+        html = html.replace("{{ yield_heading }}", yield_heading)
         html = html.replace("{{ ingredients_html }}", ingredients_html)
         html = html.replace("{{ steps_html }}", steps_html)
         html = html.replace("{{ json_ld }}", json.dumps(json_ld_data, ensure_ascii=False, indent=2))
