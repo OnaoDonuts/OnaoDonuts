@@ -2010,6 +2010,64 @@ button.video-text-link {
     color: var(--onao-green);
 }
 
+/* --- 粉量の＋／−ステッパー --- */
+.flour-stepper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.flour-stepper #flourAmount {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    margin-bottom: 0 !important;
+}
+
+.flour-step-btn {
+    flex: 0 0 auto;
+    width: 44px;              /* 指で押しやすい大きさ */
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--onao-green);
+    background: #fff;
+    color: var(--onao-green);
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.15s, color 0.15s, transform 0.1s;
+}
+
+.flour-step-btn:hover {
+    background: var(--onao-green);
+    color: #fff;
+}
+
+.flour-step-btn:active {
+    transform: scale(0.92);
+}
+
+/* PCで出るブラウザ標準の上下矢印は、自前ボタンと重複するので消す */
+#flourAmount::-webkit-outer-spin-button,
+#flourAmount::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#flourAmount {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+@media print {
+    .flour-step-btn { display: none; }
+}
+
 .ingredient-item {
     display: flex;
     justify-content: space-between;

@@ -260,7 +260,16 @@ async function loadRecipeDataAndSetupFlour(recipeId) {
             const val = parseFloat(e.target.value) || 0;
             updateIngredientsDisplay(val, totalFlourBase);
         };
-
+        // ＋／−ボタン（スマホ・タブレット対応）
+        document.querySelectorAll('.flour-step-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const step = Number(btn.dataset.step) || 0;
+                const current = parseFloat(flourInput.value) || 0;
+                const next = Math.max(10, Math.round((current + step) * 10) / 10);
+                flourInput.value = next;
+                updateIngredientsDisplay(next, totalFlourBase);
+            });
+        });
     } catch (error) {
         console.error("Flour Calc Setup Error:", error);
     }
