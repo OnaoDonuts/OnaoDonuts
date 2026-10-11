@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>{{ name }} | おなおドーナツ</title>
-    <meta name="description" content="{{ description }}">
+    <title>{{ seo_title }} | おなおドーナツ</title>
+    <meta name="description" content="{{ description_plain }}">
     
     <!-- 完璧な Recipe 構造化データ（JSON-LD） -->
     <script type="application/ld+json">
@@ -13,8 +13,8 @@
     </script>
     
     <meta property="og:type" content="article">
-    <meta property="og:title" content="{{ name }} | おなおドーナツ">
-    <meta property="og:description" content="{{ description }}">
+    <meta property="og:title" content="{{ seo_title }} | おなおドーナツ">
+    <meta property="og:description" content="{{ description_plain }}">
     <meta property="og:image" content="https://img.youtube.com/vi/{{ youtube }}/hqdefault.jpg">
     <meta property="og:url" content="https://onaodonuts.com/{{ file_name }}">
 
@@ -29,7 +29,7 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="my-custom.css">
+    <link rel="stylesheet" href="my-custom.css?v=2">
 
     <link rel="stylesheet" href="css/all.min.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="css/font-awesome.min.css" media="print" onload="this.media='all'">
@@ -48,7 +48,7 @@
         <img src="img/core-img/donut_loading.png" alt="おなおドーナツを準備中...">
     </div>
 
-    <header class="header-area" id="header-placeholder"></header>
+    <header class="header-area" id="header-placeholder"{{ header_attr }}>{{ header_html }}</header>
 
     <div class="onao-brand-hero" id="recipeHero" style="background-color: #4b3e2a;">
         <div class="onao-hero-content">
@@ -131,7 +131,7 @@
                         <div class="onao-section-title">
                             <h2>作り方</h2>
                         </div>
-                        <div id="stepsList" class="mb-5">
+                        <div id="stepsList" class="mb-5"{{ steps_attr }}>
                             {{ steps_html }}
                         </div>
 
@@ -156,29 +156,31 @@
                     </div>
                     {% endif %}
 
+                    {{ author_box_html }}
+
                     <div id="relatedRecipesSection" class="p-4 shadow-sm">
                         <div class="onao-section-title mb-4">
                             <h2>こちらもおすすめ</h2>
                         </div>
-                        <div id="relatedRecipes" class="row"></div>
+                        <div id="relatedRecipes" class="row"{{ related_attr }}>{{ related_html }}</div>
                     </div>
                 </div>
             </div>
         </div>
     </article>
 
-    <footer class="footer-area">
-        <div id="footer-placeholder"></div>
-        <div id="footer-nav-placeholder" class="d-md-none"></div>
-    </footer>
+    <div class="footer-area">
+        <div id="footer-placeholder"{{ footer_attr }}>{{ footer_html }}</div>
+        <div id="footer-nav-placeholder" class="d-md-none"{{ bottom_nav_attr }}>{{ bottom_nav_html }}</div>
+    </div>
 
     <script src="js/jquery/jquery-2.2.4.min.js" defer></script>
     <script src="js/bootstrap/popper.min.js" defer></script>
     <script src="js/bootstrap/bootstrap.min.js" defer></script>
     <script src="js/plugins/plugins.js" defer></script>
 
-    <script src="js/common.js" defer></script>    
+    <script src="js/common.js?v=3" defer></script>    
     <script src="js/active.js" defer></script>
-    <script src="js/recipe-detail-static.js" defer></script>
+    <script src="js/recipe-detail-static.js?v=3" defer></script>
 </body>
 </html>

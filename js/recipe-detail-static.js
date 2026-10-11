@@ -46,22 +46,14 @@ function enableStepLinks() {
     stepTexts.forEach(el => {
         let text = el.innerHTML;
         
-const timeMatch = text.match(/(\d+〜?\d*)(時間|分)(半)?/g);
-
-if (timeMatch) {
-    timeMatch.forEach(match => {
+// 「4分」「1時間半」などをタイマー化（1回の置換で済ませ、二重ラップを防ぐ）
         // 「25分割」「10分量」など、単語の一部になっているものは除外
-        const regex = new RegExp(
-            `(?<![\\d])${match}(?![割量類])`,
-            'g'
-        );
-
-        text = text.replace(
-            regex,
-            `<span class="timer-link" style="color:var(--onao-green, #52ad1a); font-weight:bold; cursor:pointer; text-decoration:underline;">${match}</span>`
-        );
-    });
-}
+        if (!el.querySelector('.timer-link')) {
+            text = text.replace(
+                /(?<![\d])(\d+〜?\d*(?:時間|分)(?:半)?)(?![割量類])/g,
+                '<span class="timer-link" style="color:var(--onao-green, #52ad1a); font-weight:bold; cursor:pointer; text-decoration:underline;">$1</span>'
+            );
+        }
 
         const videoMatch = text.match(/\[動画\s*(\d+:\d{2}(?::\d{2})?)\]/g);
         if (videoMatch) {
@@ -139,6 +131,10 @@ function convertVideoTimeToSeconds(timeStr) {
  * 手順画像の自動挿入処理
  */
 function loadStepImages(recipeId) {
+    // build.py が画像をHTMLに書き出し済みなら、JSでの挿入は不要
+    const stepsListEl = document.getElementById('stepsList');
+    if (stepsListEl && stepsListEl.dataset.imagesPrerendered === '1') return;
+
     const stepItems = document.querySelectorAll('.single-preparation-step');
 
     stepItems.forEach((stepEl, index) => {
@@ -152,15 +148,24 @@ function loadStepImages(recipeId) {
             const textContainer = stepEl.querySelector('.step-right-column') || stepEl.querySelector('.step-text')?.parentElement;
 
             if (textContainer && !textContainer.querySelector('.step-inserted-image')) {
+                // 手順の見出し（<strong>）から alt を作る。「[動画 09:20]」は除く
+                const titleEl = stepEl.querySelector('.step-text strong');
+                const title = (titleEl ? titleEl.textContent : '')
+                    .replace(/[（(]?\[動画[^\]]*\][）)]?/g, '')
+                    .trim();
+                const recipeName = (document.getElementById('recipeTitle')?.textContent || '').trim();
+                const altText = [recipeName, title || `手順${stepNum}`].filter(Boolean).join('：');
+
                 const imgDiv = document.createElement('div');
                 imgDiv.className = 'step-inserted-image mt-2 mb-2';
-                
-                imgDiv.innerHTML = `
-                    <img src="${imgPath}" 
-                         alt="手順${stepNum}の画像" 
-                         loading="lazy"
-                         style="width: 100%; max-width: 420px; height: auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: block; margin-top: 8px;">
-                `;
+
+                const imgEl = document.createElement('img');
+                imgEl.src = imgPath;
+                imgEl.alt = altText;
+                imgEl.loading = 'lazy';
+                imgEl.style.cssText = 'width: 100%; max-width: 420px; height: auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: block; margin-top: 8px;';
+
+                imgDiv.appendChild(imgEl);
                 textContainer.appendChild(imgDiv);
             }
         };
@@ -479,6 +484,8 @@ function playTimerSound() {
 async function loadRelatedRecipes(currentId) {
     const relatedDiv = document.getElementById('relatedRecipes');
     if (!relatedDiv) return;
+    // build.py が関連レシピをHTMLに書き出し済みなら、JSでは差し替えない
+    if (relatedDiv.dataset.prerendered === '1') return;
 
     try {
         const response = await fetch('js/recipes.json');
