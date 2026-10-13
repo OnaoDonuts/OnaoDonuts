@@ -70,7 +70,7 @@ def clean_keywords(keywords, limit=10):
 
 # ---- 著者ボックスの内容（ここを書き換えれば、全レシピページに反映されます）----
 AUTHOR = {
-    "name": "おなおドーナツ",
+    "name": "おなお",
     "tagline": "主婦です / パン作りとプログラミングが趣味です",
     "bio": (
         "子供の頃からパンが大好きで、お家で自由に作り始めたのがきっかけです。"
@@ -465,9 +465,13 @@ def build_recipes():
                 # 構造化データ用の手順（HTMLタグなし。画像があれば image も付ける）
                 ld_name = to_plain_text(step_title)
                 ld_text = to_plain_text(step_description) or ld_name
-                ld_step = {"@type": "HowToStep", "text": ld_text}
-                if ld_name and ld_name != ld_text:
-                    ld_step["name"] = ld_name
+                # name（短い見出し）と url（その手順への直リンク）は、すべての手順に付ける
+                ld_step = {
+                    "@type": "HowToStep",
+                    "name": ld_name or ld_text,
+                    "text": ld_text,
+                    "url": f"https://onaodonuts.com/{file_name}#{unique_id}",
+                }
                 if os.path.exists(img_rel):
                     ld_step["image"] = f"https://onaodonuts.com/{img_rel}"
                 section_steps_ld.append(ld_step)
