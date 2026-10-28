@@ -4,6 +4,52 @@ import os
 import re
 from datetime import datetime
 
+def select_adsense_review_step_images(recipe_id, raw_steps):
+    """審査用に表示する手順画像を選ぶ。画像・写真への言及は優先して残す。"""
+    all_steps = [
+        str(step_text)
+        for section in raw_steps
+        for step_text in section.get("items", [])
+    ]
+    total_steps = len(all_steps)
+
+    # 実在する画像ファイルがある手順だけを候補にする
+    available = {
+        step_no
+        for step_no in range(1, total_steps + 1)
+        if os.path.exists(
+            f"img/recipes/{recipe_id}/step-{step_no}.webp"
+        )
+    }
+
+    # 本文で画像・写真に言及している手順の画像は優先して残す
+    selected = {
+        step_no
+        for step_no, step_text in enumerate(all_steps, start=1)
+        if step_no in available and re.search(r"画像|写真", step_text)
+    }
+
+    # 残りは中盤から終盤を中心に選び、合計3枚を目指す
+    slots = max(0, 3 - len(selected))
+    candidates = sorted(available - selected)
+
+    for i in range(slots):
+        if not candidates:
+            break
+
+        target = 0.55 + 0.40 * (i + 1) / (slots + 1)
+        best = min(
+            candidates,
+            key=lambda n: (
+                abs(n / max(total_steps, 1) - target),
+                -n,
+            ),
+        )
+        selected.add(best)
+        candidates.remove(best)
+
+    return selected
+
 def format_time(mins_str):
     try:
         mins = int(mins_str)
@@ -408,6 +454,9 @@ def build_recipes():
         steps_html = ""
         instructions_ld = []
         raw_steps = recipe.get("steps", [])
+        adsense_review_step_images = select_adsense_review_step_images(
+            recipe_id, raw_steps
+        )
 
         global_step_no = 0  # 画像ファイル名(step-N.webp)用の、ページ全体の通し番号
 
@@ -449,7 +498,12 @@ def build_recipes():
                 # 手順画像：ファイルがあれば最初からHTMLに書き出す（JSに頼らない）
                 step_image_html = ""
                 img_rel = f"img/recipes/{recipe_id}/step-{global_step_no}.webp"
-                if os.path.exists(img_rel):
+
+                show_step_image = (
+                    global_step_no in adsense_review_step_images
+                )
+
+                if show_step_image and os.path.exists(img_rel):
                     size = get_image_size(img_rel)
                     size_attr = f' width="{size[0]}" height="{size[1]}"' if size else ""
                     alt_title = plain_step_title(step_title) or f"手順{global_step_no}"
@@ -472,7 +526,7 @@ def build_recipes():
                     "text": ld_text,
                     "url": f"https://onaodonuts.com/{file_name}#{unique_id}",
                 }
-                if os.path.exists(img_rel):
+                if show_step_image and os.path.exists(img_rel):
                     ld_step["image"] = f"https://onaodonuts.com/{img_rel}"
                 section_steps_ld.append(ld_step)
 
