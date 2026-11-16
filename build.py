@@ -265,8 +265,6 @@ def generate_sitemap(recipes):
     static_pages = [
         "",
         "index.html",
-        "recipe-search.html",
-        "video-list.html",
         "profile.html",
         "policy.html",
         "contact.html",
