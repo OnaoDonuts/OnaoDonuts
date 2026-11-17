@@ -363,6 +363,184 @@ def inject_partials_into_static_pages(header_html, footer_html, bottom_nav_html)
         else:
             print(f"変更なし: {page}")
 
+# ---- recipe-search.html / video-list.html：一覧を最初からHTMLに書き込む ----
+# JSが動く前（クローラーなど）でも、一覧の中身が見えるようにする。JSが動くと、これまでどおり描画し直す。
+VIDEO_PAGE_SIZE = 9   # video-list.js の PAGE_SIZE と同じ（最初に表示される件数）
+
+
+def _to_int(value):
+    try:
+        return int(str(value).strip())
+    except (TypeError, ValueError):
+        return 0
+
+
+def _id_num(rid):
+    m = re.search(r"\d+", str(rid))
+    return int(m.group()) if m else 0
+
+
+def _categories(recipe):
+    cat = recipe.get("category")
+    return cat if isinstance(cat, list) else ([cat] if cat is not None else [])
+
+
+def format_time_search(total):
+    """search.js の formatTime と同じ表記（例：180 → 3h 00m）"""
+    if not total or str(total) in ("0", ""):
+        return "---"
+    mins = _to_int(total)
+    return f"{mins // 60}h {mins % 60:02d}m"
+
+
+def ingredient_names(recipe):
+    names = []
+    for group in (recipe.get("ingredients") or {}).values():
+        if isinstance(group, list):
+            for item in group:
+                if item and item.get("name"):
+                    names.append(item["name"])
+    return ", ".join(names)
+
+
+def search_card_html(r):
+    """search.js が作るカードと同じ形（お気に入りは未登録の状態）"""
+    zukan_no = str(r["id"]).replace("v", "", 1)
+    diff = _to_int(r.get("difficulty"))
+    stars = "".join(
+        '<i class="fa-solid fa-star"></i>' if i <= diff else '<i class="fa-regular fa-star" style="opacity: 0.3;"></i>'
+        for i in range(1, 6)
+    )
+    rid, name = esc(r["id"]), esc(r.get("name", ""))
+    return f'''
+                    <div class="col-12 col-md-6 col-lg-3 mb-4 rs-card-col">
+                       <a href="recipe-{rid}.html" class="rs-link">
+                       <div class="zukan-card-inner">
+                                <div class="zukan-image-wrapper">
+                                    <span class="zukan-no">No.{zukan_no}</span>
+<img src="https://img.youtube.com/vi/{esc(r.get("youtube", ""))}/mqdefault.jpg" alt="{name}のレシピ" loading="lazy">
+                                </div>
+                                <div class="zukan-content">
+                                    <div class="zukan-meta-row">
+                                        <div class="rs-meta-top-row">
+                                            <span class="rs-time"><i class="fa-regular fa-clock"></i> {format_time_search(r.get("time"))}</span>
+                                            <span class="zukan-heart"><i class="fa-heart fa-regular inactive"></i></span>
+                                        </div>
+                                        <div class="rs-meta-bottom-row">
+                                            <span class="zukan-difficulty"><span class="rs-lvl-label">難易度：</span>{stars}</span>
+                                        </div>
+                                    </div>
+                                    <h3 class="zukan-title">{name}</h3>
+                                    <p class="zukan-description">{esc(ingredient_names(r))}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>'''
+
+
+def video_list_recipes(recipes):
+    """video-list.js の fetchRecipes と同じ絞り込み・並び順（ID の新しい順）"""
+    out = []
+    for r in recipes:
+        cats = _categories(r)
+        if _to_int(r.get("fun")) >= 5 or 4 in cats or r.get("isShort") is True or 5 in cats:
+            out.append(r)
+    out.sort(key=lambda r: -_id_num(r["id"]))
+    return out
+
+
+def video_card_html(r):
+    """video-list.js が作るカードと同じ形。レシピページがある動画は、タイトルをリンクにする"""
+    yt = esc(r.get("youtube", ""))
+    diff = _to_int(r.get("difficulty"))
+    stars = "".join('<i class="fas fa-star"></i>' if i <= diff else '<i class="far fa-star"></i>' for i in range(1, 6))
+    is_short = r.get("isShort") is True or 5 in _categories(r)
+    grid = "col-4 col-md-4 col-lg-2 px-1 mb-2" if is_short else "col-12 col-md-6 col-lg-4 mb-4"
+    name = esc(r.get("name", ""))
+    h3 = f'<h3 class="yt-video-title">{name}</h3>'
+    title_block = h3 if is_short else (
+        f'<a href="recipe-{esc(r["id"])}.html" style="text-decoration: none; color: inherit;">\n'
+        f'                                {h3}\n'
+        f'                            </a>'
+    )
+    meta = "" if is_short else f'''
+                            <div class="yt-video-meta">
+                                <span class="yt-diff-label">難易度: </span>
+                                <span class="yt-stars">{stars}</span>
+                                <span class="yt-sep">•</span>
+                                <span>おなおドーナツ</span>
+                            </div>'''
+    return f'''
+            <div class="{grid}">
+                <div class="yt-card {"is-short" if is_short else ""}" id="card-{yt}">
+                    <div class="yt-thumb-container" onclick="playVideoInline('{yt}', {"true" if is_short else "false"})">
+                        <div id="player-{yt}" class="video-embed-wrapper">
+                    <img src="https://img.youtube.com/vi/{yt}/mqdefault.jpg" alt="{name}の作り方動画" class="yt-thumb-img" loading="lazy">
+                            <div class="yt-play-badge"><i class="fas fa-play"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="yt-info-flex {"is-short-info" if is_short else ""}">
+                        <div class="yt-text-box">
+                            {title_block}{meta}
+                        </div>
+                    </div>
+                </div>
+            </div>'''
+
+
+def _inject_into_empty_div(html, element_id, marker, content):
+    """<div id="element_id" ...></div> の中身を、目印付きで content に入れ替える（何度実行しても同じ結果）"""
+    pat = re.compile(
+        r'(<div\b[^>]*\bid="' + re.escape(element_id) + r'"[^>]*>)'
+        r'(?:\s*<!-- prerender:' + marker + r':start -->[\s\S]*?<!-- prerender:' + marker + r':end -->)?'
+        r'\s*(</div>)'
+    )
+    if not pat.search(html):
+        return None
+    return pat.sub(lambda m: m.group(1) + f"<!-- prerender:{marker}:start -->" + content + f"\n<!-- prerender:{marker}:end -->" + m.group(2), html, count=1)
+
+
+def inject_list_pages(recipes):
+    # --- recipe-search.html：全レシピのカード＋件数 ---
+    page = "recipe-search.html"
+    if os.path.exists(page):
+        with open(page, "r", encoding="utf-8") as f:
+            src = f.read()
+        items = sorted([r for r in recipes if not r.get("isShort")], key=lambda r: -_id_num(r["id"]))
+        out = _inject_into_empty_div(src, "results", "search-results", "".join(search_card_html(r) for r in items))
+        if out is None:
+            print(f"注意: {page} の <div id=\"results\"> が想定の形ではないため、一覧の書き込みをスキップしました。")
+        else:
+            count_pat = re.compile(r'(<div id="searchCount"[^>]*>)[\s\S]*?(</div>)')
+            if count_pat.search(out):
+                out = count_pat.sub(
+                    lambda m: m.group(1) + "<!-- prerender:search-count:start -->\n        <span id=\"currentSearchTerm\"></span> "
+                    + f"<strong>{len(items)}</strong> 件のレシピが見つかりました\n    <!-- prerender:search-count:end -->" + m.group(2),
+                    out, count=1)
+            if out != src:
+                with open(page, "w", encoding="utf-8") as f:
+                    f.write(out)
+                print(f"一覧を書き込みました: {page}（{len(items)} 件）")
+            else:
+                print(f"変更なし: {page}")
+
+    # --- video-list.html：最初に表示される分（VIDEO_PAGE_SIZE 件）の動画カード ---
+    page = "video-list.html"
+    if os.path.exists(page):
+        with open(page, "r", encoding="utf-8") as f:
+            src = f.read()
+        vids = video_list_recipes(recipes)[:VIDEO_PAGE_SIZE]
+        out = _inject_into_empty_div(src, "video-results", "video-results", "".join(video_card_html(r) for r in vids))
+        if out is None:
+            print(f"注意: {page} の <div id=\"video-results\"> が想定の形ではないため、一覧の書き込みをスキップしました。")
+        elif out != src:
+            with open(page, "w", encoding="utf-8") as f:
+                f.write(out)
+            print(f"一覧を書き込みました: {page}（先頭 {len(vids)} 件）")
+        else:
+            print(f"変更なし: {page}")
+
 
 def build_recipes():
     json_path = os.path.join("js", "recipes.json")

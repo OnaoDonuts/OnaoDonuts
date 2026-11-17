@@ -135,19 +135,24 @@ function renderMoreCards() {
                 ? 'col-4 col-md-4 col-lg-2 px-1 mb-2' 
                 : 'col-12 col-md-6 col-lg-4 mb-4';
 
+        // 個別レシピページのファイル名（例: recipe-v040.html）
+        const recipeUrl = `recipe-${recipe.id}.html`;
+
         const videoCard = `
             <div class="${gridClass}">
                 <div class="yt-card ${isShort ? 'is-short' : ''}" id="card-${recipe.youtube}">
                     <div class="yt-thumb-container" onclick="playVideoInline('${recipe.youtube}', ${isShort})">
                         <div id="player-${recipe.youtube}" class="video-embed-wrapper">
-                    <img src="${thumbImg}" alt="${recipe.name}の作り方動画" class="yt-thumb-img" loading="lazy">
+                            <img src="${thumbImg}" alt="${recipe.name}の作り方動画" class="yt-thumb-img" loading="lazy">
                             <div class="yt-play-badge"><i class="fas fa-play"></i></div>
                         </div>
                     </div>
 
                     <div class="yt-info-flex ${isShort ? 'is-short-info' : ''}">
                         <div class="yt-text-box">
-                            <h3 class="yt-video-title">${recipe.name}</h3>
+                            <a href="${recipeUrl}" style="text-decoration: none; color: inherit;">
+                                <h3 class="yt-video-title">${recipe.name}</h3>
+                            </a>
                             ${!isShort ? `
                             <div class="yt-video-meta">
                                 <span class="yt-diff-label">難易度: </span>

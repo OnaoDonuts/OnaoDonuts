@@ -150,9 +150,11 @@ function renderMoreCards() {
 
                     <div class="yt-info-flex ${isShort ? 'is-short-info' : ''}">
                         <div class="yt-text-box">
-                            <a href="${recipeUrl}" style="text-decoration: none; color: inherit;">
+                            ${isShort
+                                ? `<h3 class="yt-video-title">${recipe.name}</h3>`
+                                : `<a href="${recipeUrl}" style="text-decoration: none; color: inherit;">
                                 <h3 class="yt-video-title">${recipe.name}</h3>
-                            </a>
+                            </a>`}
                             ${!isShort ? `
                             <div class="yt-video-meta">
                                 <span class="yt-diff-label">難易度: </span>
