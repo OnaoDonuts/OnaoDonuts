@@ -6,15 +6,37 @@
     <meta name="robots" content="noindex, follow">
     <title>レシピ検索 | おなおドーナツ</title>
     <meta name="description" content="おなおドーナツのパンレシピを、材料やパンの種類から簡単に検索できます。ホームベーカリー、こねないパンなど、あなたにぴったりのレシピが見つかります。">
+    
+    <!-- 検索ページの構造化データ -->
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SearchResultsPage",
-  "name": "レシピ検索 | おなおドーナツ",
-  "description": "おなおドーナツのパンレシピを、材料やパンの種類から簡単に検索できます。",
-  "url": "https://onaodonuts.com/recipe-search.html"
-}
-</script>
+    {
+      "@context": "https://schema.org",
+      "@type": "SearchResultsPage",
+      "name": "レシピ検索 | おなおドーナツ",
+      "description": "おなおドーナツのパンレシピを、材料やパンの種類から簡単に検索できます。",
+      "url": "https://onaodonuts.com/recipe-search.html"
+    }
+    </script>
+
+    <!-- パンくずリストの構造化データ（追加） -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "ホーム",
+        "item": "https://onaodonuts.com/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "レシピ検索",
+        "item": "https://onaodonuts.com/recipe-search.html"
+      }]
+    }
+    </script>
+
 <meta property="og:type" content="website">
 <meta property="og:title" content="レシピ検索 | おなおドーナツ">
 <meta property="og:description" content="おなおドーナツのパンレシピを、材料やパンの種類から簡単に検索できます。ホームベーカリー、こねないパンなど、あなたにぴったりのレシピが見つかります。">
@@ -149,7 +171,7 @@
 </div>
 
     <div id="searchCount" class="text-center mb-4" style="font-weight: bold; color: #4b3e2a;">
-        <span id="currentSearchTerm"></span> 0 件のレシピが見つかりました
+        <span id="currentSearchTerm"></span> キーワードやタグを選んでレシピを検索できます
     </div>
     
     <div id="results" class="row"></div>
@@ -160,6 +182,64 @@
             <p>ごめんなさい、お探しのレシピは見つかりませんでした。</p>
         </div>
     </div>
+
+
+    <!-- ★ 追加ブロック1：レシピの探し方ガイド・機能紹介 -->
+    <section class="container my-5">
+        <div class="p-4" style="background-color: #fdfbf7; border: 1px solid #f0e6d6; border-radius: 16px;">
+            <h2 class="text-center" style="font-size: 1.15rem; color: #4b3e2a; font-weight: bold; margin-bottom: 15px;">
+                お気に入りのパンレシピを見つけるヒント
+            </h2>
+            <p style="color: #5d4037; font-size: 0.9rem; line-height: 1.8; margin-bottom: 15px;">
+                「おなおドーナツ」のレシピ検索では、パンの名前だけでなく<strong>「強力粉」「米粉」「チョコレート」「バター」といった使いたい材料名</strong>や、<strong>「ホームベーカリー」「こねない」「魚焼きグリル」などの作り方・道具のキーワード</strong>でも絞り込みができます。冷蔵庫にある材料から作りたいパンを探したいときにもぜひご活用ください。
+            </p>
+            <div class="row mt-3">
+                <div class="col-12 col-md-6 mb-3 mb-md-0">
+                    <div class="p-3" style="background: #fff; border-radius: 12px; height: 100%; border: 1px solid #f0e6d6;">
+                        <h3 style="font-size: 0.98rem; color: #4b3e2a; font-weight: bold; margin-bottom: 8px;">
+                            <i class="fa-solid fa-heart mr-2" style="color: #ff6b6b;"></i>お気に入り機能でレシピ帳に
+                        </h3>
+                        <p style="color: #666; font-size: 0.88rem; line-height: 1.7; margin-bottom: 0;">
+                            各レシピページにあるハートボタンを押すと、ブラウザにお気に入りが保存されます。検索ページの「お気に入りレシピを表示」ボタンから、よく作る定番メニューをいつでもすぐに呼び出せます。
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="p-3" style="background: #fff; border-radius: 12px; height: 100%; border: 1px solid #f0e6d6;">
+                        <h3 style="font-size: 0.98rem; color: #4b3e2a; font-weight: bold; margin-bottom: 8px;">
+                            <i class="fa-solid fa-scale-balanced mr-2" style="color: #b58351;"></i>粉の量に合わせた自動計算
+                        </h3>
+                        <p style="color: #666; font-size: 0.88rem; line-height: 1.7; margin-bottom: 0;">
+                            すべてのレシピページに「粉の量（g）の自動計算ツール」を搭載しています。焼きたい個数や型のサイズに合わせて粉の量を変更すると、他の材料の分量も自動で再計算されるため便利です。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ★ 追加ブロック2：目的別おすすめレシピの導線 -->
+    <section class="container mb-5">
+        <div class="p-4" style="background-color: #fff; border: 1px solid #eee; border-radius: 16px;">
+            <h2 class="text-center" style="font-size: 1.1rem; color: #4b3e2a; font-weight: bold; margin-bottom: 15px;">
+                目的や気分から選ぶおすすめレシピ
+            </h2>
+            <ul style="color: #5d4037; font-size: 0.9rem; line-height: 1.9; padding-left: 20px; margin-bottom: 0;">
+                <li class="mb-2">
+                    <strong>毎日の朝食にぴったりの食パン：</strong>
+                    ホームベーカリーにお任せでふわふわに焼き上がる<a href="recipe-v130.html" style="color: #4b3e2a; text-decoration: underline;">最高の食パン</a>や、断面の模様が楽しい<a href="recipe-v136.html" style="color: #4b3e2a; text-decoration: underline;">マーブル食パン</a>が人気です。
+                </li>
+                <li class="mb-2">
+                    <strong>手ごね不要で本格派の味わい：</strong>
+                    ボウルで混ぜてじっくり熟成させる<a href="recipe-v138.html" style="color: #4b3e2a; text-decoration: underline;">チャバタ</a>は、外はパリッと中はもっちりとした食感が楽しめます。
+                </li>
+                <li>
+                    <strong>おやつやプレゼントに喜ばれる成形パン：</strong>
+                    ちぎりパンとしても可愛い<a href="recipe-v123.html" style="color: #4b3e2a; text-decoration: underline;">お花の白パン（マーガレット）</a>や、編み込みで美しく仕上げる<a href="recipe-v105.html" style="color: #4b3e2a; text-decoration: underline;">りんごカスタードパン</a>もおすすめです。
+                </li>
+            </ul>
+        </div>
+    </section>
 
 
     <!-- ##### Footer Area Start ##### -->

@@ -6,6 +6,8 @@
     <meta name="robots" content="noindex, follow">
 <title>パン作り動画図鑑 | おなおドーナツ</title>
 <meta name="description" content="ホームベーカリーの生地作りやパンの成形、ショート動画まで、おなおドーナツのパン作り動画をまとめてチェック。プロのコツが動画で学べる図鑑です。">
+
+<!-- 検索ページの構造化データ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -15,6 +17,26 @@
   "url": "https://onaodonuts.com/video-list.html"
 }
 </script>
+
+<!-- パンくずリストの構造化データ（追加） -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "ホーム",
+    "item": "https://onaodonuts.com/"
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "name": "動画図鑑",
+    "item": "https://onaodonuts.com/video-list.html"
+  }]
+}
+</script>
+
 <meta property="og:type" content="website">
 <meta property="og:title" content="パン作り動画図鑑 | おなおドーナツ"> <meta property="og:description" content="ホームベーカリーの生地作りやパンの成形、ショート動画まで、おなおドーナツのパン作り動画をまとめてチェック。コツが動画で学べる図鑑です。">
 <meta property="og:url" content="https://onaodonuts.com/video-list.html">
@@ -165,6 +187,50 @@
 </div>
 
 </div>
+
+<!-- ★ 追加ブロック：動画図鑑の活用ガイド・カテゴリー解説 -->
+<section class="container my-5">
+    <div class="p-4" style="background-color: #fdfbf7; border: 1px solid #f0e6d6; border-radius: 16px;">
+        <h2 class="text-center" style="font-size: 1.15rem; color: #4b3e2a; font-weight: bold; margin-bottom: 15px;">
+            パン作り動画図鑑の見どころと使い方
+        </h2>
+        <p style="color: #5d4037; font-size: 0.9rem; line-height: 1.8; margin-bottom: 15px;">
+            「おなおドーナツ」の動画図鑑では、言葉や写真だけでは伝わりにくい<strong>「生地の質感」「成形のときの手つき」「丸め方のコツ」</strong>などを動画で楽しいおしゃべりと共にお届けしています。各動画のタイトルをクリックすると、詳しい分量や手順写真をまとめた個別レシピページに直接移動できます。
+        </p>
+        <div class="row mt-3">
+            <div class="col-12 col-md-4 mb-3 mb-md-0">
+                <div class="p-3" style="background: #fff; border-radius: 12px; height: 100%; border: 1px solid #f0e6d6;">
+                    <h3 style="font-size: 0.95rem; color: #4b3e2a; font-weight: bold; margin-bottom: 8px;">
+                        <i class="fas fa-star mr-2" style="color: #b58351;"></i>おすすめ動画
+                    </h3>
+                    <p style="color: #666; font-size: 0.85rem; line-height: 1.7; margin-bottom: 0;">
+                        初めてでも失敗しにくく、特に人気の高い定番レシピや見ごたえのある力作を集めました。
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-3 mb-md-0">
+                <div class="p-3" style="background: #fff; border-radius: 12px; height: 100%; border: 1px solid #f0e6d6;">
+                    <h3 style="font-size: 0.95rem; color: #4b3e2a; font-weight: bold; margin-bottom: 8px;">
+                        <i class="fa-solid fa-mitten mr-2" style="color: #b58351;"></i>成形を楽しむ
+                    </h3>
+                    <p style="color: #666; font-size: 0.85rem; line-height: 1.8; margin-bottom: 0;">
+                        マーブルパンや編み込みパンなど、見ているだけでワクワクする可愛い形づくりの手順を分かりやすく解説しています。
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="p-3" style="background: #fff; border-radius: 12px; height: 100%; border: 1px solid #f0e6d6;">
+                    <h3 style="font-size: 0.95rem; color: #4b3e2a; font-weight: bold; margin-bottom: 8px;">
+                        <i class="fas fa-bolt mr-2" style="color: #b58351;"></i>ショート動画
+                    </h3>
+                    <p style="color: #666; font-size: 0.85rem; line-height: 1.7; margin-bottom: 0;">
+                        成形のポイントから焼き上がりまでをぎゅっと凝縮し、隙間時間にサッとチェックできる動画を集めました。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 
