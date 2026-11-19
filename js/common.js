@@ -24,6 +24,21 @@
 })();
 
 document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('click', function(event) {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+
+        const cookieSettingsButton = target.closest('#cookie-settings-button');
+        if (!cookieSettingsButton) return;
+
+        event.preventDefault();
+        window.googlefc = window.googlefc || {};
+        window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+        window.googlefc.callbackQueue.push(function() {
+            window.googlefc.showRevocationMessage();
+        });
+    });
+
     // ---- 1. ヘッダー ----
     const headerPlaceholder = document.getElementById('header-placeholder');
 

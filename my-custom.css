@@ -304,6 +304,19 @@ body, h1, h2, h3, h4, h5, h6 {
     white-space: nowrap;
 }
 
+   .footer-nav-links button {
+       background: none;
+       border: 0;
+       color: #4b3e2a;
+       cursor: pointer;
+       font: inherit;
+       font-size: 10px;
+       font-weight: 600;
+       margin-left: 10px;
+       padding: 0;
+       white-space: nowrap;
+   }
+
 .footer-nav-links a:first-child {
     margin-left: 0;
 }
@@ -397,7 +410,8 @@ body, h1, h2, h3, h4, h5, h6 {
         align-items: flex-end;
         gap: 4px;
     }
-    .footer-nav-links a {
+    .footer-nav-links a,
+    .footer-nav-links button {
         margin-left: 0;
     }
 }
