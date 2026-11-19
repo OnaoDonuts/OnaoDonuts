@@ -294,10 +294,28 @@ body, h1, h2, h3, h4, h5, h6 {
     content: "" !important; width: 20px !important; height: 3px !important; background: var(--onao-green) !important;
 }
 
-
 /* --------------------------------------------------------------------------
-   5. スマホ版：ボトムナビ ＆ フッター（SNS・ロゴ・コピーライト配置）
+   5. PC版＆スマホ版：ボトムナビ ＆ フッター（SNS・ロゴ・コピーライト配置）
    -------------------------------------------------------------------------- */
+   .footer-nav-links a {
+    color: #4b3e2a;
+    font-size: 10px;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+.footer-nav-links a:first-child {
+    margin-left: 0;
+}
+
+.footer-row-bottom {
+    margin-top: 10px;
+}
+
+.copywrite-text p {
+    margin: 0;
+}
+
 @media (max-width: 767px) {
     /* 1. ページ全体の末尾に、ナビに隠れないための特大余白を作る */
     body { padding-bottom: 180px !important; }
@@ -324,7 +342,7 @@ body, h1, h2, h3, h4, h5, h6 {
         padding: 0 20px !important;
         margin-bottom: 25px !important; /* 2行目との間隔 */
     }
-
+    
     /* SNSエリア（左） */
     .footer-social-info {
         flex: 0 0 auto !important;
@@ -341,7 +359,7 @@ body, h1, h2, h3, h4, h5, h6 {
     }
 
     /* 2行目：コピーライト（中央・ナビの上に確実に表示） */
-    .copywrite_text {
+    .copywrite-text p{
         display: block !important;
         width: 100% !important;
         text-align: center !important;
@@ -372,6 +390,16 @@ body, h1, h2, h3, h4, h5, h6 {
     }
     .nav-item i { font-size: 20px !important; margin-bottom: 2px !important; }
     .nav-item.active, .nav-item.active i { color: var(--onao-green) !important; }
+
+    .footer-nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 4px;
+    }
+    .footer-nav-links a {
+        margin-left: 0;
+    }
 }
 
 /* --------------------------------------------------------------------------
