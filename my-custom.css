@@ -3357,3 +3357,245 @@ text-align: left !important;
         object-fit: cover;
     }
 }
+
+/* ===========================================================
+ --- index, recipe-search, video-list 説明ブロック（スマホで縮小）---
+============================================================*/
+
+/* ---------- PC・共通 ---------- */
+
+/* ボックス */
+.search-intro-box {
+    background-color: #fff;
+    border: 1px solid #f0e6d6;
+    border-radius: 16px;
+    padding: 1.5rem;
+}
+
+.search-intro-box.search-intro-cream,
+.search-intro-box.search-intro-start {
+    background-color: #fdfbf7;
+}
+
+/* 見出し */
+.search-intro-title {
+    font-size: 1.15rem;
+    color: #4b3e2a;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.search-intro-start .search-intro-title {
+    font-size: 1.1rem;
+}
+
+/* 本文 */
+.search-intro-text {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    margin-bottom: 0;
+}
+
+.search-intro-text strong {
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+}
+
+.search-intro .search-intro-text.search-intro-brown {
+    color: #5d4037;
+    line-height: 1.9;
+}
+
+.search-intro .search-intro-text.search-intro-gap {
+    margin-bottom: 10px;
+}
+
+/* 「はじめて作るなら」ブロック */
+.search-intro-start .search-intro-lead {
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.search-intro-list {
+    color: #5d4037;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    padding-left: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.search-intro-list strong,
+.search-intro-list a {
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.search-intro-list a {
+    color: #4b3e2a;
+    text-decoration: underline;
+}
+/* 本文の下余白（大） */
+.search-intro .search-intro-text.search-intro-gap-lg {
+    margin-bottom: 15px;
+}
+
+/* ブロック2：枠線をグレーに */
+.search-intro-box.search-intro-border-gray {
+    border-color: #eee;
+}
+
+/* 見出しの下余白（このブロックは15px） */
+.search-intro-box .search-intro-title.text-center {
+    margin-bottom: 15px;
+}
+
+/* 目的別リスト：幅制限なし・行間広め */
+.search-intro-list.search-intro-list-wide {
+    max-width: none;
+    margin: 0;
+    line-height: 1.9;
+}
+
+/* カード（ハート・自動計算） */
+.search-intro-card {
+    background: #fff;
+    border: 1px solid #f0e6d6;
+    border-radius: 12px;
+    height: 100%;
+    padding: 1rem;
+}
+
+.search-intro-card-title {
+    font-size: 0.98rem;
+    color: #4b3e2a;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.search-intro-card-text {
+    color: #666;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+/* カードの背景をクリーム色・枠線なしにする版 */
+.search-intro-cards-cream .search-intro-card {
+    background: #fdfbf7;
+    border: none;
+}
+/* ---------- スマホ（767px以下）---------- */
+@media (max-width: 767px) {
+
+    /* 外側の余白 */
+    .search-intro {
+        margin-top: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .search-intro.search-intro-my {
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .search-intro.search-intro-nobottom {
+        margin-bottom: 0 !important;
+    }
+
+    /* ページ末尾用（固定ナビ対策）。-my より後ろに書くこと */
+    .search-intro.search-intro-last {
+        margin-bottom: 4rem !important;
+    }
+
+    /* ボックス */
+    .search-intro-box {
+        padding: 0.5rem 0.75rem;
+        border-radius: 10px;
+    }
+
+    .search-intro-box.search-intro-start {
+        margin-top: 0.75rem !important;
+    }
+
+    /* 見出し */
+    .search-intro-title,
+    .search-intro-start .search-intro-title {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 6px;
+    }
+
+    /* 本文 */
+    .search-intro-text {
+        font-size: 0.7rem;
+        line-height: 1.5;
+    }
+
+    .search-intro .search-intro-text.search-intro-brown {
+        line-height: 1.5;
+    }
+
+    .search-intro .search-intro-text.search-intro-gap {
+        margin-bottom: 6px;
+    }
+
+    /* 「はじめて作るなら」ブロック */
+    .search-intro-start .search-intro-lead {
+        margin-bottom: 6px;
+    }
+
+    .search-intro-list {
+        font-size: 0.7rem;
+        line-height: 1.5;
+        padding-left: 16px;
+    }
+
+    .search-intro-list li.mb-2 {
+        margin-bottom: 0.25rem !important;
+    }
+
+        /* 見出し下余白（このブロックの15pxをスマホ用に戻す） */
+    .search-intro-box .search-intro-title.text-center {
+        margin-bottom: 6px;
+    }
+
+    .search-intro .search-intro-text.search-intro-gap-lg {
+        margin-bottom: 6px;
+    }
+
+    .search-intro-list.search-intro-list-wide {
+        line-height: 1.5;
+    }
+
+    /* カード */
+    .search-intro-cards {
+        margin-top: 0.5rem !important;
+    }
+
+    .search-intro-card {
+        padding: 0.5rem 0.75rem;
+        border-radius: 8px;
+    }
+
+    .search-intro-card-title {
+        font-size: 0.78rem;
+        margin-bottom: 4px;
+    }
+
+    .search-intro-card-text {
+        font-size: 0.68rem;
+        line-height: 1.5;
+    }
+
+    .search-intro-cards .mb-3 {
+        margin-bottom: 0.5rem !important;
+    }
+    
+        /* カテゴリー説明：カード間の余白を詰める */
+    .search-intro-cards.search-intro-cards-cream {
+        margin-top: 0.75rem !important;
+    }
+}
