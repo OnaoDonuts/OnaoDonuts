@@ -3176,7 +3176,8 @@ text-align: left !important;
 }
 
 /* 3. 中にある見出し（h2）や文字も、確実に最前面へ */
-.onao-lead-card h2, 
+.onao-lead-card h2,
+.onao-lead-card h3,
 .onao-lead-card p, 
 .onao-lead-card ul {
     position: relative;
