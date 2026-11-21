@@ -3059,6 +3059,13 @@ text-align: left !important;
     border-radius: 10px;
 }
 
+.contact-form-card iframe {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
 @media only screen and (max-width: 767px) {
     /* お問い合わせページのカード専用：余白を最小限にする */
     .contact-form-card {
@@ -3072,11 +3079,6 @@ text-align: left !important;
         margin-top: 0px !important;    /* 上の余白をゼロに */
     }
 
-    /* Googleフォーム自体の横幅を100%に */
-    .contact-form-card iframe {
-        width: 100% !important;
-    }
-	
 }
 
 /* =========================================
