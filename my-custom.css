@@ -3255,10 +3255,16 @@ text-align: left !important;
    ========================================= */
 /* スマホ表示（画面の横幅が767px以下のとき）のスタイル設定 */
 @media screen and (max-width: 767px) {
-    /* 専用クラス「onao-title-detail」の設定 */
-    .onao-title-detail {
-        white-space: normal !important;   /* ★最重要：絶対に改行させない設定を解除し、自動改行を許可する */
-        word-break: break-all !important; /* 長い単語があっても途中で折り返す */
+    #recipeHero #recipeTitle.onao-title-detail {
+        box-sizing: border-box !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        padding: 0 8px !important;
+        font-size: var(--recipe-title-fit-size, 28px) !important;
+        letter-spacing: 0.02em !important;
+        text-indent: 0 !important;
+        white-space: nowrap !important;
+        word-break: normal !important;
     }
 }
 

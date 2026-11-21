@@ -7,7 +7,35 @@ let timerSeconds = 0;
 let currentRecipeData = null;
 let ytPlayer = null;
 
+function fitRecipeTitle() {
+    const title = document.querySelector('#recipeHero #recipeTitle.onao-title-detail');
+    if (!title || !window.matchMedia('(max-width: 767px)').matches) return;
+
+    title.style.setProperty('--recipe-title-fit-size', '28px');
+
+    const styles = getComputedStyle(title);
+    const range = document.createRange();
+    range.selectNodeContents(title);
+    const textWidth = range.getBoundingClientRect().width;
+    const horizontalPadding = parseFloat(styles.paddingLeft) + parseFloat(styles.paddingRight);
+    const borders = parseFloat(styles.borderLeftWidth) + parseFloat(styles.borderRightWidth);
+    const availableWidth = title.parentElement.clientWidth - horizontalPadding - borders - 4;
+
+    if (textWidth > 0 && availableWidth > 0) {
+        const fontSize = Math.min(28, Math.max(12, 28 * availableWidth / textWidth));
+        title.style.setProperty('--recipe-title-fit-size', `${fontSize}px`);
+    }
+}
+
+let recipeTitleResizeFrame = 0;
+window.addEventListener('resize', () => {
+    cancelAnimationFrame(recipeTitleResizeFrame);
+    recipeTitleResizeFrame = requestAnimationFrame(fitRecipeTitle);
+}, { passive: true });
+
 document.addEventListener('DOMContentLoaded', async () => {
+    fitRecipeTitle();
+
     // 0. HTML上にタイマーモーダルが無い場合、JSで自動挿入する
     injectTimerModal();
 
