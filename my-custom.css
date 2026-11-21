@@ -3063,6 +3063,7 @@ text-align: left !important;
     display: block;
     width: 100%;
     max-width: 640px;
+    height: 900px;
     margin: 0 auto;
 }
 
@@ -3079,6 +3080,22 @@ text-align: left !important;
         margin-top: 0px !important;    /* 上の余白をゼロに */
     }
 
+    .contact-form-card iframe {
+        height: 1000px;
+    }
+
+}
+
+@media only screen and (max-width: 330px) {
+    .contact-form-card iframe {
+        height: 1070px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .contact-form-card iframe {
+        height: 1000px;
+    }
 }
 
 /* =========================================
