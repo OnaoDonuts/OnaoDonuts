@@ -1663,7 +1663,7 @@ body, h1, h2, h3, h4, h5, h6 {
         font-size: 23px !important; /* スマホでは少し小さく */
     }
     .hero-content p {
-        font-size: 14px !important;
+        font-size: 16px !important;
         margin-bottom: 20px !important;
     }
 }
@@ -2788,7 +2788,7 @@ text-align: left !important;
     }
 
     #recipeDescription {
-        font-size: 14px; /* 文字を少し小さくして余裕を作る */
+        font-size: 16px;
         padding: 20px 15px 10px !important;
     }
 }
@@ -3552,19 +3552,19 @@ text-align: left !important;
     /* 見出し */
     .search-intro-title,
     .search-intro-start .search-intro-title {
-        font-size: 0.85rem;
+        font-size: 18px;
         line-height: 1.4;
         margin-bottom: 6px;
     }
 
     /* 本文 */
     .search-intro-text {
-        font-size: 0.7rem;
-        line-height: 1.5;
+        font-size: 1rem;
+        line-height: 1.6;
     }
 
     .search-intro .search-intro-text.search-intro-brown {
-        line-height: 1.5;
+        line-height: 1.6;
     }
 
     .search-intro .search-intro-text.search-intro-gap {
@@ -3577,8 +3577,8 @@ text-align: left !important;
     }
 
     .search-intro-list {
-        font-size: 0.7rem;
-        line-height: 1.5;
+        font-size: 1rem;
+        line-height: 1.6;
         padding-left: 16px;
     }
 
@@ -3596,7 +3596,7 @@ text-align: left !important;
     }
 
     .search-intro-list.search-intro-list-wide {
-        line-height: 1.5;
+        line-height: 1.6;
     }
 
     /* カード */
@@ -3610,13 +3610,14 @@ text-align: left !important;
     }
 
     .search-intro-card-title {
-        font-size: 0.78rem;
+        font-size: 16px;
+        line-height: 1.4;
         margin-bottom: 4px;
     }
 
     .search-intro-card-text {
-        font-size: 0.68rem;
-        line-height: 1.5;
+        font-size: 1rem;
+        line-height: 1.6;
     }
 
     .search-intro-cards .mb-3 {
@@ -3626,5 +3627,22 @@ text-align: left !important;
         /* カテゴリー説明：カード間の余白を詰める */
     .search-intro-cards.search-intro-cards-cream {
         margin-top: 0.75rem !important;
+    }
+}
+
+@media (max-width: 767px) {
+    body {
+        font-size: 16px;
+    }
+
+    p {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .onao-ingredients-card label span,
+    .step-text,
+    .onao-comment-text p {
+        font-size: 16px !important;
     }
 }
