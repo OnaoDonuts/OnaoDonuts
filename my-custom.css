@@ -396,6 +396,9 @@ body, h1, h2, h3, h4, h5, h6 {
     .footer-nav-links a,
     .footer-nav-links button {
         margin-left: 0;
+        max-width: 100%;
+        white-space: normal;
+        text-align: right;
     }
 }
 
@@ -834,12 +837,13 @@ body, h1, h2, h3, h4, h5, h6 {
         padding: 0 10px !important;
     }
 
-    /* 2. メインタイトル：1行に収めるための魔法 */
+    /* 2. メインタイトル：狭い画面では折り返して見切れを防ぐ */
     .onao-title-main {
-        font-size: 25px !important;      /* 1行で綺麗に見えるサイズ */
+        font-size: clamp(20px, 6.25vw, 25px) !important;
         letter-spacing: 0.05em !important; /* スマホでは間隔を少し詰める */
         text-indent: 0.05em !important;    /* センター補正も合わせる */
-        white-space: nowrap !important;   /* 絶対に改行させない */
+        max-width: 100% !important;
+        white-space: normal !important;
         margin-bottom: 0 !important;
 
     }
@@ -1142,6 +1146,7 @@ body, h1, h2, h3, h4, h5, h6 {
     margin: 0;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -1192,7 +1197,8 @@ body, h1, h2, h3, h4, h5, h6 {
     .zukan-description {
         margin-bottom: 0 !important; /* ★材料の下の余白をなくす */
         line-height: 1.4 !important;
-   -webkit-line-clamp: 3; /* PCでは少し長めに表示 */
+        -webkit-line-clamp: 3; /* PCでは少し長めに表示 */
+        line-clamp: 3;
     }
 }
 
@@ -1295,6 +1301,7 @@ body, h1, h2, h3, h4, h5, h6 {
     margin: 0 0 4px 0;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -1458,14 +1465,28 @@ body, h1, h2, h3, h4, h5, h6 {
     font-weight: 800 !important;                     /* 少し太く */
 }
 
-/* スマホ版の調整（左寄せにしてスクロールを促す） */
+/* スマホ版では4項目を画面幅に収める */
 @media (max-width: 767px) {
     .onao-v-nav {
-        gap: 15px !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        justify-content: space-between !important;
+        gap: 0 !important;
+        padding: 0 10px !important;
     }
+
     .v-nav-item {
-        width: 70px !important; /* スマホでは少し小さく */
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        width: auto !important;
     }
+
+    .v-nav-label {
+        max-width: 100% !important;
+        white-space: normal !important;
+    }
+
     .v-icon-circle {
         width: 50px !important;
         height: 50px !important;
@@ -1546,6 +1567,7 @@ body, h1, h2, h3, h4, h5, h6 {
     /* 2行でカットして「...」にする */
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     height: 2.8em; 
@@ -1899,6 +1921,7 @@ body, h1, h2, h3, h4, h5, h6 {
     /* 1行で収まらない場合に「...」にする設定（もし2行にしたい場合は調整可） */
     display: -webkit-box;
     -webkit-line-clamp: 1;
+    line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -3557,6 +3580,10 @@ text-align: left !important;
         margin-bottom: 6px;
     }
 
+    .search-intro-start .search-intro-title {
+        text-wrap: balance;
+    }
+
     /* 本文 */
     .search-intro-text {
         font-size: 1rem;
@@ -3631,8 +3658,17 @@ text-align: left !important;
 }
 
 @media (max-width: 767px) {
+    #results {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
     body {
         font-size: 16px;
+    }
+
+    #searchInput {
+        min-width: 0 !important;
     }
 
     p {
