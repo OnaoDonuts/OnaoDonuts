@@ -4248,3 +4248,35 @@ text-align: left !important;
         padding-left: 10px;
     }
 }
+
+.best-receipe-area .search-designed-box {
+    width: calc(100% + 30px);
+    margin-left: -15px;
+}
+
+.best-receipe-area .search-designed-box > .search-intro-title,
+.best-receipe-area .search-designed-box > .search-intro-text,
+.best-receipe-area .search-designed-box > .search-start-recipe-list {
+    max-width: 780px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.search-intro-cards-cream {
+    max-width: 780px;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+@media (max-width: 767px) {
+    .search-intro-cards-cream {
+        max-width: none;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .row.search-intro-cards.search-intro-cards-cream {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+}
