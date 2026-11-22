@@ -959,22 +959,25 @@ body, h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-direction: row; /* スマホでは横並び */
     background-color: #fffef9;
-    border: 1px solid #e0d9c5;
-    /* 厚みと浮遊感のある影 */
-    box-shadow: 4px 4px 0px #d4ccb5, 0 10px 20px rgba(0, 0, 0, 0.07);
-    border-radius: 16px;
+    border: 1px solid #e8e3d6;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
     overflow: hidden;
     transition: all 0.3s ease;
-    /* ★ここを追加：左右に12pxずつの余白を作る */
-    margin-left: 12px !important;
-    margin-right: 12px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     margin-bottom: 20px; /* カード同士の上下の間隔 */
+}
+
+#results > .rs-card-col {
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 /* ホバー演出：リンク全体に効かせる */
 .rs-link:hover .zukan-card-inner {
-    transform: translateY(-5px);
-    box-shadow: 6px 6px 0px #b8a896, 0 15px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.12);
 }
 
 /* --- 2. 画像エリア（16:9比率・Noタグ） --- */
@@ -1036,8 +1039,8 @@ body, h1, h2, h3, h4, h5, h6 {
 .zukan-meta-row {
     display: flex;
     flex-direction: column; /* 1行目を時間とハート、2行目を難易度にする */
-    gap: 5px; /* 行間の隙間 */
-    margin-bottom: 8px;
+    gap: 3px;
+    margin-bottom: 5px;
 }
 /* 1行目（時間とハート）のスタイル */
 .rs-meta-top-row {
@@ -1053,34 +1056,36 @@ body, h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: flex-start; /* 左寄せ */
     font-size: 13px; /* 少し小さめに */
+    line-height: 1.1;
 }
 
-/* カプセル自体の設定：inline-flexにすることで文字の長さに合わせる */
+/* 時間・難易度のメタ情報 */
 .rs-time, .zukan-difficulty {
-    display: inline-flex;    /* ★中身の長さに合わせる */
+    display: inline-flex;
     align-items: center;
-    padding: 3px 12px;
-    border-radius: 20px;
-    font-size: 11px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    font-size: 12px;
     font-weight: 800;
 }
 
-/* 1. 調理時間カプセル（濃いめのビタミン緑） */
+/* 1. 調理時間（緑） */
 .rs-time {
-    background-color: #f0f9eb; /* 背景はそのまま（薄い緑） */
-    border: 1px solid #ccebc1; /* 枠線を少しだけ濃く */
-    color: #2d6a0f;           /* ★文字色：深いビタミン緑 */
+    color: #a67c52;
 }
 
 /* 時計アイコンの色も合わせる */
 .rs-time i {
-    color: #2d6a0f;
+    color: #a67c52;
     margin-right: 4px;
 }
 
 /* シンプルなハート（共通） */
 .zukan-heart {
     font-size: 16px;
+    line-height: 1;
     cursor: pointer; /* マウスを乗せると指マークに */
     transition: transform 0.2s ease;
     padding: 5px; /* クリックしやすく */
@@ -1101,18 +1106,17 @@ body, h1, h2, h3, h4, h5, h6 {
     color: #ccc;
 }
 
-/* 2. 難易度カプセル（濃いめのオレンジブラウン） */
+/* 2. 難易度（オレンジブラウン） */
 .zukan-difficulty {
-    background-color: #fff4e6; /* 背景：ごく薄いオレンジ */
-    border: 1px solid #ffe3c2; /* 枠線 */
-    color: #d35400;           /* ★文字色：パキッとしたブラッドオレンジ */
+    color: #a67c52;
+    white-space: nowrap;
 }
 
 /* 「難易度：」のラベル色も統一 */
 .rs-lvl-label {
     font-size: 10px;
     margin-right: 4px;
-    color: #d35400;           /* 文字色を合わせる */
+    color: #a67c52;
 }
 
 /* 星（Star）の色：リクエスト通り「オレンジ」を維持 */
@@ -1124,8 +1128,8 @@ body, h1, h2, h3, h4, h5, h6 {
 
 /* 空の星 */
 .zukan-difficulty .fa-regular.fa-star {
-    color: #e0d9c5;           
-    opacity: 0.5;
+    color: #dcd3bd;
+    opacity: 1 !important;
 }
 
 
@@ -1153,34 +1157,29 @@ body, h1, h2, h3, h4, h5, h6 {
 
 /* --- 4. 【重要：PC版の設定】画像潰れとレイアウトをリセット --- */
 @media (min-width: 992px) {
-    /* 1. カードを包むグリッド自体の隙間を狭くする */
-    #results .row {
-        --bs-gutter-x: 15px; /* 横の隙間（標準30pxから半分に） */
-        --bs-gutter-y: 15px; /* 縦の隙間 */
+    /* 1. 結果グリッドの余白とカード間隔を詰める */
+    #results {
+        margin-left: 8px !important;
+        margin-right: 8px !important;
     }
+
     /* 2. カード本体の余白調整 */
     .zukan-card-inner {
         flex-direction: column;
         height: 100%;
-         margin-left: 0 !important;  /* PCではグリッド側で制御するのでマージンをリセット */
+        margin-left: 0 !important;
         margin-right: 0 !important;
         margin-bottom: 0 !important; /* グリッドの余白(--bs-gutter-y)に任せる */
     }
 
-        /* もし上記で動かない場合は、resultsというIDに対して直接指定 */
-    #results {
-        margin-left: 15px !important;
-        margin-right: 15px !important;
-    }
-    
     .zukan-image-wrapper {
-        width: 100% !important; /* スマホの40%をリセット */
+        width: 100% !important; /* スマホの横並び幅を解除 */
         padding: 12px;
     }
 
     .zukan-content {
-        width: 100% !important; /* スマホの60%をリセット */
-        padding: 0 15px 15px;
+        width: 100% !important; /* スマホの横並び幅を解除 */
+        padding: 0 20px 15px;
         justify-content: flex-start;
     }
 
@@ -1202,14 +1201,67 @@ body, h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* --- 5. スマホ版の微調整（さらに小さい画面用） --- */
-@media (max-width: 767px) {
+/* --- 5. スマホ・タブレット版：全体が見える画像と省スペース化 --- */
+@media (max-width: 991.98px) {
+    #results {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
     .zukan-image-wrapper {
-        min-width: 130px;
+        width: 56%;
+        flex: 0 0 56%;
+        align-self: stretch;
+        aspect-ratio: auto;
+        background: #f7f5ef;
+        padding: 0;
+    }
+
+    .zukan-image-wrapper img {
+        display: block;
+        object-fit: contain;
+        border: 0;
+    }
+
+    .zukan-content {
+        width: 44%;
+        min-width: 0;
         padding: 6px;
     }
-    .zukan-content { padding: 10px; }
-    .zukan-title { font-size: 1rem; }
+}
+
+/* --- 6. スマホ版の微調整（さらに小さい画面用） --- */
+@media (max-width: 767px) {
+    .zukan-content { padding: 4px; }
+    .zukan-content { justify-content: flex-start; }
+
+    #results > .rs-card-col {
+        margin-bottom: 12px !important;
+    }
+
+    .zukan-card-inner {
+        margin-bottom: 0 !important;
+    }
+
+    .zukan-meta-row {
+        gap: 1px;
+        margin-bottom: 3px;
+    }
+
+    .zukan-title {
+        width: 100%;
+        font-size: clamp(14px, 4vw, 16px);
+        line-height: 1.3;
+        margin-bottom: 3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .zukan-description {
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+    }
 }
 
 /* ==========================================
@@ -3703,5 +3755,496 @@ text-align: left !important;
     .step-text,
     .onao-comment-text p {
         font-size: 16px !important;
+    }
+}
+
+/* レシピ検索ページ：セクションのゼブラ帯 */
+.search-page-band {
+    position: relative;
+    isolation: isolate;
+}
+
+.search-page-band::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+}
+
+.search-band-cream::before {
+    background-color: #fdfbf7;
+}
+
+.search-band-green::before {
+    background-color: #f5f8f2;
+}
+
+@media (max-width: 767px) {
+    .search-intro.search-page-band {
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .search-intro.search-page-band .search-intro-box {
+        padding: 6px 10px;
+    }
+
+    .search-intro.search-page-band .search-intro-text {
+        font-size: 15px;
+        line-height: 1.45;
+    }
+
+    .container.search-page-search-tools .search-box {
+        margin-bottom: 8px !important;
+    }
+
+    .container.search-page-search-tools #searchForm {
+        height: 44px !important;
+    }
+
+    #favFilterContainer.search-page-band {
+        margin-bottom: 8px !important;
+        padding: 3px 0;
+    }
+
+    #favFilterBtn {
+        padding: 6px 20px !important;
+        font-size: 15px !important;
+    }
+
+    .popular-keywords.search-page-band {
+        padding: 8px 0;
+        margin-bottom: 4px !important;
+    }
+
+    .popular-keywords .label {
+        margin-bottom: 6px;
+    }
+
+    .popular-keywords .keyword-tag {
+        padding: 4px 10px;
+        margin: 2px 3px;
+        font-size: 12px;
+    }
+
+    #searchCount.search-page-band {
+        margin-top: 0;
+        margin-bottom: 12px !important;
+        font-size: 15px;
+    }
+
+    #searchCount.search-page-band strong {
+        font-size: 20px;
+    }
+}
+
+.search-recommendation-section .search-recommendation-box {
+    position: relative;
+    overflow: hidden;
+    padding: 24px;
+    background: linear-gradient(145deg, #fff 0%, #fdfbf7 100%);
+    border: 1px solid #eaddd0;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(93, 64, 55, 0.08);
+}
+
+.search-recommendation-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #52ad1a, #f3bd67, #ef8b73);
+}
+
+.search-intro-box .search-recommendation-title.text-center {
+    margin-bottom: 20px !important;
+    color: #4b3e2a;
+    font-size: 22px;
+}
+
+.search-recommendation-title::before {
+    content: "OUR PICKS";
+    display: block;
+    margin-bottom: 5px;
+    color: #52ad1a;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+}
+
+.search-recommendation-title::after {
+    content: "";
+    display: block;
+    width: 44px;
+    height: 2px;
+    margin: 10px auto 0;
+    border-radius: 2px;
+    background: #52ad1a;
+}
+
+.search-intro-list.search-recommendation-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    list-style: none;
+}
+
+.search-recommendation-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    height: 100%;
+    padding: 16px 14px;
+    border: 1px solid #f0e6d6;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 3px 10px rgba(93, 64, 55, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-recommendation-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(93, 64, 55, 0.1);
+}
+
+.search-recommendation-icon {
+    display: inline-flex;
+    flex: 0 0 36px;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #edf6e8;
+    color: #52ad1a;
+    font-size: 16px;
+}
+
+.search-recommendation-item:nth-child(2) .search-recommendation-icon {
+    background: #fff3e2;
+    color: #d98b42;
+}
+
+.search-recommendation-item:nth-child(3) .search-recommendation-icon {
+    background: #fff0ed;
+    color: #dd806e;
+}
+
+.search-recommendation-copy {
+    min-width: 0;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.75;
+}
+
+.search-recommendation-copy strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #5d4037;
+    font-size: 0.98rem;
+    line-height: 1.5;
+}
+
+.search-recommendation-copy a {
+    color: #4b8f22;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 1px solid #b9dca4;
+}
+
+.search-recommendation-copy a:hover {
+    color: #356d18;
+    border-bottom-color: #356d18;
+}
+
+@media (max-width: 991.98px) {
+    .search-intro-list.search-recommendation-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .search-recommendation-section .search-recommendation-box {
+        padding: 18px 12px;
+        border-radius: 12px;
+    }
+
+    .search-intro-box .search-recommendation-title.text-center {
+        margin-bottom: 12px !important;
+        font-size: 19px;
+    }
+
+    .search-recommendation-title::before {
+        font-size: 10px;
+    }
+
+    .search-recommendation-title::after {
+        margin-top: 7px;
+    }
+
+    .search-intro-list.search-recommendation-list {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .search-recommendation-item {
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .search-recommendation-icon {
+        flex-basis: 32px;
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+}
+
+.search-designed-box {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 24px;
+    border: 1px solid #eaddd0;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #fff 0%, #fdfbf7 100%);
+    box-shadow: 0 8px 22px rgba(93, 64, 55, 0.08);
+}
+
+.search-designed-box::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 5px;
+    background: linear-gradient(90deg, #52ad1a, #f3bd67, #ef8b73);
+}
+
+.search-designed-box > * {
+    position: relative;
+    z-index: 1;
+}
+
+.search-designed-box .search-intro-title {
+    color: #4b3e2a;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.45;
+}
+
+.search-designed-box .search-intro-title::after {
+    content: "";
+    display: block;
+    width: 44px;
+    height: 2px;
+    margin: 10px auto 0;
+    border-radius: 2px;
+    background: #52ad1a;
+}
+
+.search-designed-box .search-intro-text {
+    color: #666;
+    line-height: 1.8;
+}
+
+.search-designed-box .search-intro-card {
+    padding: 18px;
+    border: 1px solid #f0e6d6;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(93, 64, 55, 0.06);
+}
+
+.search-designed-box .search-intro-card-title {
+    color: #5d4037;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.category-description-carousel .search-intro-card {
+    padding: 18px;
+    border: 1px solid #eaddd0;
+    border-radius: 14px;
+    background: linear-gradient(145deg, #fff 0%, #fdfbf7 100%);
+    box-shadow: 0 5px 16px rgba(93, 64, 55, 0.08);
+}
+
+.category-description-carousel .search-intro-card-title {
+    padding-bottom: 9px;
+    border-bottom: 1px solid #f0e6d6;
+    color: #5d4037;
+    font-size: 1.05rem;
+    line-height: 1.45;
+}
+
+.category-description-carousel .search-intro-card-text {
+    color: #666;
+    line-height: 1.75;
+}
+
+.search-start-recipe-list {
+    counter-reset: starter-recipe;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.search-start-recipe-list > .search-start-recipe-item {
+    position: relative;
+    min-height: 100%;
+    margin-bottom: 0 !important;
+    padding: 16px 16px 16px 58px;
+    border: 1px solid #f0e6d6;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(93, 64, 55, 0.06);
+    counter-increment: starter-recipe;
+}
+
+.search-start-recipe-item::before {
+    content: counter(starter-recipe, decimal-leading-zero);
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #edf6e8;
+    color: #4b8f22;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.search-start-recipe-item strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #5d4037;
+}
+
+.search-start-recipe-item a {
+    color: #4b8f22;
+    text-decoration: none;
+    border-bottom: 1px solid #b9dca4;
+}
+
+.search-start-recipe-item a:hover {
+    color: #356d18;
+    border-bottom-color: #356d18;
+}
+
+.search-story-box .search-intro-text {
+    max-width: 780px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: left;
+}
+
+.search-story-box .search-intro-brown {
+    padding-left: 14px;
+    border-left: 3px solid #dfeccd;
+}
+
+@media (max-width: 767px) {
+    .search-designed-box {
+        padding: 18px 14px;
+        border-radius: 12px;
+    }
+
+    .search-designed-box .search-intro-title {
+        font-size: 19px;
+    }
+
+    .search-designed-box .search-intro-title::after {
+        margin-top: 7px;
+    }
+
+    .search-designed-box .search-intro-text {
+        font-size: 1rem;
+        line-height: 1.65;
+    }
+
+    .search-designed-box .search-intro-card {
+        padding: 14px;
+    }
+
+    .category-description-carousel {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 12px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        scrollbar-color: #c9b394 #fdfbf7;
+        scrollbar-width: thin;
+        margin-right: -15px !important;
+        margin-left: -15px !important;
+        padding: 4px 15px 16px;
+    }
+
+    .category-description-carousel > [class*="col-"] {
+        display: flex;
+        flex: 0 0 82vw;
+        max-width: 340px;
+        padding: 0;
+        scroll-snap-align: start;
+    }
+
+    .category-description-carousel .search-intro-card {
+        width: 100%;
+        height: 100%;
+        padding: 16px;
+    }
+
+    .category-description-carousel .search-intro-card-title {
+        font-size: 1rem;
+    }
+
+    .category-description-carousel::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .category-description-carousel::-webkit-scrollbar-track {
+        background: #fdfbf7;
+    }
+
+    .category-description-carousel::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background: #c9b394;
+    }
+
+    .search-start-recipe-list {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .search-start-recipe-item {
+        padding: 14px 14px 14px 54px;
+    }
+
+    .search-start-recipe-item::before {
+        top: 14px;
+        left: 14px;
+    }
+
+    .search-story-box .search-intro-brown {
+        padding-left: 10px;
     }
 }

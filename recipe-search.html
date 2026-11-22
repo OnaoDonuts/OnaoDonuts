@@ -141,8 +141,8 @@
 
 <h2 class="visually-hidden">パンの種類や材料から探すレシピ検索</h2>
 
-<section class="container mt-4 mb-4 search-intro">
-    <div class="search-intro-box text-center">
+<section class="container mt-4 mb-4 search-intro search-page-band search-band-cream search-designed-intro search-designed-intro-search">
+    <div class="search-intro-box text-center search-designed-box">
         <p class="search-intro-text">
             「おなおドーナツ」のレシピの中から、使いたい材料やパンの種類、キーワードで自由に絞り込み検索ができるページです。ホームベーカリーを使ったレシピや手軽なこねないパンなど、作りたいお気に入りの一品をぜひ見つけてみてください！
         </p>
@@ -150,7 +150,7 @@
 </section>
 
 
-<div class="container mt-1"> 
+<div class="container mt-1 search-page-search-tools">
     <div class="search-box mb-3">
         <form id="searchForm">
             <input type="text" id="searchInput" placeholder="材料やパンの名前で検索...">
@@ -161,13 +161,13 @@
 </div>
 
 
-<div class="text-center mb-3" id="favFilterContainer">
+<div class="text-center mb-3 search-page-band search-band-cream" id="favFilterContainer">
     <button id="favFilterBtn" class="btn" onclick="filterFavorites()" style="background-color: #ff6b6b; color: white; border-radius: 25px; padding: 8px 25px; font-weight: bold; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.3s;">
         <i class="fa-solid fa-heart mr-2"></i> お気に入りレシピを表示
     </button>
 </div>
 
-<div class="popular-keywords text-center mb-5">
+<div class="popular-keywords text-center mb-5 search-page-band search-band-green">
     <span class="label">人気のキーワード<br></span>
     <a href="recipe-search.html?search=おなお厳選" class="keyword-tag">#おなお厳選</a> 
     <a href="recipe-search.html?search=食パン" class="keyword-tag">#食パン</a>
@@ -177,7 +177,7 @@
     <a href="recipe-search.html?search=朝食" class="keyword-tag">#朝食</a>
 </div>
 
-    <div id="searchCount" class="text-center mb-4" style="font-weight: bold; color: #4b3e2a;"><!-- prerender:search-count:start -->
+    <div id="searchCount" class="text-center mb-4 search-page-band search-band-cream" style="font-weight: bold; color: #4b3e2a;"><!-- prerender:search-count:start -->
         <span id="currentSearchTerm"></span> <strong>85</strong> 件のレシピが見つかりました
     <!-- prerender:search-count:end --></div>
     
@@ -2148,8 +2148,8 @@
 
 
 <!-- ★ 追加ブロック1：レシピの探し方ガイド・機能紹介 -->
-<section class="container my-5 search-intro search-intro-my">
-    <div class="search-intro-box search-intro-cream">
+<section class="container my-5 search-intro search-intro-my search-designed-section">
+    <div class="search-intro-box search-intro-cream search-designed-box search-favorite-guide-box">
         <h2 class="search-intro-title text-center">
             お気に入りのレシピを見つけるヒント
         </h2>
@@ -2182,23 +2182,32 @@
 </section>
 
 <!-- ★ 追加ブロック2：目的別おすすめレシピの導線 -->
-<section class="container mb-5 search-intro search-intro-my search-intro-last">
-    <div class="search-intro-box search-intro-border-gray">
-        <h2 class="search-intro-title text-center">
+<section class="container mb-5 search-intro search-intro-my search-intro-last search-recommendation-section">
+    <div class="search-intro-box search-intro-border-gray search-recommendation-box">
+        <h2 class="search-intro-title text-center search-recommendation-title">
             目的や気分から選ぶおすすめレシピ
         </h2>
-        <ul class="search-intro-list search-intro-list-wide">
-            <li class="mb-2">
-                <strong>毎日の朝食にぴったりの食パン：</strong>
-                ホームベーカリーにお任せでふわふわに焼き上がる<a href="recipe-v130.html">最高の食パン</a>や、断面の模様が楽しい<a href="recipe-v136.html">マーブル食パン</a>が人気です。
+        <ul class="search-intro-list search-intro-list-wide search-recommendation-list">
+            <li class="search-recommendation-item">
+                <span class="search-recommendation-icon" aria-hidden="true"><i class="fa-solid fa-sun"></i></span>
+                <div class="search-recommendation-copy">
+                    <strong>毎日の朝食にぴったりの食パン：</strong>
+                    ホームベーカリーにお任せでふわふわに焼き上がる<a href="recipe-v130.html">最高の食パン</a>や、断面の模様が楽しい<a href="recipe-v136.html">マーブル食パン</a>が人気です。
+                </div>
             </li>
-            <li class="mb-2">
-                <strong>手ごね不要で本格派の味わい：</strong>
-                ボウルで混ぜてじっくり熟成させる<a href="recipe-v138.html">チャバタ</a>は、外はパリッと中はもっちりとした食感が楽しめます。
+            <li class="search-recommendation-item">
+                <span class="search-recommendation-icon" aria-hidden="true"><i class="fa-solid fa-bread-slice"></i></span>
+                <div class="search-recommendation-copy">
+                    <strong>手ごね不要で本格派の味わい：</strong>
+                    ボウルで混ぜてじっくり熟成させる<a href="recipe-v138.html">チャバタ</a>は、外はパリッと中はもっちりとした食感が楽しめます。
+                </div>
             </li>
-            <li>
-                <strong>おやつやプレゼントに喜ばれる成形パン：</strong>
-                ちぎりパンとしても可愛い<a href="recipe-v123.html">お花の白パン</a>や、編み込みで美しく仕上げる<a href="recipe-v105.html">りんごカスタードパン</a>もおすすめです。
+            <li class="search-recommendation-item">
+                <span class="search-recommendation-icon" aria-hidden="true"><i class="fa-solid fa-gift"></i></span>
+                <div class="search-recommendation-copy">
+                    <strong>おやつやプレゼントに喜ばれる成形パン：</strong>
+                    ちぎりパンとしても可愛い<a href="recipe-v123.html">お花の白パン</a>や、編み込みで美しく仕上げる<a href="recipe-v105.html">りんごカスタードパン</a>もおすすめです。
+                </div>
             </li>
         </ul>
     </div>
