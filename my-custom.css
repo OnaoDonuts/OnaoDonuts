@@ -1740,6 +1740,11 @@ body, h1, h2, h3, h4, h5, h6 {
         font-size: 16px !important;
         margin-bottom: 20px !important;
     }
+
+    .hero-area .hero-content p {
+        font-size: clamp(12px, 3.6vw, 16px) !important;
+        white-space: nowrap;
+    }
 }
 
 /* ==========================================================================
@@ -2448,9 +2453,17 @@ div:has(+ #videoContainer) h2::before,
     content: "YOU MAY ALSO LIKE";
 }
 
-/* ワンポイントコラム (Column) */
+/* Tipsコラム (BAKING TIPS) */
 #recipeColumnSection .onao-section-title h2::before {
     content: "BAKING TIPS";
+}
+
+#recipeColumnSection > .onao-section-title {
+    margin-bottom: 8px !important;
+}
+
+#recipeColumn {
+    white-space: normal !important;
 }
 
 .onao-ingredient-group h3,
@@ -3094,6 +3107,12 @@ text-align: left !important;
     z-index: 11;
     color: #4b3e2a;
     font-weight: 600;
+}
+
+.policy-content-card p,
+.profile-content-card p,
+.contact-form-card p {
+    font-weight: 400;
 }
 
 /* リンクボタンを確実にクリックできるようにする */
@@ -4269,6 +4288,12 @@ text-align: left !important;
 }
 
 @media (max-width: 767px) {
+    .policy-content-card,
+    .profile-content-card {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
     .search-intro-cards-cream {
         max-width: none;
         margin-right: 0 !important;

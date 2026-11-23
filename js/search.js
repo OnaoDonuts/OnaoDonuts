@@ -29,8 +29,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const catParam = urlParams.get('cat');    
     const searchParam = urlParams.get('search'); 
+    const showAllRecipes = urlParams.get('all') === '1';
 
-    if (catParam || searchParam) {
+    if (showAllRecipes) {
+        currentCategory = "0";
+        if (searchInput) searchInput.value = "";
+        fetchAndDisplayRecipes("", "0");
+    } else if (catParam || searchParam) {
         currentCategory = catParam || "0";
         const initialQuery = searchParam || categoryMap[catParam] || "";
         if (searchInput) {
